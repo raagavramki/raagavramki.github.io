@@ -131,8 +131,22 @@ function typeWriter(element, text, speed = 100) {
     
     function type() {
         if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
+            // Check if we're about to add a span tag
+            if (text.substring(i, i + 5) === '<span') {
+                // Find the end of the span tag
+                const endSpanIndex = text.indexOf('</span>', i);
+                if (endSpanIndex !== -1) {
+                    // Add the entire span tag at once
+                    element.innerHTML += text.substring(i, endSpanIndex + 7);
+                    i = endSpanIndex + 7;
+                } else {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                }
+            } else {
+                element.innerHTML += text.charAt(i);
+                i++;
+            }
             setTimeout(type, speed);
         }
     }
