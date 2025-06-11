@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raagav Ramakrishnan - Portfolio</title>
+    <title>Raagav Ramakrishnan - ML Researcher & Hardware Designer</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -19,8 +19,8 @@
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#projects" class="nav-link">Projects</a>
+                <a href="#research" class="nav-link">Research</a>
                 <a href="#experience" class="nav-link">Experience</a>
-                <a href="#skills" class="nav-link">Skills</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="hamburger" id="hamburger">
@@ -39,24 +39,24 @@
                     Hi, I'm <span class="gradient-text">Raagav Ramakrishnan</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Electronics & Communication Engineering Student at IIIT Hyderabad
+                    ML Researcher & Hardware Designer at IIIT Hyderabad
                 </p>
                 <p class="hero-description">
-                    Passionate about Machine Learning, Computer Vision, and Hardware Design. 
-                    Currently researching technology's impact on well-being and fitness.
+                    Exploring the intersection of deep learning and hardware design. 
+                    Currently researching technology's impact on well-being and fitness at DSAC.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#research" class="btn btn-secondary">Research Work</a>
                 </div>
                 <div class="social-links">
-                    <a href="https://github.com/raagavramki" target="_blank" class="social-link">
+                    <a href="https://github.com/raagavramki" target="_blank" class="social-link" title="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="mailto:raagav.ramakrishnan@students.iiit.ac.in" class="social-link">
+                    <a href="mailto:raagav.ramakrishnan@students.iiit.ac.in" class="social-link" title="Email">
                         <i class="fas fa-envelope"></i>
                     </a>
-                    <a href="https://linkedin.com/in/raagav-ramakrishnan" target="_blank" class="social-link">
+                    <a href="https://linkedin.com/in/raagav-ramakrishnan" target="_blank" class="social-link" title="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
@@ -64,20 +64,23 @@
             <div class="hero-visual">
                 <div class="floating-card">
                     <div class="card-content">
-                        <i class="fas fa-code"></i>
-                        <span>Full Stack Developer</span>
-                    </div>
-                </div>
-                <div class="floating-card">
-                    <div class="card-content">
                         <i class="fas fa-brain"></i>
-                        <span>ML Researcher</span>
+                        <span>Vision Transformers</span>
+                        <small>84.38% Accuracy</small>
                     </div>
                 </div>
                 <div class="floating-card">
                     <div class="card-content">
                         <i class="fas fa-microchip"></i>
-                        <span>Hardware Designer</span>
+                        <span>Y86-64 Processor</span>
+                        <small>Pipelined Design</small>
+                    </div>
+                </div>
+                <div class="floating-card">
+                    <div class="card-content">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Research at DSAC</span>
+                        <small>Well-being & Tech</small>
                     </div>
                 </div>
             </div>
@@ -148,11 +151,11 @@
                         <span class="tech-tag">Transformers</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/rraagav/vision-transformer" target="_blank" class="project-link">
                             <i class="fab fa-github"></i> Code
                         </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Demo
+                        <a href="https://github.com/rraagav/vision-transformer/blob/main/README.md" target="_blank" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Details
                         </a>
                     </div>
                 </div>
@@ -176,39 +179,11 @@
                         <span class="tech-tag">Segmentation</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/rraagav/FCN" target="_blank" class="project-link">
                             <i class="fab fa-github"></i> Code
                         </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- CNN-RNN OCR Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-font"></i>
-                        </div>
-                        <div class="project-date">Oct 2024</div>
-                    </div>
-                    <h3 class="project-title">CNN-RNN OCR System</h3>
-                    <p class="project-description">
-                        Developed hybrid Deep Learning pipeline for OCR using CNNs for feature extraction 
-                        and RNNs with attention mechanisms, achieving 99.1% character-level accuracy.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">PyTorch</span>
-                        <span class="tech-tag">OCR</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> Code
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Demo
+                        <a href="https://github.com/rraagav/FCN/blob/main/README.md" target="_blank" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Details
                         </a>
                     </div>
                 </div>
@@ -232,39 +207,11 @@
                         <span class="tech-tag">Pipeline</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/rraagav/Y86-64-ISA-Processor" target="_blank" class="project-link">
                             <i class="fab fa-github"></i> Code
                         </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Demo
-                        </a>
-                    </div>
-                </div>
-
-                <!-- BPSK Modulation Project -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-wave-square"></i>
-                        </div>
-                        <div class="project-date">Apr 2024</div>
-                    </div>
-                    <h3 class="project-title">BPSK Modulation System</h3>
-                    <p class="project-description">
-                        Built Binary Phase Shift Keying system for audio transmission over AWGN channels 
-                        with pulse shaping modulation schemes and BER analysis.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">MATLAB</span>
-                        <span class="tech-tag">Signal Processing</span>
-                        <span class="tech-tag">Communications</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> Code
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Demo
+                        <a href="https://github.com/rraagav/Y86-64-ISA-Processor/blob/main/README.md" target="_blank" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Details
                         </a>
                     </div>
                 </div>
@@ -279,8 +226,8 @@
                     </div>
                     <h3 class="project-title">4-bit ALU Design</h3>
                     <p class="project-description">
-                        Implemented 4-bit ALU from Verilog modules to transistor-level designs using 
-                        NGSpice and MAGIC with complete layout verification.
+                        Implemented a 4-bit ALU from Verilog to transistor-level design using MAGIC, 
+                        with comprehensive verification of arithmetic and logical operations.
                     </p>
                     <div class="project-tech">
                         <span class="tech-tag">Verilog</span>
@@ -288,12 +235,37 @@
                         <span class="tech-tag">MAGIC</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">
+                        <a href="https://github.com/rraagav/VLSI-Project" target="_blank" class="project-link">
                             <i class="fab fa-github"></i> Code
                         </a>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i> Demo
+                        <a href="https://github.com/rraagav/VLSI-Project/blob/main/README.md" target="_blank" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Details
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <h2 class="section-title">Research Work</h2>
+            <div class="research-content">
+                <div class="research-card">
+                    <div class="research-header">
+                        <h3>Technology's Impact on Well-being</h3>
+                        <span class="research-date">Jan 2025 - Present</span>
+                    </div>
+                    <div class="research-details">
+                        <p class="research-org">Data Sciences and Analytics Center (DSAC), IIIT Hyderabad</p>
+                        <p class="research-advisor">Advisor: Dr. Nimmi Rangaswamy</p>
+                        <ul class="research-points">
+                            <li>Conducting interdisciplinary research on technology's role in shaping perceptions of well-being in fitness and body-building</li>
+                            <li>Leading ethnographic interviews with individuals aged 18-30 to gather qualitative data</li>
+                            <li>Analyzing the intersection of fitness technologies, social media, and cultural context</li>
+                            <li>Developing insights for inclusive, context-aware wellness technology design</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -303,39 +275,20 @@
     <!-- Experience Section -->
     <section id="experience" class="experience">
         <div class="container">
-            <h2 class="section-title">Experience</h2>
+            <h2 class="section-title">Leadership & Experience</h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
                         <div class="timeline-header">
-                            <h3>Undergrad Researcher</h3>
-                            <span class="timeline-date">Jan 2025 – Present</span>
-                        </div>
-                        <h4>Data Sciences and Analytics Center (DSAC), IIIT Hyderabad</h4>
-                        <p class="timeline-advisor">Advisor: Dr. Nimmi Rangaswamy</p>
-                        <ul>
-                            <li>Conducting interdisciplinary honors research on "The Role of Technology in Shaping Perceptions of Well-Being in Fitness and Body-Building"</li>
-                            <li>Leading comprehensive literature review and ethnographic interviews with individuals aged 18–30</li>
-                            <li>Exploring challenges in personalization, cultural relevance, and user engagement in fitness technologies</li>
-                            <li>Bridging technological design with socio-cultural insights within an Indian context</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3>President, Debate Club</h3>
-                            <span class="timeline-date">Oct 2023 – Present</span>
+                            <h3>Debate Club President</h3>
+                            <span class="timeline-date">Oct 2023 - Present</span>
                         </div>
                         <h4>IIIT Hyderabad</h4>
                         <ul>
-                            <li>Mentored 30+ active members with regular debate and theory sessions</li>
-                            <li>Hosted multiple Debate and MUN tournaments with 50+ attendees</li>
-                            <li>Managed logistics, marketing, and adjudication while building specialized teams</li>
-                            <li>Organized bi-weekly meetings and training modules to foster competitive debate culture</li>
+                            <li>Mentoring 30+ active members with regular debate and theory sessions</li>
+                            <li>Organizing bi-weekly meetings and mock debates to foster competitive debate culture</li>
+                            <li>Hosting multiple Debate and MUN tournaments with 50+ attendees</li>
                         </ul>
                     </div>
                 </div>
@@ -345,13 +298,13 @@
                     <div class="timeline-content">
                         <div class="timeline-header">
                             <h3>TEDx Speaker</h3>
-                            <span class="timeline-date">Mar 2022</span>
+                            <span class="timeline-date">March 2022</span>
                         </div>
-                        <h4>TEDx Talk: "Clarity in a Changing World"</h4>
+                        <h4>"Clarity in a Changing World"</h4>
                         <ul>
-                            <li>Delivered TEDx talk on tech-society relations to 100+ attendees</li>
-                            <li>Received praise for insights on navigating technological change</li>
-                            <li>Explored the intersection of technology and human experience</li>
+                            <li>Delivered a TEDx talk on tech-society relations</li>
+                            <li>Received praise from 100+ attendees</li>
+                            <li>Explored the evolving relationship between technology and human experience</li>
                         </ul>
                     </div>
                 </div>
@@ -456,11 +409,8 @@
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Let's Connect!</h3>
-                    <p>
-                        I'm always interested in discussing new opportunities, research collaborations, 
-                        or just having a conversation about technology and its impact on society.
-                    </p>
+                    <h3>Let's Connect</h3>
+                    <p>I'm always open to discussing new projects, research opportunities, or potential collaborations.</p>
                     <div class="contact-methods">
                         <div class="contact-method">
                             <div class="contact-icon">
@@ -468,20 +418,7 @@
                             </div>
                             <div class="contact-details">
                                 <h4>Email</h4>
-                                <a href="mailto:raagav.ramakrishnan@students.iiit.ac.in">
-                                    raagav.ramakrishnan@students.iiit.ac.in
-                                </a>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <div class="contact-icon">
-                                <i class="fab fa-github"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>GitHub</h4>
-                                <a href="https://github.com/raagavramki" target="_blank">
-                                    github.com/raagavramki
-                                </a>
+                                <a href="mailto:raagav.ramakrishnan@students.iiit.ac.in">raagav.ramakrishnan@students.iiit.ac.in</a>
                             </div>
                         </div>
                         <div class="contact-method">
@@ -490,49 +427,34 @@
                             </div>
                             <div class="contact-details">
                                 <h4>LinkedIn</h4>
-                                <a href="https://linkedin.com/in/raagav-ramakrishnan" target="_blank">
-                                    linkedin.com/in/raagav-ramakrishnan
-                                </a>
+                                <a href="https://linkedin.com/in/raagav-ramakrishnan" target="_blank">raagav-ramakrishnan</a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/raagavramki" target="_blank">raagavramki</a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    <p>&copy; 2025 Raagav Ramakrishnan. All rights reserved.</p>
+                    <p>&copy; 2024 Raagav Ramakrishnan. All rights reserved.</p>
                 </div>
                 <div class="footer-links">
                     <a href="#home">Home</a>
-                    <a href="#about">About</a>
                     <a href="#projects">Projects</a>
+                    <a href="#research">Research</a>
                     <a href="#contact">Contact</a>
                 </div>
             </div>
