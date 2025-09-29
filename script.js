@@ -20,6 +20,13 @@ toggle.addEventListener('click',()=>{
   menu.classList.toggle('open');
 });
 
+document.querySelectorAll('#nav-menu a').forEach(a=>{
+  a.addEventListener('click', ()=>{
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', false);
+  });
+});
+
 // ---------- FILTER PROJECTS ----------
 const buttons=document.querySelectorAll('.filter-buttons button');
 const cards=document.querySelectorAll('.project-grid .card');

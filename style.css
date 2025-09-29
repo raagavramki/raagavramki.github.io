@@ -15,6 +15,18 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hel
   --radius:8px;
   --max-width:1100px;
   --transition:.25s ease;
+  --nav-h: 70px;
+}
+
+/* push content below the fixed nav */
+body{ padding-top: var(--nav-h); }
+
+/* when clicking #about / #projects / etc., keep the heading clear of the nav */
+section, header{ scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+/* mobile menu: position below the fixed nav */
+@media(max-width:768px){
+  #nav-menu{ top: var(--nav-h); }
 }
 
 /* ---------- UTILITIES ---------- */
@@ -34,7 +46,7 @@ p{margin-bottom:1rem}ul{padding-left:1.2rem}li{margin-bottom:.4rem}
 .tags span{background:var(--border);padding:.2rem .5rem;border-radius:var(--radius);font-size:.75rem;color:var(--text-secondary)}
 
 /* ---------- NAV ---------- */
-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 5%;background:var(--surface);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 5%;background:var(--surface);position:fixed;  top:0; left:0; right:0;z-index:9999;border-bottom:1px solid var(--border)}
 .logo{font-weight:700;font-size:1.2rem;color:#fff;text-decoration:none}
 .logo span{color:var(--accent)}
 #nav-toggle{display:none;flex-direction:column;width:28px;height:22px;background:none;border:none;cursor:pointer}
@@ -46,7 +58,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 5
 #nav-menu a:hover::after{width:100%}
 
 /* ---------- HERO ---------- */
-.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;min-height:calc(100vh - 70px);padding:2rem 5%}
+.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;min-height:calc(100vh - var(--nav-h));padding:2rem 5%}
 .hero-text{flex:1 1 450px}
 .hero-text h1{margin-bottom:1rem}
 .highlight{color:var(--accent)}
@@ -110,7 +122,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 5
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:768px){
   #nav-toggle{display:flex}
-  #nav-menu{position:absolute;top:70px;right:0;background:var(--surface);flex-direction:column;width:200px;border-left:1px solid var(--border);border-bottom:1px solid var(--border);max-height:0;overflow:hidden;transition:max-height .3s ease}
+  #nav-menu{position:absolute;top:var(--nav-h);right:0;background:var(--surface);flex-direction:column;width:200px;border-left:1px solid var(--border);border-bottom:1px solid var(--border);max-height:0;overflow:hidden;transition:max-height .3s ease}
   #nav-menu.open{max-height:400px;padding:1rem 0}
   .hero{flex-direction:column-reverse;text-align:center}
 }
