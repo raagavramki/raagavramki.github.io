@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Raagav Ramakrishnan – AI & Systems</title>
+  <title>Raagav Ramakrishnan – AI, Vision, and HCI</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="assets/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,10 +33,10 @@
         Hi, I'm <span class="highlight">Raagav Ramakrishnan</span>.
         <span id="type-writer"></span>
       </h1>
-      <p>IIIT-H B.Tech (Hons.) ECE · AI & Systems Researcher · Debate President</p>
+      <p>IIIT-H B.Tech (Hons.) ECE · AI & HCI Researcher · Debate President</p>
       <div class="hero-cta">
         <a href="#projects" class="btn">Explore Work</a>
-        <a href="mailto:raagav.ramki@iiit.ac.in" class="btn btn-outline">Get in Touch</a>
+        <a href="mailto:raagav.ramakrishnan@students.iiit.ac.in" class="btn btn-outline">Get in Touch</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -84,7 +84,6 @@
     <div class="project-grid">
       <!-- Vision Transformer -->
       <article class="card" data-category="ml">
-        <img src="assets/img/vit.webp" alt="ViT attention map">
         <div class="card-body">
           <h3>Vision Transformer from Scratch</h3>
           <p>Built ViT & DiffViT in PyTorch on CIFAR-10; reached 84.38 % accuracy. Benchmarked 11 patch/augment configurations and visualised attention rollout.</p>
@@ -97,7 +96,6 @@
 
       <!-- FCN Segmentation -->
       <article class="card" data-category="ml">
-        <img src="assets/img/fcn.webp" alt="Segmentation result">
         <div class="card-body">
           <h3>FCNs for Street-Scene Segmentation</h3>
           <p>Implemented FCN-32/16/8s with VGG backbone and skip connections; achieved 83.3 % mIoU on 13-class dataset. Modular PyTorch pipeline with live mIoU curves.</p>
@@ -110,7 +108,6 @@
 
       <!-- CNN-RNN OCR -->
       <article class="card" data-category="ml">
-        <img src="assets/img/ocr.webp" alt="OCR example">
         <div class="card-body">
           <h3>CNN-RNN OCR Pipeline</h3>
           <p>Hybrid CNN + Bi-LSTM with attention for word-level OCR. Synthetic training set; 99.1 % character-level accuracy.</p>
@@ -123,7 +120,6 @@
 
       <!-- MLP from Scratch -->
       <article class="card" data-category="ml">
-        <img src="assets/img/mlp.webp" alt="MLP diagram">
         <div class="card-body">
           <h3>MLP from Scratch (NumPy)</h3>
           <p>Configurable layers, activations (ReLU, Sigmoid, Tanh), optimisers (SGD, Mini-batch, Batch GD), and losses (MSE, Cross-Entropy) to demystify back-prop.</p>
@@ -136,7 +132,6 @@
 
       <!-- BPSK -->
       <article class="card" data-category="comm">
-        <img src="assets/img/bpsk.webp" alt="BPSK constellation">
         <div class="card-body">
           <h3>BPSK Audio Transceiver (MATLAB)</h3>
           <p>End-to-end BPSK over AWGN; compared rectangular vs raised-cosine pulse shaping via BER & constellation diagrams.</p>
@@ -149,7 +144,6 @@
 
       <!-- Y86 -->
       <article class="card" data-category="hw">
-        <img src="assets/img/y86.webp" alt="Pipeline diagram">
         <div class="card-body">
           <h3>Y86-64 Pipelined Processor (Verilog)</h3>
           <p>5-stage pipeline with hazard detection & forwarding; validated on iverilog with custom ISA tests.</p>
@@ -162,7 +156,6 @@
 
       <!-- 4-bit ALU -->
       <article class="card" data-category="hw">
-        <img src="assets/img/alu.webp" alt="ALU layout">
         <div class="card-body">
           <h3>4-bit ALU (Verilog → GDS)</h3>
           <p>RTL to transistor-level design; simulated in NGSpice, laid out in MAGIC, DRC & LVS clean.</p>
@@ -202,14 +195,17 @@
 <section id="experience" class="section">
   <div class="container">
     <h2>Industry Experience</h2>
-    <div class="job">
-      <h3>ML Research Engineer · Cloud Ambassadors (Google Ecosystem Startup)</h3>
-      <p>Dec 2024 – July 2025 | Remote</p>
-      <ul>
-        <li>Fine-tuned ProtBert & ESM-1b for mutation-effect prediction; explored Graph Transformers on AlphaFold2 embeddings.</li>
-        <li>Shipped real-time dubbing pipeline using Google + OpenAI + ElevenLabs APIs; built phonetic pre-processor for Hindi/Gujarati.</li>
-        <li>Designed Kubeflow + Vertex AI dynamic-pricing engine (XGBoost) for airline tickets; automated CI/CD via Cloud Build & Pub/Sub.</li>
-      </ul>
+    <div class="timeline">
+      <div class="timeline-item">
+        <time>Dec 2024 – present</time>
+        <h3>ML Research Engineer · Cloud Ambassadors (Google Ecosystem Startup)</h3>
+        <p><em>Remote</em></p>
+        <ul>
+          <li>Fine-tuned ProtBert & ESM-1b for mutation-effect prediction; explored Graph Transformers on AlphaFold2 embeddings.</li>
+          <li>Shipped real-time dubbing pipeline using Google + OpenAI + ElevenLabs APIs; built phonetic pre-processor for Hindi/Gujarati.</li>
+          <li>Designed Kubeflow + Vertex AI dynamic-pricing engine (XGBoost) for airline tickets; automated CI/CD via Cloud Build & Pub/Sub.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -222,20 +218,20 @@
       Open to research collaborations, open-source contributions, and debate invitations.
     </p>
     <div class="contact-grid">
-      <a href="mailto:raagav.ramki@iiit.ac.in" class="contact-card" id="email-card">
+      <a href="mailto:raagav.ramakrishnan@students.iiit.ac.in" class="contact-card" id="email-card">
         <span class="icon">✉</span>
         <strong>Email</strong>
-        <small>raagav.ramki@iiit.ac.in</small>
+        <!-- <small>raagav.ramki@iiit.ac.in</small> -->
       </a>
       <a href="https://github.com/raagavramki" target="_blank" rel="noopener" class="contact-card">
         <span class="icon">⚡</span>
         <strong>GitHub</strong>
-        <small>github.com/raagavramki</small>
+        <!-- <small>Github</small> -->
       </a>
-      <a href="https://linkedin.com/in/raagavramki" target="_blank" rel="noopener" class="contact-card">
+      <a href="www.linkedin.com/in/raagav-ramakrishnan-3905511b2" target="_blank" rel="noopener" class="contact-card">
         <span class="icon">💼</span>
         <strong>LinkedIn</strong>
-        <small>linkedin.com/in/raagavramki</small>
+        <!-- <small>linkedin.com/in/raagavramki</small> -->
       </a>
     </div>
     <p class="footer-note">Built with ☕ & vanilla code by Raagav.</p>
