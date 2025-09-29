@@ -1,5 +1,5 @@
 // ---------- TYPE-WRITER ----------
-const txts=["Deep-Learning Engineer","Hardware Tinkerer","Debate President","Research Storyteller"];
+const txts=["Machine-Learning Engineer","Researcher", "Debater"];
 let i=0,j=0,c=false;
 const el=document.getElementById('type-writer');
 function loop(){
@@ -43,7 +43,7 @@ window.addEventListener('load',()=>cards.forEach((c,i)=>setTimeout(()=>c.classLi
 const emailCard=document.getElementById('email-card');
 emailCard.addEventListener('click',e=>{
   e.preventDefault();
-  navigator.clipboard.writeText('raagav.ramki@iiit.ac.in').then(()=>{
+  navigator.clipboard.writeText('raagav.ramakrishnan@students.iiit.ac.in').then(()=>{
     const toast=document.createElement('div');
     toast.textContent='Email copied!';
     toast.style.position='fixed';

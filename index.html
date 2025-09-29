@@ -40,7 +40,7 @@
       </div>
     </div>
     <div class="hero-visual">
-      <img src="assets/img/profile.webp" alt="Raagav portrait">
+      <img src="assets/img/profile.jpg" alt="Raagav portrait">
     </div>
   </section>
 </header>
@@ -50,23 +50,19 @@
   <div class="container">
     <h2>About</h2>
     <p>
-      I’m an undergraduate researcher at IIIT Hyderabad passionate about the intersection of <strong>deep learning, hardware, and human-computer interaction</strong>.
+      I’m an undergraduate student at IIIT Hyderabad passionate about the intersection of <strong> Deep Learning, Artificial Intelligence and Human-Computer Interaction </strong>, to build systems that benefit people. 
       From building Vision Transformers from scratch in PyTorch to taping-out 4-bit ALUs in MAGIC, I enjoy pushing ideas from algebra to silicon—and debating their ethical implications over coffee.
     </p>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h3>Languages</h3>
-        <p>Python · C/C++ · Verilog · JavaScript · R · Bash · LaTeX</p>
+
+    <section id="skills">
+      <h2>Skills & Tooling</h2>
+      <div class="card">
+        <strong>Languages:</strong> Python • C • C++ • R • JavaScript • Verilog • MATLAB • LaTeX <br>
+        <strong>ML / Data:</strong> PyTorch • Transformers • scikit-learn • Pandas • NumPy • Vertex AI • Kubeflow <br>
+        <strong>Hardware:</strong> SPICE • MAGIC • Digital Design • Arduino <br>
+        <strong>Systems:</strong> Git • Docker • GCP • MongoDB • CI/CD
       </div>
-      <div class="skill-group">
-        <h3>ML / Data</h3>
-        <p>PyTorch · Transformers · Vertex AI · Kubeflow · scikit-learn · Pandas · NumPy</p>
-      </div>
-      <div class="skill-group">
-        <h3>Hardware & Systems</h3>
-        <p>SPICE · MAGIC · Arduino · GCP · Docker · MongoDB · Git</p>
-      </div>
-    </div>
+    </section>
   </div>
 </section>
 
@@ -74,7 +70,8 @@
 <section id="projects" class="section">
   <div class="container">
     <h2>Projects</h2>
-    <div class="filter-buttons">
+
+    <div class="filter-buttons" aria-label="Project filters">
       <button data-filter="all" class="active">All</button>
       <button data-filter="ml">Deep Learning</button>
       <button data-filter="hw">Hardware</button>
@@ -86,11 +83,11 @@
       <article class="card" data-category="ml">
         <div class="card-body">
           <h3>Vision Transformer from Scratch</h3>
-          <p>Built ViT & DiffViT in PyTorch on CIFAR-10; reached 84.38 % accuracy. Benchmarked 11 patch/augment configurations and visualised attention rollout.</p>
+          <p>Implemented ViT & DiffViT in PyTorch on CIFAR-10; reached 84.38% test accuracy. Benchmarked 11 patch/augmentation configs and visualized attention rollout.</p>
           <div class="tags">
             <span>PyTorch</span><span>Python</span><span>CIFAR-10</span>
           </div>
-          <a href="https://github.com/raagavramki/vision-transformer-cifar" target="_blank" rel="noopener" class="btn-text">Code →</a>
+          <a href="https://github.com/raagavramki/vision-transformer" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
@@ -98,11 +95,11 @@
       <article class="card" data-category="ml">
         <div class="card-body">
           <h3>FCNs for Street-Scene Segmentation</h3>
-          <p>Implemented FCN-32/16/8s with VGG backbone and skip connections; achieved 83.3 % mIoU on 13-class dataset. Modular PyTorch pipeline with live mIoU curves.</p>
+          <p>Built FCN-32s/16s/8s with VGG backbone and skip connections; achieved 83.3% mIoU on a 13-class dataset. Modular training pipeline with live mIoU curves.</p>
           <div class="tags">
             <span>PyTorch</span><span>VGG</span><span>mIoU</span>
           </div>
-          <a href="https://github.com/raagavramki/fcn-semantic-seg" target="_blank" rel="noopener" class="btn-text">Code →</a>
+          <a href="https://github.com/raagavramki/FCN" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
@@ -110,11 +107,11 @@
       <article class="card" data-category="ml">
         <div class="card-body">
           <h3>CNN-RNN OCR Pipeline</h3>
-          <p>Hybrid CNN + Bi-LSTM with attention for word-level OCR. Synthetic training set; 99.1 % character-level accuracy.</p>
+          <p>Hybrid CNN + Bi-LSTM with attention for word-level OCR. Trained on a synthetic dataset; 99.1% character-level accuracy.</p>
           <div class="tags">
             <span>PyTorch</span><span>Attention</span><span>OCR</span>
           </div>
-          <a href="https://github.com/raagavramki/cnn-rnn-ocr" target="_blank" rel="noopener" class="btn-text">Code →</a>
+          <a href="https://github.com/raagavramki/OCR-CNN-RNN" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
@@ -122,11 +119,11 @@
       <article class="card" data-category="ml">
         <div class="card-body">
           <h3>MLP from Scratch (NumPy)</h3>
-          <p>Configurable layers, activations (ReLU, Sigmoid, Tanh), optimisers (SGD, Mini-batch, Batch GD), and losses (MSE, Cross-Entropy) to demystify back-prop.</p>
+          <p>Configurable layers, activations (ReLU, Sigmoid, Tanh), optimizers (SGD, mini-batch, batch GD), and losses (MSE, Cross-Entropy) to demystify backprop.</p>
           <div class="tags">
             <span>NumPy</span><span>Python</span><span>Education</span>
           </div>
-          <a href="https://github.com/raagavramki/mlp-numpy" target="_blank" rel="noopener" class="btn-text">Code →</a>
+          <a href="https://github.com/raagavramki/MLP--from-scratch" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
@@ -134,11 +131,11 @@
       <article class="card" data-category="comm">
         <div class="card-body">
           <h3>BPSK Audio Transceiver (MATLAB)</h3>
-          <p>End-to-end BPSK over AWGN; compared rectangular vs raised-cosine pulse shaping via BER & constellation diagrams.</p>
+          <p>End-to-end BPSK over AWGN; compared rectangular vs. raised-cosine pulse shaping via BER and constellation analysis.</p>
           <div class="tags">
             <span>MATLAB</span><span>BPSK</span><span>BER</span>
           </div>
-          <a href="https://github.com/raagavramki/bpsk-matlab" target="_blank" rel="noopener" class="btn-text">Code →</a>
+          <a href="https://github.com/raagavramki/BPSK-Modulation" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
@@ -146,23 +143,23 @@
       <article class="card" data-category="hw">
         <div class="card-body">
           <h3>Y86-64 Pipelined Processor (Verilog)</h3>
-          <p>5-stage pipeline with hazard detection & forwarding; validated on iverilog with custom ISA tests.</p>
+          <p>Five-stage pipeline with hazard detection and forwarding; validated on iVerilog with custom ISA tests.</p>
           <div class="tags">
-            <span>Verilog</span><span>Pipeline</span><span>Hazard</span>
+            <span>Verilog</span><span>Pipeline</span><span>CPU</span>
           </div>
-          <a href="https://github.com/raagavramki/y86-processor" target="_blank" rel="noopener" class="btn-text">Code →</a>
+          <a href="https://github.com/raagavramki/Y86-64-ISA-Processor" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
-      <!-- 4-bit ALU -->
+      <!-- VLSI / ALU -->
       <article class="card" data-category="hw">
         <div class="card-body">
-          <h3>4-bit ALU (Verilog → GDS)</h3>
-          <p>RTL to transistor-level design; simulated in NGSpice, laid out in MAGIC, DRC & LVS clean.</p>
+          <h3>VLSI Micro-Projects (ALU, Layout, Leakage)</h3>
+          <p>RTL-to-layout flow (NGSpice, MAGIC) for small blocks incl. a 4-bit ALU; DRC/LVS-clean layouts and leakage-current analyses.</p>
           <div class="tags">
             <span>Verilog</span><span>NGSpice</span><span>MAGIC</span>
           </div>
-          <a href="https://github.com/raagavramki/4bit-alu-gds" target="_blank" rel="noopener" class="btn-text">Code →</a>
+          <a href="https://github.com/raagavramki/VLSI-Project" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
     </div>
@@ -234,7 +231,6 @@
         <!-- <small>linkedin.com/in/raagavramki</small> -->
       </a>
     </div>
-    <p class="footer-note">Built with ☕ & vanilla code by Raagav.</p>
   </div>
 </section>
 
