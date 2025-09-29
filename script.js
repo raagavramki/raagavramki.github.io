@@ -22,7 +22,7 @@ toggle.addEventListener('click',()=>{
 
 // ---------- FILTER PROJECTS ----------
 const buttons=document.querySelectorAll('.filter-buttons button');
-const cards=document.querySelectorAll('.card');
+const cards=document.querySelectorAll('.project-grid .card');
 buttons.forEach(btn=>{
   btn.addEventListener('click',()=>{
     buttons.forEach(b=>b.classList.remove('active'));
