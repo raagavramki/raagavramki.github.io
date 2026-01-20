@@ -9,7 +9,7 @@
   <link rel="icon" href="assets/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -39,6 +39,11 @@
           <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
           <span>Resume</span>
         </a>
+      </li>
+      <li>
+        <button id="theme-toggle" class="icon-btn theme-toggle" type="button" aria-label="Toggle color theme">
+          <i class="fa-regular fa-moon" aria-hidden="true"></i>
+        </button>
       </li>
     </ul>
   </nav>
@@ -108,40 +113,63 @@
     <h2>Projects</h2>
     <p class="section-lede">Selected builds spanning ML systems, retrieval/agents, vision, and from-scratch implementations.</p>
 
+    <div class="featured-grid">
+      <article class="featured-card" data-project="neuroanatomy">
+        <div class="featured-pill">Featured</div>
+        <h3>Neuroanatomy SME Agent</h3>
+        <p>End-to-end RAG-style pipeline and agent for neuroanatomy subject-matter expertise.</p>
+        <div class="tags">
+          <span>RAG</span><span>BioLORD</span><span>FAISS</span><span>Elasticsearch</span>
+        </div>
+        <button class="btn-text project-open" type="button" data-project="neuroanatomy">Read more →</button>
+      </article>
+
+      <article class="featured-card" data-project="multilingual-slm">
+        <div class="featured-pill">Featured</div>
+        <h3>Multilingual SLM</h3>
+        <p>140M-parameter multilingual model for English, Tamil, and Mizo with custom corpus and tokenizer.</p>
+        <div class="tags">
+          <span>Language Modeling</span><span>LoRA</span><span>Tokenization</span>
+        </div>
+        <button class="btn-text project-open" type="button" data-project="multilingual-slm">Read more →</button>
+      </article>
+    </div>
+
     <div class="filter-buttons" aria-label="Project filters">
       <button data-filter="all" class="active">All</button>
-      <button data-filter="systems">ML Systems</button>
-      <button data-filter="nlp">NLP</button>
+      <button data-filter="ml">ML</button>
       <button data-filter="vision">Vision</button>
+      <button data-filter="nlp">NLP</button>
+      <button data-filter="electronics">Electronics</button>
     </div>
 
     <div class="project-grid">
       <!-- Neuroanatomy SME Agent -->
-      <article class="card" data-category="systems">
+      <article class="card project-card" data-category="nlp" data-project="neuroanatomy">
         <div class="card-body">
           <h3>Neuroanatomy SME Agent</h3>
           <p>Built an embedding + retrieval pipeline with multi-granularity chunk graphs, BioLORD embeddings, hybrid FAISS/Elasticsearch search, and reranking — plus a minimal UI and export toolchain.</p>
           <div class="tags">
             <span>HuggingFace</span><span>PyTorch</span><span>LangChain-style</span><span>RAG</span>
           </div>
-          <a href="https://github.com/raagavramki" target="_blank" rel="noopener noreferrer" class="btn-text">Repo →</a>
+          <button class="btn-text project-open" type="button" data-project="neuroanatomy">Details →</button>
         </div>
       </article>
 
       <!-- Multilingual SLM -->
-      <article class="card" data-category="nlp">
+      <article class="card project-card" data-category="nlp" data-project="multilingual-slm">
         <div class="card-body">
           <h3>Multilingual Small Language Model (EN/Tamil/Mizo)</h3>
           <p>Built a 3B-token corpus, trained a 96k unigram tokenizer, and pretrained a 140M-parameter dense LM. Fine-tuned with LoRA on reasoning tasks for controlled editing behavior.</p>
           <div class="tags">
             <span>HuggingFace</span><span>PyTorch</span><span>Tokenizer</span><span>LoRA</span>
           </div>
-          <a href="https://github.com/raagavramki" target="_blank" rel="noopener noreferrer" class="btn-text">Repo →</a>
+          <button class="btn-text project-open" type="button" data-project="multilingual-slm">Details →</button>
         </div>
       </article>
 
       <!-- Vision Transformers -->
-      <article class="card" data-category="vision">
+      <article class="card project-card" data-category="vision" data-project="vit">
         <div class="card-body">
           <h3>Vision Transformers (ViT + DiffViT)</h3>
           <p>Implemented ViT & DiffViT from scratch in PyTorch on CIFAR-10; reached 84.38% test accuracy, produced DINO maps, and benchmarked 11 configurations.</p>
@@ -153,7 +181,7 @@
       </article>
 
       <!-- FCN Segmentation -->
-      <article class="card" data-category="vision">
+      <article class="card project-card" data-category="vision" data-project="fcn">
         <div class="card-body">
           <h3>Fully Convolutional Networks for Segmentation</h3>
           <p>Built FCN-32/16/8 with VGG-16 backbone + bilinear upsampling; achieved 83.3% test mIoU. Optimized pipelines and batch scheduling for throughput.</p>
@@ -165,7 +193,7 @@
       </article>
 
       <!-- OCR -->
-      <article class="card" data-category="vision">
+      <article class="card project-card" data-category="vision" data-project="ocr">
         <div class="card-body">
           <h3>OCR CNN-RNN</h3>
           <p>Built a hybrid CNN + RNN pipeline with attention for OCR; achieved 99.1% character-level accuracy on a synthetic dataset.</p>
@@ -177,7 +205,7 @@
       </article>
 
       <!-- MLP from Scratch -->
-      <article class="card" data-category="systems">
+      <article class="card project-card" data-category="ml" data-project="mlp">
         <div class="card-body">
           <h3>MLP from Scratch (NumPy)</h3>
           <p>Built a configurable MLP with activations, optimizers, and losses to build intuition for gradient flow and training dynamics.</p>
@@ -188,8 +216,8 @@
         </div>
       </article>
 
-      <!-- Bonus: Hardware / Systems (kept, but mapped into Systems filter) -->
-      <article class="card" data-category="systems">
+      <!-- Y86 Processor -->
+      <article class="card project-card" data-category="electronics" data-project="y86">
         <div class="card-body">
           <h3>Y86-64 Pipelined Processor (Verilog)</h3>
           <p>Five-stage pipelined processor with hazard detection/forwarding; validated with waveform-based testbenches.</p>
@@ -199,6 +227,50 @@
           <a href="https://github.com/raagavramki/Y86-64-ISA-Processor" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
+
+      <!-- BPSK Modulation System -->
+      <article class="card project-card" data-category="electronics" data-project="bpsk">
+        <div class="card-body">
+          <h3>BPSK Modulation System</h3>
+          <p>Built a Binary Phase Shift Keying (BPSK) audio transmission system over AWGN and noiseless channels, comparing rectangular and raised-cosine pulse shaping for ISI analysis.</p>
+          <div class="tags">
+            <span>MATLAB</span><span>BPSK</span><span>Signal Processing</span>
+          </div>
+          <a href="https://github.com/raagavramki/BPSK-Modulation" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
+        </div>
+      </article>
+
+      <!-- 4-bit ALU / VLSI Flow -->
+      <article class="card project-card" data-category="electronics" data-project="vlsi-alu">
+        <div class="card-body">
+          <h3>4-bit ALU Design & VLSI Flow</h3>
+          <p>Implemented a 4-bit ALU in Verilog, progressed to gate-level simulations in NGSpice, and finalized transistor-level layouts in MAGIC with DRC/LVS-clean designs.</p>
+          <div class="tags">
+            <span>Verilog</span><span>NGSpice</span><span>MAGIC</span>
+          </div>
+          <a href="https://github.com/raagavramki/VLSI-Project" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- --------------- PUBLICATIONS & TALKS --------------- -->
+<section id="publications" class="section">
+  <div class="container">
+    <h2>Publications & Talks</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <time>Oct 2025</time>
+        <h3>Impact and Perception of Generative AI and Related Automation Tools in the Gulf Region</h3>
+        <p><em>Pangracious, V., Hadj-Alouane, N. B., Chu, Z., Ramakrishnan, R. (2025). Palgrave Macmillan.</em></p>
+        <p>Chapter exploring how generative AI and automation are perceived and appropriated across the Gulf Region, with a focus on youth and educational contexts.</p>
+      </div>
+      <div class="timeline-item">
+        <time>Mar 2022</time>
+        <h3>TEDx Talk — “Clarity in a Changing World”</h3>
+        <p>Talk on navigating uncertainty, building reflective practices, and engaging critically with emerging technologies as a young adult.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -260,6 +332,26 @@
         </ul>
       </div>
     </div>
+
+    <h2>Leadership & Extras</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <time>Oct 2023 – Oct 2025</time>
+        <h3>President · Debate Club, IIIT Hyderabad</h3>
+        <ul>
+          <li>Grew the club to 50+ active members with weekly debates, theory sessions, and structured practice.</li>
+          <li>Built specialized teams for logistics, marketing, and design to run flagship debate and MUN tournaments with 100+ participants.</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <time>2024 – 2021</time>
+        <h3>Selected Certifications</h3>
+        <ul>
+          <li>Machine Learning Certificate — Udemy (June 2024).</li>
+          <li>IDEOU Foundations in Design Thinking with applied user research projects (Aug 2021).</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -294,6 +386,24 @@
 <button id="back-to-top" class="back-to-top" aria-label="Back to top">
   <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </button>
+
+<!-- --------------- PROJECT DETAIL MODAL --------------- -->
+<div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" hidden>
+  <div class="modal-backdrop" data-modal-close></div>
+  <div class="modal-dialog">
+    <button class="modal-close" type="button" aria-label="Close project details" data-modal-close>
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+    <div class="modal-content">
+      <p class="modal-kicker mono" id="project-modal-kicker"></p>
+      <h2 id="project-modal-title"></h2>
+      <p id="project-modal-body"></p>
+      <ul id="project-modal-bullets"></ul>
+      <p class="modal-meta" id="project-modal-tech"></p>
+      <a id="project-modal-link" class="btn-text" target="_blank" rel="noopener noreferrer">View code →</a>
+    </div>
+  </div>
+</div>
 
 <!-- --------------- SCRIPTS --------------- -->
 <script src="script.js"></script>
