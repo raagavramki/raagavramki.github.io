@@ -2,41 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Raagav Ramakrishnan – AI, Vision, and HCI</title>
+  <title>Raagav Ramakrishnan — ML Systems • AI for Healthcare</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Raagav Ramakrishnan — ML Systems Engineering, AI for Healthcare, Medical Imaging. B.Tech (Hons.) ECE at IIIT Hyderabad." />
+  <meta name="theme-color" content="#0b0f19" />
   <link rel="icon" href="assets/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+<a class="skip-link" href="#about">Skip to content</a>
+<div id="scroll-progress" aria-hidden="true"></div>
 <!-- --------------- HERO --------------- -->
 <header id="top">
-  <nav aria-label="Primary">
-    <a href="#top" class="logo">Raagav</a>
-    <button id="nav-toggle" aria-expanded="false"><span></span></button>
-    <ul id="nav-menu">
+  <nav aria-label="Primary" class="nav">
+    <a href="#top" class="logo" aria-label="Home">
+      <span class="logo-dot" aria-hidden="true"></span>
+      <span>Raagav</span>
+    </a>
+    <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+      <span></span>
+    </button>
+    <ul id="nav-menu" class="nav-menu">
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+      <li class="nav-cta">
+        <a class="pill" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">
+          <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+          <span>Resume</span>
+        </a>
+      </li>
     </ul>
   </nav>
 
   <section class="hero">
     <div class="hero-text">
+      <p class="kicker">
+        <span class="mono">IIIT Hyderabad</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>ML Systems Engineering</span>
+        <span class="dot" aria-hidden="true"></span>
+        <span>AI for Healthcare</span>
+      </p>
       <h1>
-        Hi, I'm <span class="highlight">Raagav Ramakrishnan</span>.
-        <span id="type-writer"></span>
+        Raagav Ramakrishnan
+        <span class="type-wrap" aria-label="Roles">
+          <span id="type-writer"></span>
+        </span>
       </h1>
-      <p>IIIT-H B.Tech (Hons.) ECE · AI & HCI Researcher · Debate President</p>
+      <p class="subhead">I build production-grade ML systems and research tools — from medical imaging pipelines to retrieval-augmented agents.</p>
       <div class="hero-cta">
         <a href="#projects" class="btn">Explore Work</a>
-        <a href="mailto:raagav.ramakrishnan@students.iiit.ac.in" class="btn btn-outline">Get in Touch</a>
+        <a href="#contact" class="btn btn-outline">Let’s Connect</a>
+      </div>
+      <div class="hero-links" aria-label="Social links">
+        <a class="icon-btn" href="mailto:raagav.ramakrishnan@students.iit.ac.in" aria-label="Email">
+          <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+        </a>
+        <a class="icon-btn" href="https://github.com/raagavramki" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/raagav-ramakrishnan-3905511b2" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+        </a>
       </div>
     </div>
     <div class="hero-visual">
@@ -50,17 +86,17 @@
   <div class="container">
     <h2>About</h2>
     <p>
-      I’m an undergraduate student at IIIT Hyderabad passionate about the intersection of <strong> Deep Learning, Artificial Intelligence and Human-Computer Interaction </strong>, to build systems that benefit people. 
-      From building Vision Transformers from scratch in PyTorch to taping-out 4-bit ALUs in MAGIC, I enjoy pushing ideas from algebra to silicon—and debating their ethical implications over coffee.
+      I’m a B.Tech (Hons.) ECE student at IIIT Hyderabad, working across <strong>ML systems engineering</strong>, <strong>medical imaging</strong>, and <strong>human-centered research</strong>.
+      I enjoy pushing ideas from research prototypes to production — and building clean tooling that makes teams faster.
     </p>
 
     <section id="skills">
-      <h2>Skills & Tooling</h2>
+      <h2>Skills</h2>
       <div class="card">
-        <strong>Languages:</strong> Python • C • C++ • R • JavaScript • Verilog • MATLAB • LaTeX <br>
-        <strong>ML / Data:</strong> PyTorch • Transformers • scikit-learn • Pandas • NumPy • Vertex AI • Kubeflow <br>
-        <strong>Hardware:</strong> SPICE • MAGIC • Digital Design • Arduino <br>
-        <strong>Systems:</strong> Git • Docker • GCP • MongoDB • CI/CD
+        <strong>Languages</strong> Python • C/C++ • R • JavaScript • HTML/CSS • LaTeX<br>
+        <strong>ML/AI</strong> PyTorch • HuggingFace • Transformers • XGBoost • Evaluation/Optimization<br>
+        <strong>MLOps/Cloud</strong> GCP (BigQuery, Vertex AI, Pub/Sub, Cloud Build) • Kubeflow • Docker • CI/CD<br>
+        <strong>Engineering</strong> FastAPI • REST APIs • Git • Linux/Unix • MongoDB • Debugging/Testing
       </div>
     </section>
   </div>
@@ -70,44 +106,69 @@
 <section id="projects" class="section">
   <div class="container">
     <h2>Projects</h2>
+    <p class="section-lede">Selected builds spanning ML systems, retrieval/agents, vision, and from-scratch implementations.</p>
 
     <div class="filter-buttons" aria-label="Project filters">
       <button data-filter="all" class="active">All</button>
-      <button data-filter="ml">Deep Learning</button>
-      <button data-filter="hw">Hardware</button>
-      <button data-filter="comm">Communications</button>
+      <button data-filter="systems">ML Systems</button>
+      <button data-filter="nlp">NLP</button>
+      <button data-filter="vision">Vision</button>
     </div>
 
     <div class="project-grid">
-      <!-- Vision Transformer -->
-      <article class="card" data-category="ml">
+      <!-- Neuroanatomy SME Agent -->
+      <article class="card" data-category="systems">
         <div class="card-body">
-          <h3>Vision Transformer from Scratch</h3>
-          <p>Implemented ViT & DiffViT in PyTorch on CIFAR-10; reached 84.38% test accuracy. Benchmarked 11 patch/augmentation configs and visualized attention rollout.</p>
+          <h3>Neuroanatomy SME Agent</h3>
+          <p>Built an embedding + retrieval pipeline with multi-granularity chunk graphs, BioLORD embeddings, hybrid FAISS/Elasticsearch search, and reranking — plus a minimal UI and export toolchain.</p>
           <div class="tags">
-            <span>PyTorch</span><span>Python</span><span>CIFAR-10</span>
+            <span>HuggingFace</span><span>PyTorch</span><span>LangChain-style</span><span>RAG</span>
+          </div>
+          <a href="https://github.com/raagavramki" target="_blank" rel="noopener noreferrer" class="btn-text">Repo →</a>
+        </div>
+      </article>
+
+      <!-- Multilingual SLM -->
+      <article class="card" data-category="nlp">
+        <div class="card-body">
+          <h3>Multilingual Small Language Model (EN/Tamil/Mizo)</h3>
+          <p>Built a 3B-token corpus, trained a 96k unigram tokenizer, and pretrained a 140M-parameter dense LM. Fine-tuned with LoRA on reasoning tasks for controlled editing behavior.</p>
+          <div class="tags">
+            <span>HuggingFace</span><span>PyTorch</span><span>Tokenizer</span><span>LoRA</span>
+          </div>
+          <a href="https://github.com/raagavramki" target="_blank" rel="noopener noreferrer" class="btn-text">Repo →</a>
+        </div>
+      </article>
+
+      <!-- Vision Transformers -->
+      <article class="card" data-category="vision">
+        <div class="card-body">
+          <h3>Vision Transformers (ViT + DiffViT)</h3>
+          <p>Implemented ViT & DiffViT from scratch in PyTorch on CIFAR-10; reached 84.38% test accuracy, produced DINO maps, and benchmarked 11 configurations.</p>
+          <div class="tags">
+            <span>PyTorch</span><span>Attention</span><span>CIFAR-10</span>
           </div>
           <a href="https://github.com/raagavramki/vision-transformer" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
       <!-- FCN Segmentation -->
-      <article class="card" data-category="ml">
+      <article class="card" data-category="vision">
         <div class="card-body">
-          <h3>FCNs for Street-Scene Segmentation</h3>
-          <p>Built FCN-32s/16s/8s with VGG backbone and skip connections; achieved 83.3% mIoU on a 13-class dataset. Modular training pipeline with live mIoU curves.</p>
+          <h3>Fully Convolutional Networks for Segmentation</h3>
+          <p>Built FCN-32/16/8 with VGG-16 backbone + bilinear upsampling; achieved 83.3% test mIoU. Optimized pipelines and batch scheduling for throughput.</p>
           <div class="tags">
-            <span>PyTorch</span><span>VGG</span><span>mIoU</span>
+            <span>PyTorch</span><span>VGG-16</span><span>mIoU</span>
           </div>
           <a href="https://github.com/raagavramki/FCN" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
-      <!-- CNN-RNN OCR -->
-      <article class="card" data-category="ml">
+      <!-- OCR -->
+      <article class="card" data-category="vision">
         <div class="card-body">
-          <h3>CNN-RNN OCR Pipeline</h3>
-          <p>Hybrid CNN + Bi-LSTM with attention for word-level OCR. Trained on a synthetic dataset; 99.1% character-level accuracy.</p>
+          <h3>OCR CNN-RNN</h3>
+          <p>Built a hybrid CNN + RNN pipeline with attention for OCR; achieved 99.1% character-level accuracy on a synthetic dataset.</p>
           <div class="tags">
             <span>PyTorch</span><span>Attention</span><span>OCR</span>
           </div>
@@ -116,52 +177,47 @@
       </article>
 
       <!-- MLP from Scratch -->
-      <article class="card" data-category="ml">
+      <article class="card" data-category="systems">
         <div class="card-body">
           <h3>MLP from Scratch (NumPy)</h3>
-          <p>Configurable layers, activations (ReLU, Sigmoid, Tanh), optimizers (SGD, mini-batch, batch GD), and losses (MSE, Cross-Entropy) to demystify backprop.</p>
+          <p>Built a configurable MLP with activations, optimizers, and losses to build intuition for gradient flow and training dynamics.</p>
           <div class="tags">
-            <span>NumPy</span><span>Python</span><span>Education</span>
+            <span>Python</span><span>NumPy</span><span>From Scratch</span>
           </div>
           <a href="https://github.com/raagavramki/MLP--from-scratch" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
 
-      <!-- BPSK -->
-      <article class="card" data-category="comm">
-        <div class="card-body">
-          <h3>BPSK Audio Transceiver (MATLAB)</h3>
-          <p>End-to-end BPSK over AWGN; compared rectangular vs. raised-cosine pulse shaping via BER and constellation analysis.</p>
-          <div class="tags">
-            <span>MATLAB</span><span>BPSK</span><span>BER</span>
-          </div>
-          <a href="https://github.com/raagavramki/BPSK-Modulation" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
-        </div>
-      </article>
-
-      <!-- Y86 -->
-      <article class="card" data-category="hw">
+      <!-- Bonus: Hardware / Systems (kept, but mapped into Systems filter) -->
+      <article class="card" data-category="systems">
         <div class="card-body">
           <h3>Y86-64 Pipelined Processor (Verilog)</h3>
-          <p>Five-stage pipeline with hazard detection and forwarding; validated on iVerilog with custom ISA tests.</p>
+          <p>Five-stage pipelined processor with hazard detection/forwarding; validated with waveform-based testbenches.</p>
           <div class="tags">
             <span>Verilog</span><span>Pipeline</span><span>CPU</span>
           </div>
           <a href="https://github.com/raagavramki/Y86-64-ISA-Processor" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
         </div>
       </article>
+    </div>
+  </div>
+</section>
 
-      <!-- VLSI / ALU -->
-      <article class="card" data-category="hw">
-        <div class="card-body">
-          <h3>VLSI Micro-Projects (ALU, Layout, Leakage)</h3>
-          <p>RTL-to-layout flow (NGSpice, MAGIC) for small blocks incl. a 4-bit ALU; DRC/LVS-clean layouts and leakage-current analyses.</p>
-          <div class="tags">
-            <span>Verilog</span><span>NGSpice</span><span>MAGIC</span>
-          </div>
-          <a href="https://github.com/raagavramki/VLSI-Project" target="_blank" rel="noopener noreferrer" class="btn-text">Code →</a>
-        </div>
-      </article>
+<!-- --------------- EDUCATION --------------- -->
+<section id="education" class="section alt">
+  <div class="container">
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <time>2022 – 2026</time>
+        <h3>International Institute of Information Technology, Hyderabad (IIIT-H)</h3>
+        <p><em>B.Tech Honours in Electronics and Communication</em></p>
+      </div>
+      <div class="timeline-item">
+        <time>June 2022</time>
+        <h3>The Millennium School, Dubai</h3>
+        <p><em>CBSE — Grade 10: 93% • Grade 12: 95%</em></p>
+      </div>
     </div>
   </div>
 </section>
@@ -176,12 +232,11 @@
         <h3>Undergraduate Researcher · DSAC, IIIT Hyderabad</h3>
         <p><em>Advised by Dr. Nimmi Rangaswamy</em></p>
         <p>
-          “How do people bricolage Digital and Analog tracking methodologies in Physical Fitness and Wellness?"
+          Studying how young adults bricolage fitness tools and social media practices to form identity, sustain motivation, and protect well-being in gym cultures.
         </p>
         <ul>
-          <li>Conducting ethnographic study with interviews of Indian youth (18-30y), capturing routines, aspirations, and struggles. </li>
-          <li>Conduct a Literature review of HCI and technological tracking methods to ground findings and identify cultural gaps.</li>
-          <li>Perform Affinity mapping to cluster insights into themes.</li>
+          <li>Conducting field visits and qualitative interviews with practitioners and regular gym-goers.</li>
+          <li>Using affinity mapping and thematic clustering to identify patterns in self-tracking, progress validation, and negotiation of external influence.</li>
         </ul>
       </div>
     </div>
@@ -196,11 +251,12 @@
       <div class="timeline-item">
         <time>Dec 2024 – present</time>
         <h3>ML Research Engineer · Cloud Ambassadors (Google Ecosystem Startup)</h3>
-        <p><em>Remote</em></p>
+        <p><em>Cloud / MLOps • Production ML</em></p>
         <ul>
-          <li>Shipped real-time dubbing pipeline using Google + OpenAI + ElevenLabs APIs; built phonetic pre-processor for Hindi/Gujarati.</li>
-          <li>Designed Kubeflow + Vertex AI dynamic-pricing engine pipeline (XGBoost) for airline tickets; automated CI/CD via Cloud Build & Pub/Sub.</li>
-          <li>Fine-tuned ProtBert & ESM-1b for mutation-effect prediction; explored Graph Transformers on AlphaFold2 embeddings.</li>
+          <li>Building a glioma detection + segmentation pipeline for clinical workflows on GCP.</li>
+          <li>Fine-tuned ProtBERT and ESM-1b for mutation effect prediction; integrated GNNs (Graphormer/MPNN) using protein contact maps.</li>
+          <li>Developed and deployed a production-grade dynamic pricing engine using FastAPI and containerized services; built end-to-end pipelines on GCP (Kubeflow, BigQuery, XGBoost).</li>
+          <li>Implemented continuous training and automated inference with Vertex AI, Pub/Sub triggers, and Cloud Build CI/CD for model versioning and rollout.</li>
         </ul>
       </div>
     </div>
@@ -212,27 +268,32 @@
   <div class="container">
     <h2>Let’s Connect</h2>
     <p>
-      Open to research collaborations, open-source contributions, and debate invitations.
+      Open to research collaborations, ML systems engineering roles, and building ambitious tools with kind teams.
     </p>
     <div class="contact-grid">
-      <a href="mailto:raagav.ramakrishnan@students.iiit.ac.in" class="contact-card" id="email-card">
-        <span class="icon">✉</span>
+      <a href="mailto:raagav.ramakrishnan@students.iit.ac.in" class="contact-card" id="email-card">
+        <span class="icon"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span>
         <strong>Email</strong>
-        <!-- <small>raagav.ramki@iiit.ac.in</small> -->
+        <small>raagav.ramakrishnan@students.iit.ac.in</small>
       </a>
       <a href="https://github.com/raagavramki" target="_blank" rel="noopener" class="contact-card">
-        <span class="icon">⚡</span>
+        <span class="icon"><i class="fa-brands fa-github" aria-hidden="true"></i></span>
         <strong>GitHub</strong>
-        <!-- <small>Github</small> -->
+        <small>@raagavramki</small>
       </a>
       <a href="https://www.linkedin.com/in/raagav-ramakrishnan-3905511b2" target="_blank" rel="noopener noreferrer" class="contact-card">
-        <span class="icon">💼</span>
+        <span class="icon"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></span>
         <strong>LinkedIn</strong>
-        <!-- <small>linkedin.com/in/raagavramki</small> -->
+        <small>in/raagav-ramakrishnan</small>
       </a>
     </div>
+    <p class="footer-note">© <span id="year"></span> Raagav Ramakrishnan · Built with vanilla HTML/CSS/JS</p>
   </div>
 </section>
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</button>
 
 <!-- --------------- SCRIPTS --------------- -->
 <script src="script.js"></script>
