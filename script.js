@@ -1,3 +1,38 @@
+// ---------- THEME TOGGLE ----------
+const rootEl = document.documentElement;
+const themeToggleEl = document.getElementById("theme-toggle");
+const storedTheme = (() => {
+  try {
+    return window.localStorage.getItem("theme");
+  } catch {
+    return null;
+  }
+})();
+
+function applyTheme(theme) {
+  const safeTheme = theme === "light" ? "light" : "dark";
+  rootEl.setAttribute("data-theme", safeTheme);
+  try {
+    window.localStorage.setItem("theme", safeTheme);
+  } catch {
+    /* ignore */
+  }
+  if (!themeToggleEl) return;
+  const icon = themeToggleEl.querySelector("i");
+  if (!icon) return;
+  icon.classList.remove("fa-moon", "fa-sun");
+  icon.classList.add(safeTheme === "light" ? "fa-sun" : "fa-moon");
+}
+
+applyTheme(storedTheme === "light" ? "light" : "dark");
+
+if (themeToggleEl) {
+  themeToggleEl.addEventListener("click", () => {
+    const current = rootEl.getAttribute("data-theme") === "light" ? "light" : "dark";
+    applyTheme(current === "light" ? "dark" : "light");
+  });
+}
+
 // ---------- TYPE-WRITER ----------
 const roles = ["ML Systems Engineer", "AI for Healthcare", "Researcher"];
 let i = 0, j = 0, deleting = false;
@@ -115,9 +150,11 @@ revealTargets.forEach((el) => el.classList.add("reveal"));
 if ("IntersectionObserver" in window) {
   const io = new IntersectionObserver(
     (entries) => {
-      entries.forEach((e) => {
+      entries.forEach((e, idx) => {
         if (e.isIntersecting) {
-          e.target.classList.add("in");
+          setTimeout(() => {
+            e.target.classList.add("in");
+          }, idx * 60); // staggered reveal
           io.unobserve(e.target);
         }
       });
@@ -154,6 +191,105 @@ buttons.forEach((btn) => {
 window.addEventListener("load", () => {
   cards.forEach((c, idx) => setTimeout(() => c.classList.add("show"), idx * 70));
 });
+
+// ---------- MAKE PROJECT CARDS CLICKABLE ----------
+const projectCards = document.querySelectorAll(".project-card");
+projectCards.forEach((card) => {
+  const repoLink = card.querySelector(".btn-text[href]");
+  const projectKey = card.getAttribute("data-project");
+
+  card.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target.closest("a") || target.closest("button")) return;
+
+    if (repoLink && repoLink.href) {
+      window.open(repoLink.href, "_blank", "noopener");
+    } else if (projectKey) {
+      openProjectModal(projectKey);
+    }
+  });
+});
+
+// ---------- PROJECT MODAL ----------
+const projectModal = document.getElementById("project-modal");
+const projectOpenButtons = document.querySelectorAll(".project-open, .featured-card");
+
+const projectDetails = {
+  neuroanatomy: {
+    kicker: "Neuroanatomy SME Agent",
+    title: "Neuroanatomy SME Agent",
+    body:
+      "An end-to-end agentic system that ingests neuroanatomy content and exposes a question-answering, quiz, and export interface for learners and practitioners.",
+    bullets: [
+      "Implemented multi-granularity chunk-graph construction with BioLORD embeddings for domain-specialized retrieval.",
+      "Hybrid FAISS/Elasticsearch search with BGE reranking to balance recall and precision for medical concepts.",
+      "Thin web interface for chat, quiz generation, and PDF/DOCX/PPTX export workflows."
+    ],
+    tech: "Stack: HuggingFace, PyTorch, FAISS, Elasticsearch, custom LangChain-style orchestration.",
+    link: "https://github.com/raagavramki/Neuroanatomy-SME-Agent"
+  },
+  "multilingual-slm": {
+    kicker: "Multilingual SLM",
+    title: "Multilingual Small Language Model (EN/Tamil/Mizo)",
+    body:
+      "A 140M-parameter multilingual language model trained on a carefully curated 3B-token corpus spanning English, Tamil, and Mizo.",
+    bullets: [
+      "Built a 3B-token multilingual corpus from scratch with cleaning, normalization, deduplication, and deterministic splits.",
+      "Trained a 96k unigram tokenizer with temperature-smoothed sampling to preserve low-resource Mizo distribution.",
+      "Pretrained and then fine-tuned with LoRA on reasoning-style tasks for controllable editing behaviour."
+    ],
+    tech: "Stack: HuggingFace, PyTorch, custom data pipeline, LoRA fine-tuning.",
+    link: "https://github.com/raagavramki/Multilingual-SLM"
+  }
+};
+
+function openProjectModal(projectKey) {
+  if (!projectModal || !projectKey || !projectDetails[projectKey]) return;
+  const data = projectDetails[projectKey];
+
+  projectModal.querySelector("#project-modal-kicker").textContent = data.kicker;
+  projectModal.querySelector("#project-modal-title").textContent = data.title;
+  projectModal.querySelector("#project-modal-body").textContent = data.body;
+
+  const ul = projectModal.querySelector("#project-modal-bullets");
+  ul.innerHTML = "";
+  data.bullets.forEach((b) => {
+    const li = document.createElement("li");
+    li.textContent = b;
+    ul.appendChild(li);
+  });
+
+  projectModal.querySelector("#project-modal-tech").textContent = data.tech;
+  const linkEl = projectModal.querySelector("#project-modal-link");
+  linkEl.href = data.link;
+
+  projectModal.hidden = false;
+  projectModal.querySelector(".modal-dialog").focus?.();
+}
+
+function closeProjectModal() {
+  if (!projectModal) return;
+  projectModal.hidden = true;
+}
+
+projectOpenButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const key = btn.getAttribute("data-project");
+    openProjectModal(key);
+  });
+});
+
+if (projectModal) {
+  projectModal.addEventListener("click", (e) => {
+    if (e.target.matches("[data-modal-close]") || e.target.classList.contains("modal-backdrop")) {
+      closeProjectModal();
+    }
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeProjectModal();
+  });
+}
 
 // ---------- COPY EMAIL (WITH TOAST) ----------
 const emailCard = document.getElementById("email-card");
