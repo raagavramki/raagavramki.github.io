@@ -66,6 +66,8 @@ export default function App() {
   const [progress, setProgress] = useState(0)
   const [showToTop, setShowToTop] = useState(false)
   const [filter, setFilter] = useState<ProjectCategory>('all')
+  const [toast, setToast] = useState<string | null>(null)
+  const toastTimeoutRef = useRef<number | null>(null)
 
   // scroll progress + to-top
   useEffect(() => {
@@ -102,6 +104,41 @@ export default function App() {
     targets.forEach(t => io.observe(t))
     return () => io.disconnect()
   }, [])
+
+  // reveal-on-scroll for data-reveal sections
+  useEffect(() => {
+    const revealEls = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'))
+    if (revealEls.length === 0) return
+
+    if (!('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('reveal-in'))
+      return
+    }
+
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return
+          ;(e.target as HTMLElement).classList.add('reveal-in')
+          io.unobserve(e.target)
+        })
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
+    )
+
+    revealEls.forEach(el => io.observe(el))
+    return () => io.disconnect()
+  }, [])
+
+  const showToast = (message: string) => {
+    setToast(message)
+    if (toastTimeoutRef.current) {
+      window.clearTimeout(toastTimeoutRef.current)
+    }
+    toastTimeoutRef.current = window.setTimeout(() => {
+      setToast(null)
+    }, 2000)
+  }
 
   const projects = [
     {
@@ -500,7 +537,12 @@ export default function App() {
                 id="email-card"
                 type="button"
                 onClick={async () => {
-                  await navigator.clipboard.writeText('raagav.ramakrishnan@students.iiit.ac.in')
+                  try {
+                    await navigator.clipboard.writeText('raagav.ramakrishnan@students.iiit.ac.in')
+                    showToast('Email copied to clipboard')
+                  } catch {
+                    showToast('Unable to copy email on this browser')
+                  }
                 }}
               >
                 <span className="icon" aria-hidden="true">
@@ -562,6 +604,10 @@ export default function App() {
           </div>
         </section>
 
+        <div className={`toast ${toast ? 'show' : ''}`} role="status" aria-live="polite">
+          {toast}
+        </div>
+
         <button
           id="to-top"
           className={`to-top ${showToTop ? 'show' : ''}`}
@@ -579,6 +625,10 @@ export default function App() {
             />
           </svg>
         </button>
+
+        <div className={`toast ${toast ? 'show' : ''}`} role="status" aria-live="polite">
+          {toast}
+        </div>
       </main>
     </>
   )
