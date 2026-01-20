@@ -1,130 +1,188 @@
 // ---------- TYPE-WRITER ----------
-const txts=["ML Systems Engineer","AI for Healthcare","Researcher (HCI × ML)","Debater"];
-let i=0,j=0,c=false;
-const el=document.getElementById('type-writer');
-function loop(){
-  el.textContent=txts[i].substring(0,j);
-  if(!c&&j<txts[i].length){j++;setTimeout(loop,90)}
-  else if(!c&&j===txts[i].length){c=true;setTimeout(loop,1500)}
-  else if(c&&j>0){j--;setTimeout(loop,40)}
-  else{c=false;i=(i+1)%txts.length;setTimeout(loop,500)}
+const roles = ["ML Systems Engineer", "AI for Healthcare", "Researcher"];
+let i = 0, j = 0, deleting = false;
+const el = document.getElementById("type-writer");
+
+function typeLoop() {
+  if (!el) return;
+  el.textContent = roles[i].substring(0, j);
+
+  if (!deleting && j < roles[i].length) {
+    j += 1;
+    setTimeout(typeLoop, 70);
+    return;
+  }
+
+  if (!deleting && j === roles[i].length) {
+    deleting = true;
+    setTimeout(typeLoop, 1200);
+    return;
+  }
+
+  if (deleting && j > 0) {
+    j -= 1;
+    setTimeout(typeLoop, 35);
+    return;
+  }
+
+  deleting = false;
+  i = (i + 1) % roles.length;
+  setTimeout(typeLoop, 300);
 }
-loop();
-
-// ---------- NAV TOGGLE ----------
-const toggle=document.getElementById('nav-toggle');
-const menu=document.getElementById('nav-menu');
-toggle.addEventListener('click',()=>{
-  const open=toggle.getAttribute('aria-expanded')==='true';
-  toggle.setAttribute('aria-expanded',!open);
-  menu.classList.toggle('open');
-});
-
-document.querySelectorAll('#nav-menu a').forEach(a=>{
-  a.addEventListener('click', ()=>{
-    menu.classList.remove('open');
-    toggle.setAttribute('aria-expanded', false);
-  });
-});
-
-// ---------- FILTER PROJECTS ----------
-const buttons=document.querySelectorAll('.filter-buttons button');
-const cards=document.querySelectorAll('.project-grid .card');
-buttons.forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    buttons.forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter=btn.dataset.filter;
-    cards.forEach(c=>{
-      const show=filter==='all'||c.dataset.category===filter;
-      // don't collapse the grid with display:none; animate opacity instead
-      c.classList.toggle('is-hidden', !show);
-      if(show) setTimeout(()=>c.classList.add('show'), 10);
-    });
-  });
-});
-// initial reveal
-window.addEventListener('load',()=>cards.forEach((c,i)=>setTimeout(()=>c.classList.add('show'),i*80)));
-
-// ---------- COPY EMAIL ----------
-const emailCard=document.getElementById('email-card');
-emailCard.addEventListener('click',e=>{
-  e.preventDefault();
-  navigator.clipboard.writeText('raagav.ramakrishnan@students.iiit.ac.in').then(()=>{
-    const toast=document.createElement('div');
-    toast.textContent='Email copied!';
-    toast.style.position='fixed';
-    toast.style.bottom='20px';
-    toast.style.left='50%';
-    toast.style.transform='translateX(-50%)';
-    toast.style.background='rgba(11,15,20,.8)';
-    toast.style.backdropFilter='blur(10px)';
-    toast.style.border='1px solid rgba(148,163,184,.22)';
-    toast.style.color='#fff';
-    toast.style.padding='.6rem 1.2rem';
-    toast.style.borderRadius='999px';
-    toast.style.zIndex='20000';
-    document.body.appendChild(toast);
-    setTimeout(()=>toast.remove(),2000);
-  });
-});
+typeLoop();
 
 // ---------- YEAR ----------
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+const year = document.getElementById("year");
+if (year) year.textContent = String(new Date().getFullYear());
 
-// ---------- SCROLL PROGRESS + BACK TO TOP ----------
-const progressEl = document.getElementById('scroll-progress');
-const topBtn = document.getElementById('to-top');
+// ---------- NAV TOGGLE / CLOSE ON CLICK ----------
+const toggle = document.getElementById("nav-toggle");
+const menu = document.getElementById("nav-menu");
 
-function onScroll(){
-  const doc = document.documentElement;
-  const scrollTop = doc.scrollTop || document.body.scrollTop;
-  const scrollHeight = doc.scrollHeight - doc.clientHeight;
-  const p = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
-  if (progressEl) progressEl.style.width = `${Math.min(1, Math.max(0, p)) * 100}%`;
-
-  if (topBtn) topBtn.classList.toggle('show', scrollTop > 600);
+function setMenuOpen(open) {
+  if (!toggle || !menu) return;
+  toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  menu.classList.toggle("open", open);
 }
-window.addEventListener('scroll', onScroll, { passive: true });
+
+if (toggle) {
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+    setMenuOpen(!isOpen);
+  });
+}
+
+document.querySelectorAll("#nav-menu a").forEach((a) => {
+  a.addEventListener("click", () => setMenuOpen(false));
+});
+
+// ---------- NAV SCROLL STATE + PROGRESS ----------
+const nav = document.querySelector(".nav");
+const progress = document.getElementById("scroll-progress");
+const backToTop = document.getElementById("back-to-top");
+
+function onScroll() {
+  const y = window.scrollY || 0;
+  if (nav) nav.classList.toggle("scrolled", y > 6);
+
+  // progress
+  if (progress) {
+    const doc = document.documentElement;
+    const max = Math.max(1, doc.scrollHeight - doc.clientHeight);
+    const pct = Math.min(1, Math.max(0, y / max));
+    progress.style.width = `${pct * 100}%`;
+  }
+
+  // back to top
+  if (backToTop) backToTop.classList.toggle("show", y > 800);
+}
+window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-if (topBtn){
-  topBtn.addEventListener('click', ()=> window.scrollTo({ top: 0, behavior: 'smooth' }));
+if (backToTop) {
+  backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 }
 
-// ---------- SCROLLSPY (ACTIVE NAV) ----------
-const sectionIds = ['about','projects','research','experience','contact'];
-const sections = sectionIds
-  .map(id => document.getElementById(id))
-  .filter(Boolean);
+// ---------- ACTIVE NAV LINK (SECTION SPY) ----------
 const navLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
+const sections = navLinks
+  .map((a) => document.querySelector(a.getAttribute("href")))
+  .filter(Boolean);
 
-function setActive(id){
-  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+if ("IntersectionObserver" in window && sections.length) {
+  const byId = new Map(navLinks.map((a) => [a.getAttribute("href")?.slice(1), a]));
+  const spy = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
+      if (!visible?.target?.id) return;
+      navLinks.forEach((a) => a.classList.remove("active"));
+      const active = byId.get(visible.target.id);
+      if (active) active.classList.add("active");
+    },
+    { rootMargin: "-30% 0px -60% 0px", threshold: [0.08, 0.15, 0.25] }
+  );
+  sections.forEach((s) => spy.observe(s));
 }
 
-if ('IntersectionObserver' in window && sections.length){
-  const spy = new IntersectionObserver((entries)=>{
-    const visible = entries
-      .filter(e => e.isIntersecting)
-      .sort((a,b)=> (b.intersectionRatio - a.intersectionRatio))[0];
-    if (visible?.target?.id) setActive(visible.target.id);
-  }, { rootMargin: '-35% 0px -55% 0px', threshold: [0.1, 0.2, 0.35, 0.5] });
-  sections.forEach(s => spy.observe(s));
-}
+// ---------- REVEAL ANIMATIONS ----------
+const revealTargets = document.querySelectorAll(
+  ".section .container > * , .project-grid .card, .timeline-item, .contact-card"
+);
+revealTargets.forEach((el) => el.classList.add("reveal"));
 
-// ---------- REVEAL ON SCROLL ----------
-const revealEls = Array.from(document.querySelectorAll('[data-reveal]'));
-if ('IntersectionObserver' in window && revealEls.length){
-  const reveal = new IntersectionObserver((entries)=>{
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('reveal-in');
-      reveal.unobserve(e.target);
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
-  revealEls.forEach(el => reveal.observe(el));
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+  revealTargets.forEach((el) => io.observe(el));
 } else {
-  revealEls.forEach(el => el.classList.add('reveal-in'));
+  revealTargets.forEach((el) => el.classList.add("in"));
+}
+
+// ---------- FILTER PROJECTS ----------
+const buttons = document.querySelectorAll(".filter-buttons button");
+const cards = document.querySelectorAll(".project-grid .card");
+
+function applyFilter(filter) {
+  cards.forEach((c) => {
+    const show = filter === "all" || c.dataset.category === filter;
+    c.style.display = show ? "block" : "none";
+    if (show) setTimeout(() => c.classList.add("show"), 30);
+    else c.classList.remove("show");
+  });
+}
+
+buttons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    buttons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    applyFilter(btn.dataset.filter);
+  });
+});
+
+// initial reveal
+window.addEventListener("load", () => {
+  cards.forEach((c, idx) => setTimeout(() => c.classList.add("show"), idx * 70));
+});
+
+// ---------- COPY EMAIL (WITH TOAST) ----------
+const emailCard = document.getElementById("email-card");
+const email = "raagav.ramakrishnan@students.iit.ac.in";
+
+function toast(msg) {
+  const t = document.createElement("div");
+  t.textContent = msg;
+  t.style.position = "fixed";
+  t.style.bottom = "18px";
+  t.style.left = "50%";
+  t.style.transform = "translateX(-50%)";
+  t.style.background = "rgba(11,15,25,.92)";
+  t.style.backdropFilter = "blur(10px)";
+  t.style.color = "#e6e8ee";
+  t.style.border = "1px solid rgba(255,255,255,.14)";
+  t.style.padding = ".65rem 1rem";
+  t.style.borderRadius = "14px";
+  t.style.zIndex = "10002";
+  t.style.boxShadow = "0 18px 60px rgba(0,0,0,.45)";
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 1800);
+}
+
+if (emailCard) {
+  emailCard.addEventListener("click", (e) => {
+    // allow mailto if clipboard isn't available
+    if (!navigator.clipboard?.writeText) return;
+    e.preventDefault();
+    navigator.clipboard.writeText(email).then(() => toast("Email copied"));
+  });
 }
