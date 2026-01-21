@@ -350,7 +350,7 @@ export default function App() {
       </header>
 
       <main id="main">
-        <section id="about" className="section" data-reveal>
+        <section id="about" className="section">
           <div className="container">
             <div className="section-head">
               <h2>About</h2>
@@ -408,7 +408,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="projects" className="section" data-reveal>
+        <section id="projects" className="section">
           <div className="container">
             <div className="section-head">
               <h2>Projects</h2>
@@ -478,7 +478,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="research" className="section alt" data-reveal>
+        <section id="research" className="section alt">
           <div className="container">
             <div className="section-head">
               <h2>Research</h2>
@@ -502,7 +502,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="experience" className="section" data-reveal>
+        <section id="experience" className="section">
           <div className="container">
             <div className="section-head">
               <h2>Industry</h2>
@@ -525,7 +525,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="contact" className="section alt" data-reveal>
+        <section id="contact" className="section alt">
           <div className="container">
             <div className="section-head">
               <h2>Let’s connect</h2>
