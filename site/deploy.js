@@ -1,76 +1,45 @@
-import { copyFileSync, readdirSync, mkdirSync, existsSync, rmSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+// deploy.js
+import { existsSync, mkdirSync, rmSync, cpSync, copyFileSync, readdirSync } from "fs";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const distDir = join(__dirname, 'dist');
-const rootDir = join(__dirname, '..');
+// If this deploy.js lives inside /site, dist is /site/dist and root is repo root.
+// If deploy.js lives at repo root, dist is /dist and rootDir should be __dirname (not ..).
+const distDir = join(__dirname, "dist");
+const rootDir = join(__dirname, "..");
 
-// Files/folders to backup (old HTML site)
-const backupDir = join(rootDir, 'backup-html');
-const filesToBackup = ['index.html', 'style.css', 'script.js'];
-
-console.log('🚀 Deploying React app to root...\n');
-
-// Step 1: Create backup directory if it doesn't exist
-if (!existsSync(backupDir)) {
-  mkdirSync(backupDir, { recursive: true });
-  console.log('✅ Created backup directory');
+if (!existsSync(distDir)) {
+  throw new Error(`dist/ not found at: ${distDir}. Run "npm run build" first.`);
 }
 
-// Step 2: Backup old HTML files
-console.log('📦 Backing up old HTML files...');
-filesToBackup.forEach(file => {
-  const srcPath = join(rootDir, file);
-  const destPath = join(backupDir, file);
-  if (existsSync(srcPath)) {
-    copyFileSync(srcPath, destPath);
-    console.log(`   ✓ Backed up ${file}`);
+// Backup old root files (optional)
+const backupDir = join(rootDir, "backup-html");
+mkdirSync(backupDir, { recursive: true });
+for (const f of ["index.html", "style.css", "script.js"]) {
+  const src = join(rootDir, f);
+  const dst = join(backupDir, f);
+  if (existsSync(src)) copyFileSync(src, dst);
+}
+
+// Copy EVERYTHING from dist → root (index.html, assets/, any public files)
+for (const entry of readdirSync(distDir, { withFileTypes: true })) {
+  const src = join(distDir, entry.name);
+  const dst = join(rootDir, entry.name);
+
+  // Replace existing target
+  rmSync(dst, { recursive: true, force: true });
+
+  // Copy file or directory
+  if (entry.isDirectory()) {
+    mkdirSync(dst, { recursive: true });
+    cpSync(src, dst, { recursive: true });
+  } else {
+    mkdirSync(dirname(dst), { recursive: true });
+    copyFileSync(src, dst);
   }
-});
-
-// Step 3: Copy dist contents to root
-console.log('\n📋 Copying built files to root...');
-
-// Copy index.html
-copyFileSync(join(distDir, 'index.html'), join(rootDir, 'index.html'));
-console.log('   ✓ Copied index.html');
-
-// Copy assets folder
-const assetsDistDir = join(distDir, 'assets');
-const assetsRootDir = join(rootDir, 'assets');
-
-// Remove old assets if exists (except img and resume.pdf)
-if (existsSync(assetsRootDir)) {
-  const files = readdirSync(assetsRootDir);
-  files.forEach(file => {
-    if (file !== 'img' && file !== 'resume.pdf' && file !== 'favicon.ico') {
-      const filePath = join(assetsRootDir, file);
-      rmSync(filePath, { recursive: true, force: true });
-    }
-  });
 }
 
-// Copy new assets
-const assetFiles = readdirSync(assetsDistDir);
-assetFiles.forEach(file => {
-  if (file === 'img') return;
-  
-  const srcPath = join(assetsDistDir, file);
-  const destPath = join(assetsRootDir, file);
-  copyFileSync(srcPath, destPath);
-  console.log(`   ✓ Copied assets/${file}`);
-});
-
-console.log('\n✨ Deployment complete!');
-console.log('📁 Old HTML files backed up to: backup-html/');
-console.log('🌐 Your React app is now in the root directory');
-console.log('\n💡 Next steps:');
-console.log('   1. Test locally by opening index.html in your browser');
-console.log('   2. Commit and push to GitHub:');
-console.log('      git add .');
-console.log('      git commit -m "Deploy React app"');
-console.log('      git push');
-
+console.log("Deployed dist/ to repo root successfully.");
