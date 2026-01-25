@@ -45,9 +45,14 @@ export default function ResumePage() {
               </Reveal>
 
               <Reveal delay={0.15}>
-                <div className="space-y-1 text-sm text-muted pt-4">
+                <div className="space-y-2 text-sm text-muted pt-4">
                   <p>{profile.location}</p>
-                  <p>{profile.email}</p>
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="hover:text-ink transition-colors underline underline-offset-2"
+                  >
+                    {profile.email}
+                  </a>
                 </div>
               </Reveal>
 
@@ -122,24 +127,26 @@ export default function ResumePage() {
           <Reveal>
             <h2 className="text-2xl font-semibold mb-8">Education</h2>
           </Reveal>
-          {resumeSections.education.map((edu, i) => (
-            <Reveal key={edu.institution} delay={0.05 * i}>
-              <div className="space-y-2">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
-                  <h3 className="text-lg font-medium">{edu.degree}</h3>
-                  <span className="text-sm text-muted">{edu.time}</span>
+          <div className="space-y-8">
+            {resumeSections.education.map((edu, i) => (
+              <Reveal key={edu.institution} delay={0.05 * i}>
+                <div className="space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
+                    <h3 className="text-lg font-medium">{edu.degree}</h3>
+                    <span className="text-sm text-muted whitespace-nowrap">{edu.time}</span>
+                  </div>
+                  <p className="text-muted">{edu.institution}, {edu.location}</p>
+                  {edu.details && (
+                    <ul className="list-disc list-inside text-sm text-muted mt-2 space-y-1">
+                      {edu.details.map(detail => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-                <p className="text-muted">{edu.institution}, {edu.location}</p>
-                {edu.details && (
-                  <ul className="list-disc list-inside text-sm text-muted mt-2 space-y-1">
-                    {edu.details.map(detail => (
-                      <li key={detail}>{detail}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -161,12 +168,12 @@ export default function ResumePage() {
                         {job.companyNote && <span className="text-sm"> ({job.companyNote})</span>}
                       </p>
                     </div>
-                    <div className="text-sm text-muted text-right">
+                    <div className="text-sm text-muted text-right whitespace-nowrap">
                       <p>{job.time}</p>
                       <p>{job.location}</p>
                     </div>
                   </div>
-                  <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-2">
+                  <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-2 leading-relaxed">
                     {job.bullets.map(bullet => (
                       <li key={bullet}>{bullet}</li>
                     ))}
@@ -194,10 +201,10 @@ export default function ResumePage() {
                       <p className="text-muted">{research.lab}, {research.institution}</p>
                       <p className="text-sm text-muted italic">Advisor: {research.advisor}</p>
                     </div>
-                    <span className="text-sm text-muted">{research.time}</span>
+                    <span className="text-sm text-muted whitespace-nowrap">{research.time}</span>
                   </div>
                   <p className="text-sm font-medium">{research.topic}</p>
-                  <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-2">
+                  <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-2 leading-relaxed">
                     {research.bullets.map(bullet => (
                       <li key={bullet}>{bullet}</li>
                     ))}
@@ -209,57 +216,92 @@ export default function ResumePage() {
         </div>
       </section>
 
-      {/* Skills */}
+      {/* Skills - Improved layout with cards */}
       <section id="skills" className="section">
         <div className="container">
           <Reveal>
             <h2 className="text-2xl font-semibold mb-8">Skills</h2>
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <Reveal delay={0.05}>
-              <div>
-                <h3 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">Languages</h3>
-                <p className="text-sm">{resumeSections.skills.languages.join(", ")}</p>
+              <div className="p-6 rounded-xl border border-line bg-white/50">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-ink mb-4">Languages</h3>
+                <div className="flex flex-wrap gap-2">
+                  {resumeSections.skills.languages.map(skill => (
+                    <span key={skill} className="px-3 py-1.5 text-sm bg-gray-100 rounded-full text-muted">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <div>
-                <h3 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">ML & AI</h3>
-                <p className="text-sm">{resumeSections.skills.mlAndAI.join(", ")}</p>
+              <div className="p-6 rounded-xl border border-line bg-white/50">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-ink mb-4">ML & AI</h3>
+                <div className="flex flex-wrap gap-2">
+                  {resumeSections.skills.mlAndAI.map(skill => (
+                    <span key={skill} className="px-3 py-1.5 text-sm bg-gray-100 rounded-full text-muted">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <div>
-                <h3 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">Cloud & MLOps</h3>
-                <p className="text-sm">{resumeSections.skills.cloudAndMLOps.join(", ")}</p>
+              <div className="p-6 rounded-xl border border-line bg-white/50">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-ink mb-4">Cloud & MLOps</h3>
+                <div className="flex flex-wrap gap-2">
+                  {resumeSections.skills.cloudAndMLOps.map(skill => (
+                    <span key={skill} className="px-3 py-1.5 text-sm bg-gray-100 rounded-full text-muted">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </Reveal>
             <Reveal delay={0.2}>
-              <div>
-                <h3 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">Tools</h3>
-                <p className="text-sm">{resumeSections.skills.tools.join(", ")}</p>
+              <div className="p-6 rounded-xl border border-line bg-white/50">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-ink mb-4">Tools</h3>
+                <div className="flex flex-wrap gap-2">
+                  {resumeSections.skills.tools.map(skill => (
+                    <span key={skill} className="px-3 py-1.5 text-sm bg-gray-100 rounded-full text-muted">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </Reveal>
             <Reveal delay={0.25}>
-              <div>
-                <h3 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">Hardware</h3>
-                <p className="text-sm">{resumeSections.skills.hardware.join(", ")}</p>
+              <div className="p-6 rounded-xl border border-line bg-white/50">
+                <h3 className="text-sm font-semibold uppercase tracking-wide text-ink mb-4">Hardware</h3>
+                <div className="flex flex-wrap gap-2">
+                  {resumeSections.skills.hardware.map(skill => (
+                    <span key={skill} className="px-3 py-1.5 text-sm bg-gray-100 rounded-full text-muted">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Interests */}
+      {/* Interests - Improved with larger pills */}
       <section id="interests" className="section">
         <div className="container">
           <Reveal>
             <h2 className="text-2xl font-semibold mb-8">Interests</h2>
           </Reveal>
           <Reveal delay={0.05}>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-4">
               {resumeSections.interests.map(interest => (
-                <span key={interest} className="pill">{interest}</span>
+                <span
+                  key={interest}
+                  className="px-5 py-2.5 text-base font-medium bg-ink/5 border border-line rounded-full text-ink hover:bg-ink/10 transition-colors"
+                >
+                  {interest}
+                </span>
               ))}
             </div>
           </Reveal>

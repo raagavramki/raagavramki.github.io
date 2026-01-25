@@ -1,4 +1,4 @@
-export type ProjectCategory = "all" | "medical" | "ml" | "systems"
+export type ProjectCategory = "all" | "ml" | "vision" | "nlp" | "agentic" | "electronics"
 
 export const profile = {
   name: "Raagav Ramakrishnan",
@@ -7,8 +7,8 @@ export const profile = {
     "Undergraduate researcher at IIIT Hyderabad building reliable, clinically grounded AI systems for real-world healthcare environments.",
   roles: [
     "ML Research Engineer",
-    "Medical Imaging AI",
-    "Computer Vision",
+    "Debater",
+    "Builder",
   ],
   badges: [
     "Medical Imaging",
@@ -49,74 +49,88 @@ export const skills = {
 }
 
 export const projects = [
+  // Agentic AI
   {
-    category: "medical",
-    meta: "Medical Imaging",
-    title: "End-to-End Glioma Detection Pipeline",
-    desc: "Building a complete pipeline for MRI-based high-grade glioma analysis: data handling, model training/evaluation, and integration into clinical workflows. Focus on generalization across scanners, reliability, and clinically interpretable outputs.",
-    tags: ["PyTorch", "GCP", "Medical Imaging"],
-    href: "#",
+    category: "agentic",
+    meta: "Agentic AI",
+    title: "Neuroanatomy SME Agent",
+    desc: "Full embedding and retrieval pipeline with batch ingestion, multi-granularity chunk-graph construction, BioLORD embeddings, and hybrid FAISS/Elasticsearch search with BGE reranking. Custom LangChain-style reasoning and tool-calling with browser UI for chat, QA/quiz, and document export.",
+    tags: ["HuggingFace", "PyTorch", "LangChain"],
+    href: "https://github.com/raagavramki/neuroanatomy-sme-agent",
     featured: true,
   },
+  // NLP
   {
-    category: "ml",
-    meta: "Computer Vision",
-    title: "Vision Transformer from Scratch",
-    desc: "Implemented ViT & DiffViT in PyTorch on CIFAR-10; reached 84.38% test accuracy. Benchmarked 11 configs and visualized attention rollout.",
-    tags: ["PyTorch", "Python", "CIFAR-10"],
+    category: "nlp",
+    meta: "NLP",
+    title: "Multilingual SLM",
+    desc: "Built a 3B-token multilingual corpus (English, Tamil, Mizo) from scratch. Trained 96k-vocab Unigram tokenizer and pretrained 140M-parameter Gemma3 LM achieving 2.74 train perplexity. Fine-tuned with LoRA for FAQ generation (12.7 PPL) and synonym substitution (1.73 PPL).",
+    tags: ["HuggingFace", "PyTorch", "LoRA"],
+    href: "https://github.com/raagavramki/multilingual-slm",
+    featured: true,
+  },
+  // Vision
+  {
+    category: "vision",
+    meta: "Vision",
+    title: "Vision Transformers from Scratch",
+    desc: "Implemented ViT and Differential ViT on CIFAR-10 from scratch. Achieved 83.69% accuracy with ViT and 84.38% with DiffViT after benchmarking 11 configurations. Produced DINO attention maps and hyperparameter tuning analysis.",
+    tags: ["PyTorch", "Transformers", "CIFAR-10"],
     href: "https://github.com/raagavramki/vision-transformer",
     featured: true,
   },
   {
-    category: "ml",
-    meta: "Segmentation",
-    title: "FCNs for Street-Scene Segmentation",
-    desc: "Built FCN-32s/16s/8s with VGG backbone and skip connections; achieved 83.3% mIoU on a 13-class dataset.",
+    category: "vision",
+    meta: "Vision",
+    title: "FCN Semantic Segmentation",
+    desc: "Built FCN-32, 16, 8 with VGG-16 backbone and bilinear upsampling. Achieved 83.3% test mIoU on 13-class dataset with fine-tuned backbone. Optimized data pipelines and batch scheduling for improved GPU utilization.",
     tags: ["PyTorch", "VGG", "Segmentation"],
     href: "https://github.com/raagavramki/FCN",
     featured: false,
   },
+  // ML
   {
     category: "ml",
-    meta: "OCR",
+    meta: "ML",
     title: "CNN-RNN OCR Pipeline",
-    desc: "Hybrid CNN + Bi-LSTM with attention for word-level OCR. Trained on a synthetic dataset; 99.1% character-level accuracy.",
+    desc: "Hybrid deep learning pipeline using CNNs for feature extraction and RNNs with integrated attention mechanisms. Achieved 99.1% character-level accuracy (ANCC) on word-level OCR tasks.",
     tags: ["PyTorch", "Attention", "OCR"],
     href: "https://github.com/raagavramki/OCR-CNN-RNN",
     featured: false,
   },
   {
     category: "ml",
-    meta: "Foundations",
-    title: "MLP from Scratch (NumPy)",
-    desc: "Configurable layers, activations, optimizers, and losses to demystify backprop and gradient flow.",
-    tags: ["NumPy", "Python", "Education"],
+    meta: "ML",
+    title: "MLP from Scratch",
+    desc: "Implemented MLP from scratch supporting customizable hidden layers, activation functions, and optimization methods. Built to develop intuition for gradient flow and model training dynamics.",
+    tags: ["NumPy", "Python", "Matplotlib"],
     href: "https://github.com/raagavramki/MLP--from-scratch",
     featured: false,
   },
+  // Electronics & Signals
   {
-    category: "systems",
-    meta: "Communications",
-    title: "BPSK Audio Transceiver (MATLAB)",
-    desc: "End-to-end BPSK over AWGN; compared rectangular vs. raised-cosine pulse shaping via BER and constellation analysis.",
-    tags: ["MATLAB", "BPSK", "BER"],
-    href: "https://github.com/raagavramki/BPSK-Modulation",
-    featured: false,
-  },
-  {
-    category: "systems",
-    meta: "Architecture",
+    category: "electronics",
+    meta: "Electronics & Signals",
     title: "Y86-64 Pipelined Processor",
-    desc: "Five-stage pipeline with hazard detection and forwarding; validated on iVerilog with custom ISA tests.",
+    desc: "Pipelined implementation of Y86-64 instruction-level processor with intermediate registers for optimized instruction throughput. Includes hazard detection and solutions, validated through waveform-based testbenches.",
     tags: ["Verilog", "Pipeline", "CPU"],
     href: "https://github.com/raagavramki/Y86-64-ISA-Processor",
     featured: false,
   },
   {
-    category: "systems",
-    meta: "VLSI",
-    title: "VLSI Micro-Projects",
-    desc: "RTL-to-layout flow (NGSpice, MAGIC) for small blocks incl. a 4-bit ALU; DRC/LVS-clean layouts and leakage analyses.",
+    category: "electronics",
+    meta: "Electronics & Signals",
+    title: "BPSK Modulation System",
+    desc: "Binary Phase Shift Keying system for audio transmission over AWGN and noiseless channels. Implemented rectangular and raised cosine pulse shaping modulation for ISI analysis.",
+    tags: ["MATLAB", "DSP", "Communications"],
+    href: "https://github.com/raagavramki/BPSK-Modulation",
+    featured: false,
+  },
+  {
+    category: "electronics",
+    meta: "Electronics & Signals",
+    title: "4-bit ALU Design",
+    desc: "Complete ALU design flow from Verilog modules through gate-level NGSpice simulations to transistor-level NMOS/PMOS designs. Layout verification using MAGIC with DRC/LVS-clean outputs.",
     tags: ["Verilog", "NGSpice", "MAGIC"],
     href: "https://github.com/raagavramki/VLSI-Project",
     featured: false,
@@ -133,9 +147,11 @@ export const projects = [
 
 export const projectFilters = [
   { key: "all", label: "All" },
-  { key: "medical", label: "Medical AI" },
-  { key: "ml", label: "Deep Learning" },
-  { key: "systems", label: "Systems" },
+  { key: "ml", label: "ML" },
+  { key: "vision", label: "Vision" },
+  { key: "nlp", label: "NLP" },
+  { key: "agentic", label: "Agentic AI" },
+  { key: "electronics", label: "Electronics & Signals" },
 ] satisfies Array<{ key: ProjectCategory; label: string }>
 
 // Resume page - structured like Eda Aydin's
@@ -149,6 +165,16 @@ export const resumeSections = {
       details: [
         "Focus: Machine Learning, Computer Vision, Signal Processing",
         "Relevant coursework: Deep Learning, Digital Signal Processing, Computer Architecture",
+      ],
+    },
+    {
+      degree: "High School Diploma (CBSE)",
+      institution: "The Millennium School",
+      location: "Dubai, UAE",
+      time: "June 2022",
+      details: [
+        "Grade 10: 93%",
+        "Grade 12: 95%",
       ],
     },
   ],

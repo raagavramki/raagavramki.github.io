@@ -1,6 +1,6 @@
 import "./globals.css"
 import type { Metadata } from "next"
-import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google"
+import { Cormorant_Garamond, IBM_Plex_Mono, Inter } from "next/font/google"
 
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
@@ -12,7 +12,7 @@ const serif = Cormorant_Garamond({
   display: "swap",
 })
 
-const sans = IBM_Plex_Sans({
+const sans = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-sans",

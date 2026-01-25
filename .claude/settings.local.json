@@ -5,7 +5,8 @@
       "Skill(frontend-design:frontend-design:*)",
       "Bash(node deploy.js:*)",
       "Bash(npm run dev:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }
