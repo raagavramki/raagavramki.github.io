@@ -227,7 +227,7 @@ export const resumeSections = {
 
 export const contactCopy = {
   heading: "Let's connect",
-  subheading: "Open to research collaborations, internship opportunities, and discussions about AI in healthcare.",
+  subheading: "I am always open to research collaborations, job opportunities, and talks worldwide",
   emailLabel: "Email",
   emailHint: "Click to copy",
   githubLabel: "GitHub",
@@ -238,5 +238,4 @@ export const contactCopy = {
   emailToastError: "Unable to copy email on this browser",
   emailCta: "Email me",
 }
-
 export const footerNote = "{year} Raagav Ramakrishnan"
