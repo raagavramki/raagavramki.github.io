@@ -1,16 +1,19 @@
+import Image from "next/image"
+
 import CTA from "@/components/CTA"
 import Card from "@/components/Card"
 import ContactSection from "@/components/ContactSection"
 import ProjectCard from "@/components/ProjectCard"
 import Reveal from "@/components/Reveal"
 import Section from "@/components/Section"
-import { contactCopy, industry, profile, projects, research, resumeCopy, skills } from "@/lib/content"
+import { contactCopy, profile, projects, resumeSections } from "@/lib/content"
 
-const featuredProjects = projects.slice(0, 3)
+const featuredProjects = projects.filter(p => p.featured).slice(0, 3)
 
 export default function HomePage() {
   return (
     <main id="main">
+      {/* Hero */}
       <section className="section pt-20">
         <div className="container grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-8">
@@ -51,7 +54,14 @@ export default function HomePage() {
           <Reveal delay={0.2}>
             <div className="space-y-6">
               <div className="overflow-hidden rounded-3xl border border-line bg-white">
-                <img src={profile.avatar} alt="Raagav portrait" />
+                <Image
+                  src={profile.avatar}
+                  alt={`${profile.name} portrait`}
+                  width={600}
+                  height={600}
+                  className="w-full h-auto"
+                  priority
+                />
               </div>
               <div className="flex flex-wrap gap-2">
                 {profile.badges.map(badge => (
@@ -65,59 +75,53 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Section id="resume" title={resumeCopy.heading} description={resumeCopy.education}>
+      {/* Experience Preview */}
+      <Section id="experience" title="Experience" description="Current work in ML research and industry.">
         <div className="grid gap-6 lg:grid-cols-2">
+          {/* Industry */}
           <Reveal>
             <Card className="card-lift h-full space-y-4">
               <div>
-                <h3>{resumeCopy.researchHeading}</h3>
-                <p className="muted">{resumeCopy.researchSubheading}</p>
+                <span className="text-xs uppercase tracking-[0.2em] text-muted">Industry</span>
+                <h3 className="mt-2">{resumeSections.workExperience[0].title}</h3>
+                <p className="muted">{resumeSections.workExperience[0].company}</p>
               </div>
               <div className="space-y-3 text-sm text-muted">
-                <p>{research.time}</p>
-                <p className="text-base font-semibold text-ink">{research.title}</p>
-                <p>
-                  <em>{research.advisor}</em>
-                </p>
-                <p>{research.topic}</p>
+                <p>{resumeSections.workExperience[0].time}</p>
                 <ul className="list-disc space-y-2 pl-4">
-                  {research.bullets.map(item => (
+                  {resumeSections.workExperience[0].bullets.slice(0, 3).map(item => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
               </div>
             </Card>
           </Reveal>
+
+          {/* Research */}
           <Reveal delay={0.05}>
             <Card className="card-lift h-full space-y-4">
               <div>
-                <span className="text-xs uppercase tracking-[0.2em] text-muted">{resumeCopy.experienceLabel}</span>
-                <h3 className="mt-2">{resumeCopy.industryHeading}</h3>
-                <p className="muted">{resumeCopy.industrySubheading}</p>
+                <span className="text-xs uppercase tracking-[0.2em] text-muted">Research</span>
+                <h3 className="mt-2">{resumeSections.researchExperience[0].title}</h3>
+                <p className="muted">{resumeSections.researchExperience[0].lab}, {resumeSections.researchExperience[0].institution}</p>
               </div>
               <div className="space-y-3 text-sm text-muted">
-                <p>{industry.time}</p>
-                <p className="text-base font-semibold text-ink">{industry.title}</p>
-                <p>
-                  <em>{industry.location}</em>
-                </p>
-                <ul className="list-disc space-y-2 pl-4">
-                  {industry.bullets.map(item => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <p>{resumeSections.researchExperience[0].time}</p>
+                <p className="italic">Advisor: {resumeSections.researchExperience[0].advisor}</p>
+                <p className="font-medium text-ink">{resumeSections.researchExperience[0].topic}</p>
               </div>
             </Card>
           </Reveal>
         </div>
         <div className="mt-8">
-          <CTA href={profile.resumeUrl} variant="outline" external>
-            Open resume
+          <CTA href="/resume" variant="outline">
+            View full resume
           </CTA>
         </div>
       </Section>
 
-      <Section id="projects" title="Projects" description="Selected work across deep learning, systems, and hardware.">
+      {/* Projects */}
+      <Section id="projects" title="Projects" description="Selected work in medical AI, computer vision, and systems.">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.05}>
@@ -127,23 +131,12 @@ export default function HomePage() {
         </div>
         <div className="mt-8">
           <CTA href="/projects" variant="ghost">
-            Explore work
+            View all projects
           </CTA>
         </div>
       </Section>
 
-      <Section id="skills" title="Skills & tooling">
-        <Reveal>
-          <div className="flex flex-wrap gap-2">
-            {skills.map(skill => (
-              <span key={skill} className="pill">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </Reveal>
-      </Section>
-
+      {/* Contact */}
       <ContactSection />
     </main>
   )
