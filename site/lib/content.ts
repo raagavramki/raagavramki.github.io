@@ -15,7 +15,7 @@ export const profile = {
     "GCP / Vertex AI",
     "PyTorch",
   ],
-  location: "Hyderabad, India",
+  location: "Hyderabad, India & Dubai, UAE",
   email: "raagav.ramakrishnan@students.iiit.ac.in",
   github: "https://github.com/raagavramki",
   linkedin: "https://www.linkedin.com/in/raagav-ramakrishnan-3905511b2",
@@ -25,18 +25,18 @@ export const profile = {
 
 export const aboutCopy = {
   heading: "About",
-  subheading: "Building human-centered AI for healthcare",
+  subheading: "Computer Vision + ML systems: currently applied to healthcare",
   paragraphs: [
-    "I am an undergraduate researcher at IIIT Hyderabad working at the intersection of computer vision, ML systems, and AI for healthcare. My focus is on building reliable and clinically grounded solutions for real-world environments.",
-    "Having spent my formative years in Dubai before moving to India, I have been exposed to healthcare systems that differ widely in infrastructure, access, and clinical workflows. This experience has shaped my long-term goal: developing human-centered AI systems that integrate heterogeneous clinical data and translate into real medical workflows across fragmented or resource-constrained healthcare settings.",
-    "Currently, I work with Cloud Ambassadors as an ML Research Engineer, where I help establish and run their research efforts. My work focuses on medical imaging AI with an emphasis on end-to-end, deployment-aware systems rather than model-only benchmarks. I am actively working on MRI-based high-grade glioma analysis, covering model development and deployment on Google Cloud infrastructure.",
-    "A key part of my work involves ensuring generalization across data sources, reliable detection, and outputs that support clinical trust. I think deeply about how AI-assisted medicine can extend beyond imaging alone to incorporate complementary modalities such as histopathology, particularly in the context of complex neurological diseases.",
+    "I am an undergraduate researcher at IIIT Hyderabad working across computer vision and ML systems. I am currently applying that toolkit to healthcare, influenced by HCI, to build systems that go beyond raw accuracy, to build trustworthy, reliable, and human-centric AI solutions.",
+    "Tech matters to me because it changes outcomes when it is built to face reality. That is why I am drawn to healthcare: the stakes are high, the constraints are real, and usefulness depends on how well a system fits clinicians, patients, and infrastructure. Having lived in both Dubai and India, I've seen firsthand how the same problem looks completely different across settings—different access patterns, operational maturity, and resource constraints—which now directly shapes how I design and build: for heterogeneous data, imperfect environments, and tools that integrate into real routines rather than existing as standalone demos.",
+    "Currently, I work with Cloud Ambassadors as an ML Research Engineer, where I help establish and run their research efforts. My work focuses on medical imaging AI with an emphasis on end-to-end, deployment-aware systems rather than model-only benchmarks. I am actively working on MRI-based high-grade glioma analysis, covering model development on Google Cloud infrastructure.",
+    "Outside of work, I've been a debater for years, and I'm usually reading something-either psychology or literature, or anything I'm drawn to at the moment. I'm also a calisthenics and strength athlete and take coffee a lil too seriously.",
+    "Please feel free to review my work or contact me with any questions or collaboation opportunities, I'd love to connect!"
   ],
   interests: [
-    "Robust clinical behavior through principled uncertainty handling",
+    "Deployment-aware ML systems: latency, throughput, monitoring, and cost",
     "Multimodal integration of clinical data",
-    "System-level considerations: latency, workflow integration, deployment",
-    "Domain shift and generalization across scanners and institutions",
+    "Interpretability and human-centered evaluation for high-stakes settings",
   ],
 }
 
@@ -56,7 +56,7 @@ export const projects = [
     title: "Neuroanatomy SME Agent",
     desc: "Full embedding and retrieval pipeline with batch ingestion, multi-granularity chunk-graph construction, BioLORD embeddings, and hybrid FAISS/Elasticsearch search with BGE reranking. Custom LangChain-style reasoning and tool-calling with browser UI for chat, QA/quiz, and document export.",
     tags: ["HuggingFace", "PyTorch", "LangChain"],
-    href: "https://github.com/raagavramki/neuroanatomy-sme-agent",
+    href: "https://github.com/raagavramki/Subject-Matter-Expert-Agentic-AI",
     featured: true,
   },
   // NLP
