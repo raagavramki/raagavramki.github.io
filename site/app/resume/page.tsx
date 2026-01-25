@@ -1,8 +1,15 @@
+import type { Metadata } from "next"
+
 import CTA from "@/components/CTA"
 import Card from "@/components/Card"
 import Reveal from "@/components/Reveal"
 import Section from "@/components/Section"
 import { industry, profile, research, resumeCopy } from "@/lib/content"
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description: "Raagav Ramakrishnan's resume - Research and industry experience in ML systems, AI for healthcare, and HCI.",
+}
 
 export default function ResumePage() {
   return (

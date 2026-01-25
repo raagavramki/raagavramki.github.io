@@ -1,7 +1,14 @@
+import type { Metadata } from "next"
+
 import Card from "@/components/Card"
 import Reveal from "@/components/Reveal"
 import Section from "@/components/Section"
 import { aboutCopy, skills } from "@/lib/content"
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Learn about Raagav Ramakrishnan - ML Systems Engineer working at the intersection of AI, healthcare, and HCI.",
+}
 
 export default function AboutPage() {
   return (

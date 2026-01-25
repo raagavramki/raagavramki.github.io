@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(frontend-design:frontend-design)",
+      "Skill(frontend-design:frontend-design:*)",
+      "Bash(node deploy.js:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git restore:*)"
+    ]
+  }
+}
