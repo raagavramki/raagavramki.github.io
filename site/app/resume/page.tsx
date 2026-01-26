@@ -1,11 +1,14 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { lazy, Suspense } from "react"
 
 import CTA from "@/components/CTA"
-import FloatingBubbles from "@/components/FloatingBubbles"
 import Reveal from "@/components/Reveal"
 import { profile, resumeSections } from "@/lib/content"
+
+// Lazy load heavy interactive component
+const FloatingBubbles = lazy(() => import("@/components/FloatingBubbles"))
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -337,7 +340,13 @@ export default function ResumePage() {
           <Reveal>
             <h2 className="text-2xl font-serif mb-10">Interests</h2>
           </Reveal>
-          <FloatingBubbles items={resumeSections.interests} />
+          <Suspense fallback={
+            <div className="h-[420px] flex items-center justify-center text-muted">
+              Loading interests...
+            </div>
+          }>
+            <FloatingBubbles items={resumeSections.interests} />
+          </Suspense>
         </div>
       </section>
 

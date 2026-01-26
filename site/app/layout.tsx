@@ -5,23 +5,24 @@ import { Cormorant_Garamond, IBM_Plex_Mono, Inter } from "next/font/google"
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 
+// Optimized: Only load weights actually used
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600"], // Only medium weight for headings
   variable: "--font-serif",
   display: "swap",
 })
 
 const sans = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"], // Removed 300 (not used)
   variable: "--font-sans",
   display: "swap",
 })
 
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400"], // Removed 500 (not used)
   variable: "--font-mono",
   display: "swap",
 })

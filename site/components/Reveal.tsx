@@ -1,6 +1,7 @@
 "use client"
 
 import type { ReactNode } from "react"
+import { useEffect, useState } from "react"
 import { motion, useReducedMotion } from "framer-motion"
 
 type RevealProps = {
@@ -28,9 +29,16 @@ export default function Reveal({
   once = true,
   className = "",
 }: RevealProps) {
+  const [mounted, setMounted] = useState(false)
   const prefersReducedMotion = useReducedMotion()
 
-  if (prefersReducedMotion) {
+  // Defer animations until after first paint
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Show content immediately without animation until mounted
+  if (!mounted || prefersReducedMotion) {
     return <div className={className}>{children}</div>
   }
 

@@ -1,12 +1,15 @@
 import Image from "next/image"
+import { lazy, Suspense } from "react"
 
 import CTA from "@/components/CTA"
 import Card from "@/components/Card"
-import ContactSection from "@/components/ContactSection"
 import ProjectCard from "@/components/ProjectCard"
 import Reveal from "@/components/Reveal"
 import Section from "@/components/Section"
 import { contactCopy, profile, projects, resumeSections } from "@/lib/content"
+
+// Lazy load heavy components below the fold
+const ContactSection = lazy(() => import("@/components/ContactSection"))
 
 const featuredProjects = projects.filter((p) => p.featured).slice(0, 3)
 
@@ -66,6 +69,8 @@ export default function HomePage() {
                 height={600}
                 className="w-full h-auto"
                 priority
+                fetchPriority="high"
+                decoding="async"
               />
             </div>
           </Reveal>
@@ -154,8 +159,16 @@ export default function HomePage() {
         </Reveal>
       </Section>
 
-      {/* Contact */}
-      <ContactSection />
+      {/* Contact - Lazy loaded */}
+      <Suspense fallback={
+        <section className="py-16 md:py-24 px-4 md:px-6">
+          <div className="max-w-5xl mx-auto h-[500px] flex items-center justify-center">
+            <div className="text-muted">Loading...</div>
+          </div>
+        </section>
+      }>
+        <ContactSection />
+      </Suspense>
     </main>
   )
 }

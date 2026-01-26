@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState, Suspense, lazy } from "react"
+import { useRef, useState, useEffect, Suspense, lazy } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
@@ -11,10 +11,16 @@ const Dithering = lazy(() =>
 )
 
 export default function ContactSection() {
+  const [mounted, setMounted] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Defer heavy shader until after first paint
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const copyEmail = async () => {
     try {
@@ -40,20 +46,24 @@ export default function ContactSection() {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="relative overflow-hidden rounded-[32px] md:rounded-[48px] border border-line bg-card shadow-soft min-h-[450px] md:min-h-[500px] flex flex-col items-center justify-center">
-          {/* Shader background */}
-          <Suspense fallback={<div className="absolute inset-0 bg-ink/5" />}>
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-30 mix-blend-multiply">
-              <Dithering
-                colorBack="#00000000"
-                colorFront="#2c3e50"
-                shape="warp"
-                type="4x4"
-                speed={isHovered ? 0.5 : 0.15}
-                className="size-full"
-                minPixelRatio={1}
-              />
-            </div>
-          </Suspense>
+          {/* Shader background - only load after mount */}
+          {mounted ? (
+            <Suspense fallback={<div className="absolute inset-0 bg-ink/5" />}>
+              <div className="absolute inset-0 z-0 pointer-events-none opacity-30 mix-blend-multiply">
+                <Dithering
+                  colorBack="#00000000"
+                  colorFront="#2c3e50"
+                  shape="warp"
+                  type="4x4"
+                  speed={isHovered ? 0.5 : 0.15}
+                  className="size-full"
+                  minPixelRatio={1}
+                />
+              </div>
+            </Suspense>
+          ) : (
+            <div className="absolute inset-0 bg-ink/5" />
+          )}
 
           {/* Content */}
           <div className="relative z-10 px-6 md:px-12 max-w-2xl mx-auto text-center flex flex-col items-center">

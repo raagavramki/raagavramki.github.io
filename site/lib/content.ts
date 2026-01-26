@@ -20,7 +20,7 @@ export const profile = {
   github: "https://github.com/raagavramki",
   linkedin: "https://www.linkedin.com/in/raagav-ramakrishnan-3905511b2",
   resumeUrl: "/assets/resume.pdf",
-  avatar: "/assets/img/profile.jpg",
+  avatar: "/assets/img/profile.webp", // Optimized WebP format
 }
 
 export const aboutCopy = {
