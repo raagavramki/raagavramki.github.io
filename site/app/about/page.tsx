@@ -1,48 +1,53 @@
 import type { Metadata } from "next"
 
-import Reveal from "@/components/Reveal"
 import { aboutCopy } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Learn about Raagav Ramakrishnan - building human-centered AI systems for healthcare at the intersection of computer vision, ML systems, and clinical workflows.",
+  description:
+    "Learn about Raagav Ramakrishnan - building human-centered AI systems for healthcare at the intersection of computer vision, ML systems, and clinical workflows.",
 }
 
 export default function AboutPage() {
   return (
     <main id="main">
-      <section className="section pt-16">
+      <section className="section-hero">
         <div className="container max-w-3xl">
-          <Reveal>
-            <p className="text-xs uppercase tracking-[0.3em] text-muted mb-4">{aboutCopy.heading}</p>
-          </Reveal>
+          {/* Kicker */}
+          <span className="label">{aboutCopy.heading}</span>
 
-          <Reveal delay={0.05}>
-            <h1 className="text-3xl font-semibold mb-8">{aboutCopy.subheading}</h1>
-          </Reveal>
+          {/* Main heading - single line */}
+          <h1 className="text-2xl md:text-3xl font-serif mt-6 mb-12 whitespace-nowrap">
+            {aboutCopy.subheading}
+          </h1>
 
+          {/* All paragraphs with equal styling */}
           <div className="space-y-6 text-muted leading-relaxed">
             {aboutCopy.paragraphs.map((paragraph, i) => (
-              <Reveal key={i} delay={0.1 + i * 0.05}>
-                <p>{paragraph}</p>
-              </Reveal>
+              <p key={i}>{paragraph}</p>
             ))}
           </div>
 
-          {/* Research Interests */}
-          <Reveal delay={0.3}>
-            <div className="mt-12 pt-8 border-t border-line">
-              <h2 className="text-lg font-semibold mb-4">Research Interests</h2>
-              <ul className="space-y-2 text-muted">
-                {aboutCopy.interests.map((interest, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="text-ink mt-1">-</span>
-                    <span>{interest}</span>
-                  </li>
-                ))}
-              </ul>
+          {/* Research Interests as visual cards */}
+          <div className="mt-20 pt-12 border-t border-line">
+            <h2 className="text-xl font-serif mb-8">Research Interests</h2>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {aboutCopy.interests.map((interest, i) => (
+                <div
+                  key={i}
+                  className="group p-5 rounded-xl border border-line bg-card/50
+                             hover:bg-card transition-all duration-300
+                             hover:-translate-y-0.5"
+                  style={{ borderColor: "var(--line)" }}
+                >
+                  <span className="text-2xl font-serif text-ink/20 block mb-3 group-hover:text-ink/30 transition-colors">
+                    0{i + 1}
+                  </span>
+                  <p className="text-sm text-ink leading-relaxed">{interest}</p>
+                </div>
+              ))}
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
     </main>

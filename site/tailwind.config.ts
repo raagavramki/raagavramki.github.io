@@ -15,10 +15,21 @@ export default {
         line: "var(--line)",
         card: "var(--card)",
         accent: "var(--accent)",
+        category: {
+          ml: "#4F46E5",
+          vision: "#0891B2",
+          nlp: "#7C3AED",
+          agentic: "#059669",
+          electronics: "#DC2626",
+        },
       },
       boxShadow: {
-        soft: "0 14px 32px -24px rgba(11, 15, 20, 0.35)",
-        lift: "0 22px 48px -28px rgba(11, 15, 20, 0.45)",
+        soft: "0 14px 32px -24px rgba(26, 29, 33, 0.3)",
+        lift: "0 22px 48px -28px rgba(26, 29, 33, 0.4)",
+      },
+      spacing: {
+        "18": "4.5rem",
+        "22": "5.5rem",
       },
     },
   },

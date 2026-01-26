@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg: #f7f4ef;
-  --ink: #0b0f14;
-  --muted: #59616b;
-  --line: #e1dbd2;
-  --card: #fffdf8;
-  --accent: #1f2a37;
+  --bg: #f8f6f1;
+  --ink: #1a1d21;
+  --muted: #5c6370;
+  --line: #e5e0d8;
+  --card: #fffef9;
+  --accent: #2c3e50;
+  --text-lead: #3d4451;
+  --surface-elevated: #ffffff;
+  --surface-recessed: #f3f0ea;
 }
 
 * {
@@ -21,12 +24,14 @@ html {
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 15% 20%, rgba(11, 15, 20, 0.06), transparent 50%),
-    radial-gradient(circle at 85% 0%, rgba(11, 15, 20, 0.04), transparent 45%),
+  background: radial-gradient(ellipse 80% 50% at 15% 20%, rgba(26, 29, 33, 0.04), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 85% 5%, rgba(26, 29, 33, 0.03), transparent 45%),
     var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
@@ -74,36 +79,103 @@ img {
     @apply mx-auto w-full max-w-6xl px-6;
   }
 
+  /* Section variants with intentional rhythm */
   .section {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-32;
+  }
+
+  .section-featured {
+    @apply py-24 md:py-40;
+    background: var(--surface-recessed);
+  }
+
+  .section-quiet {
+    @apply py-12 md:py-20;
+  }
+
+  .section-hero {
+    @apply pt-12 pb-24 md:pt-20 md:pb-40;
   }
 
   .section-head {
-    @apply mb-10 flex flex-col gap-3;
+    @apply mb-12 flex flex-col gap-4;
   }
 
   .muted {
     @apply text-muted;
   }
 
+  /* Typography enhancements */
+  .lead {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-lead);
+    font-weight: 400;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .prose-calm {
+    max-width: 65ch;
+  }
+
+  .prose-calm p + p {
+    margin-top: 1.5em;
+  }
+
+  /* Card styles */
   .card {
-    @apply rounded-2xl border border-line bg-card p-6 shadow-soft transition-transform duration-300;
+    @apply rounded-2xl border border-line bg-card p-6 shadow-soft transition-all duration-300;
   }
 
   .card-lift {
     @apply hover:-translate-y-1 hover:shadow-lift;
   }
 
+  .card-lift:hover {
+    border-color: rgba(26, 29, 33, 0.1);
+  }
+
+  /* Button styles with enhanced interactions */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 relative overflow-hidden;
   }
 
   .btn-primary {
-    @apply bg-ink text-white hover:shadow-lift;
+    @apply bg-ink text-white;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .btn-primary:hover::before {
+    transform: translateX(100%);
+  }
+
+  .btn-primary:hover {
+    @apply shadow-lift;
   }
 
   .btn-outline {
-    @apply border border-line text-ink hover:bg-ink hover:text-white;
+    @apply border text-ink;
+    border-color: rgba(26, 29, 33, 0.2);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--ink);
+    background-color: rgba(26, 29, 33, 0.05);
   }
 
   .btn-ghost {
@@ -114,14 +186,44 @@ img {
     @apply text-sm font-medium text-ink opacity-80 transition-colors hover:opacity-100;
   }
 
+  /* Text link with underline animation */
+  .link-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Pills and badges */
   .pill {
-    @apply rounded-full border border-line bg-white/60 px-3 py-1 text-xs font-medium text-muted;
+    @apply rounded-full border border-line bg-white/60 px-3 py-1 text-xs font-medium text-muted transition-colors;
+  }
+
+  .pill:hover {
+    @apply bg-white/90;
   }
 
   .badge {
     @apply rounded-full border border-line bg-white/70 px-3 py-1 text-xs font-medium text-muted;
   }
 
+  /* Accessibility */
   .skip-link {
     @apply absolute left-4 top-4 z-50 -translate-y-16 rounded-full bg-ink px-4 py-2 text-xs text-white transition-transform;
   }

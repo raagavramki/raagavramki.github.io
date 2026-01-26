@@ -219,9 +219,12 @@ export const resumeSections = {
   interests: [
     "Medical Imaging AI",
     "Robust ML Systems",
-    "Multimodal Clinical Data",
+    "Multimodal AI",
     "Human-Computer Interaction",
-    "Competitive Debate",
+    "Debate",
+    "Calisthenics",
+    "Coffee",
+    "Albert Camus",
   ],
 }
 
