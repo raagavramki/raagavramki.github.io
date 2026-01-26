@@ -4,9 +4,10 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Home, User, FileText, FolderOpen, Mail } from "lucide-react"
+import { Home, User, FileText, FolderOpen, Mail, Eye, Download } from "lucide-react"
 
 import CTA from "@/components/CTA"
+import DropdownMenu from "@/components/DropdownMenu"
 import { profile } from "@/lib/content"
 
 const navLinks = [
@@ -46,6 +47,33 @@ export default function Navbar() {
       document.body.style.overflow = ""
     }
   }, [open])
+
+  // Resume dropdown handlers
+  const handleViewPDF = () => {
+    window.open("/resume.pdf", "_blank")
+  }
+
+  const handleDownloadPDF = () => {
+    const link = document.createElement("a")
+    link.href = "/resume.pdf"
+    link.download = "Raagav_Ramakrishnan_Resume.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const resumeOptions = [
+    {
+      label: "View PDF",
+      onClick: handleViewPDF,
+      Icon: <Eye className="h-4 w-4" />,
+    },
+    {
+      label: "Download PDF",
+      onClick: handleDownloadPDF,
+      Icon: <Download className="h-4 w-4" />,
+    },
+  ]
 
   return (
     <>
@@ -87,6 +115,13 @@ export default function Navbar() {
               </Link>
             )
           })}
+
+          {/* Resume Dropdown - desktop only */}
+          <div className="hidden md:block ml-1 pl-1 border-l border-line">
+            <DropdownMenu options={resumeOptions}>
+              Resume
+            </DropdownMenu>
+          </div>
         </nav>
       </div>
 
@@ -167,11 +202,20 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ delay: 0.3, duration: 0.3 }}
-                  className="mt-auto pt-8"
+                  className="mt-auto pt-8 space-y-4"
                 >
-                  <CTA href={profile.resumeUrl} variant="primary" external>
-                    Download CV
-                  </CTA>
+                  <button
+                    onClick={handleViewPDF}
+                    className="w-full px-6 py-3 text-sm font-medium text-ink border-2 border-ink rounded-full hover:bg-ink hover:text-white transition-all duration-300"
+                  >
+                    View Resume PDF
+                  </button>
+                  <button
+                    onClick={handleDownloadPDF}
+                    className="w-full px-6 py-3 text-sm font-medium text-white bg-ink rounded-full hover:bg-ink/90 transition-all duration-300"
+                  >
+                    Download Resume PDF
+                  </button>
                 </motion.div>
               </div>
             </motion.div>
