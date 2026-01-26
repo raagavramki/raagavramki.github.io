@@ -1,23 +1,45 @@
-import { contactCopy, footerNote, profile } from "@/lib/content"
+"use client"
+
+import { ComesInGoesOutUnderline } from "@/components/AnimatedUnderline"
+import { profile } from "@/lib/content"
 
 export default function Footer() {
-  const year = new Date().getFullYear()
-  const note = footerNote.replace("{year}", String(year))
+  const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-line">
-      <div className="container flex flex-col gap-4 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between">
-        <p>{note}</p>
-        <div className="flex flex-wrap gap-4">
-          <a className="transition-colors hover:text-ink" href={`mailto:${profile.email}`}>
-            {contactCopy.emailLabel}
-          </a>
-          <a className="transition-colors hover:text-ink" href={profile.github} target="_blank" rel="noreferrer">
-            {contactCopy.githubLabel}
-          </a>
-          <a className="transition-colors hover:text-ink" href={profile.linkedin} target="_blank" rel="noreferrer">
-            {contactCopy.linkedinLabel}
-          </a>
+    <footer className="border-t border-line bg-white py-12 mb-20 md:mb-0">
+      <div className="container">
+        <div className="flex flex-col items-center gap-8 text-center">
+          {/* Links */}
+          <div className="flex flex-wrap items-center justify-center gap-8 text-sm font-medium">
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted hover:text-ink transition-colors"
+            >
+              <ComesInGoesOutUnderline label="GitHub" direction="left" />
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted hover:text-ink transition-colors"
+            >
+              <ComesInGoesOutUnderline label="LinkedIn" direction="right" />
+            </a>
+            <a
+              href={`mailto:${profile.email}`}
+              className="text-muted hover:text-ink transition-colors underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
+            >
+              {profile.email}
+            </a>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-xs text-muted">
+            © {currentYear} Raagav Ramakrishnan
+          </p>
         </div>
       </div>
     </footer>
