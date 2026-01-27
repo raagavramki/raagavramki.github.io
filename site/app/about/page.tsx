@@ -28,26 +28,6 @@ export default function AboutPage() {
             ))}
           </div>
 
-          {/* Research Interests as visual cards */}
-          <div className="mt-20 pt-12 border-t border-line">
-            <h2 className="text-xl font-serif mb-8">Research Interests</h2>
-            <div className="grid gap-4 sm:grid-cols-3">
-              {aboutCopy.interests.map((interest, i) => (
-                <div
-                  key={i}
-                  className="group p-5 rounded-xl border border-line bg-card/50
-                             hover:bg-card transition-all duration-300
-                             hover:-translate-y-0.5"
-                  style={{ borderColor: "var(--line)" }}
-                >
-                  <span className="text-2xl font-serif text-ink/20 block mb-3 group-hover:text-ink/30 transition-colors">
-                    0{i + 1}
-                  </span>
-                  <p className="text-sm text-ink leading-relaxed">{interest}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
     </main>

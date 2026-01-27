@@ -28,11 +28,6 @@ export const aboutCopy = {
     "Outside of work, I've been a debater for years, and I'm usually reading something-either psychology or literature, or anything I'm drawn to at the moment. I'm also a calisthenics and strength athlete and take coffee a lil too seriously.",
     "Please feel free to review my work or contact me with any questions or collaboation opportunities, I'd love to connect!"
   ],
-  interests: [
-    "Deployment-aware ML systems: latency, throughput, monitoring, and cost",
-    "Multimodal integration of clinical data",
-    "Interpretability and human-centered evaluation for high-stakes settings",
-  ],
 }
 
 export const skills = {
