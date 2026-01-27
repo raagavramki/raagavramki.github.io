@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Raagav Ramakrishnan",
   },
   description: "ML Systems Engineer. AI for Healthcare. Researcher (HCI x ML). B.Tech ECE @ IIIT Hyderabad.",
-  keywords: ["ML Engineer", "AI Healthcare", "HCI", "Machine Learning", "IIIT Hyderabad", "Raagav Ramakrishnan"],
+  keywords: ["ML Engineer", "AI", "Healthcare", "HCI", "Machine Learning", "IIIT Hyderabad", "Raagav Ramakrishnan"],
   authors: [{ name: "Raagav Ramakrishnan" }],
   openGraph: {
     title: "Raagav Ramakrishnan",

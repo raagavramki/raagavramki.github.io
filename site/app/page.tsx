@@ -11,7 +11,14 @@ import { contactCopy, profile, projects, resumeSections } from "@/lib/content"
 // Lazy load heavy components below the fold
 const ContactSection = lazy(() => import("@/components/ContactSection"))
 
-const featuredProjects = projects.filter((p) => p.featured).slice(0, 3)
+const FEATURED_IDS = [
+  "Neuroanatomy SME Agent",
+  "Vision Transformers from Scratch",
+  "MLP from Scratch",
+]
+
+const featuredProjects = FEATURED_IDS.map((t) => projects.find((p) => p.title === t)).filter((p): p is (typeof projects)[number] => p !== undefined)
+
 
 export default function HomePage() {
   return (
@@ -141,7 +148,7 @@ export default function HomePage() {
       <Section
         id="projects"
         title="Projects"
-        description="Selected work in medical AI, computer vision, and systems."
+        description="Selected work in AI, Computer Vision, and Machine Learning."
         variant="featured"
         ordinal={2}
       >

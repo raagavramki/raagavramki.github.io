@@ -10,17 +10,12 @@ export const profile = {
     "Debater",
     "Builder",
   ],
-  badges: [
-    "Medical Imaging",
-    "GCP / Vertex AI",
-    "PyTorch",
-  ],
   location: "Hyderabad, India & Dubai, UAE",
   email: "raagav.ramakrishnan@students.iiit.ac.in",
   github: "https://github.com/raagavramki",
   linkedin: "https://www.linkedin.com/in/raagav-ramakrishnan-3905511b2",
   resumeUrl: "/assets/resume.pdf",
-  avatar: "/assets/img/profile.webp", // Optimized WebP format
+  avatar: "/assets/img/profile.webp",
 }
 
 export const aboutCopy = {
@@ -186,11 +181,10 @@ export const resumeSections = {
       location: "Remote",
       time: "Dec 2024 - Present",
       bullets: [
-        "Leading medical imaging AI research with focus on MRI-based high-grade glioma analysis",
-        "Building end-to-end pipelines on GCP: model development, training, and deployment on Vertex AI",
-        "Shipped real-time dubbing pipeline using Google + OpenAI + ElevenLabs APIs; built phonetic pre-processor for Hindi/Gujarati",
-        "Designed Kubeflow + Vertex AI dynamic-pricing engine pipeline (XGBoost); automated CI/CD via Cloud Build & Pub/Sub",
+        "Lead AI research directed towards Medical Imaging Pipelines",
         "Fine-tuned ProtBert & ESM-1b for mutation-effect prediction; explored Graph Transformers on AlphaFold2 embeddings",
+        "Designed Kubeflow + Vertex AI dynamic-pricing engine end-to-end pipeline; automated CI/CD via Cloud Build and Pub/Sub",
+        "Shipped real-time video dubbing pipeline using Google/OpenAI/ElevenLabs APIs to support Hindi/Gujarati subtitles",
       ],
     },
   ],
@@ -201,20 +195,21 @@ export const resumeSections = {
       institution: "IIIT Hyderabad",
       advisor: "Dr. Nimmi Rangaswamy",
       time: "Jan 2025 - Present",
-      topic: "Digital and Analog Tracking Methodologies in Physical Fitness and Wellness",
+      topic: "Everyday HCI of Adaptive Fitness: The Bricolage of Self-Tracking in Urban India",
       bullets: [
-        "Conducting ethnographic study with interviews of Indian youth (18-30y), capturing routines and struggles",
-        "Literature review across HCI and tracking methods to identify cultural gaps",
-        "Affinity mapping to cluster insights into themes",
+        "Conduct ethnographic study through interviews and fields visits, to capture routines and struggles of urban Indians (18-28 years)",
+        "Literature review across HCI, digital health, and sports science to contextualize hybrid self-tracking ecologies in India",
+        "Qualitative Analysis is grounded by bricolage frameworks and emerges through affinity mapping",
+        "We construct Design Implications to support hybrid tracking ecologies, and subjective temporal adaptation within socio-material contexts",
       ],
     },
   ],
   skills: {
-    languages: ["Python", "C/C++", "JavaScript", "R", "Verilog", "MATLAB", "LaTeX"],
-    mlAndAI: ["PyTorch", "HuggingFace Transformers", "XGBoost", "scikit-learn", "Pandas", "NumPy"],
-    cloudAndMLOps: ["GCP", "Vertex AI", "Kubeflow", "BigQuery", "Cloud Build", "Docker", "CI/CD"],
+    languages: ["Python", "C/C++", "MATLAB", "Verilog", "JavaScript", "R", "LaTeX"],
+    mlAndAI: ["PyTorch", "HuggingFace", "NumPy"],
+    cloudAndMLOps: ["GCP", "Vertex AI", "Kubeflow", "Cloud Build", "Docker", "CI/CD"],
     tools: ["FastAPI", "MongoDB", "Git"],
-    hardware: ["NGSpice", "MAGIC", "iVerilog", "SPICE"],
+    hardware: ["NGSpice", "MAGIC", "Verilog"],
   },
   interests: [
     "Medical Imaging AI",
