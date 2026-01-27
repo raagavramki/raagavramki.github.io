@@ -2,7 +2,7 @@ export type ProjectCategory = "all" | "ml" | "vision" | "nlp" | "agentic" | "ele
 
 export const profile = {
   name: "Raagav Ramakrishnan",
-  kicker: "Computer Vision - ML Systems - AI for Healthcare",
+  kicker: ["Computer Vision", "ML Systems", "AI for Healthcare"],
   summary:
     "Undergraduate researcher at IIIT Hyderabad building reliable, clinically grounded AI systems for real-world healthcare environments.",
   roles: [

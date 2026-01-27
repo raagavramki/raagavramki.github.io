@@ -6,6 +6,7 @@ import Card from "@/components/Card"
 import ProjectCard from "@/components/ProjectCard"
 import Reveal from "@/components/Reveal"
 import Section from "@/components/Section"
+import { GooeyText } from "@/components/GooeyText"
 import { contactCopy, profile, projects, resumeSections } from "@/lib/content"
 
 // Lazy load heavy components below the fold
@@ -28,24 +29,19 @@ export default function HomePage() {
         <div className="container grid gap-12 lg:gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-8">
             <Reveal>
-              <p className="label">{profile.kicker}</p>
+              <div className="min-h-[40px] flex items-center justify-center">
+                <GooeyText
+                  texts={profile.kicker}
+                  morphTime={0.6} 
+                  cooldownTime={1}
+                  textClassName="text-base md:text-lg font-extrabold tracking-wide uppercase text-ink whitespace-nowrap"
+                />
+              </div>
             </Reveal>
             <Reveal delay={0.05}>
               <h1>{profile.name}</h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <ul className="flex flex-wrap gap-3 text-sm font-medium text-muted">
-                {profile.roles.map((role) => (
-                  <li
-                    key={role}
-                    className="rounded-full border border-line px-4 py-1.5 transition-colors hover:border-ink/20"
-                  >
-                    {role}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={0.15}>
               <p className="lead max-w-xl">{profile.summary}</p>
             </Reveal>
             <Reveal delay={0.2}>
