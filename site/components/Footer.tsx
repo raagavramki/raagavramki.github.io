@@ -1,10 +1,10 @@
-"use client"
-
 import { ComesInGoesOutUnderline } from "@/components/AnimatedUnderline"
 import { profile } from "@/lib/content"
 
+// Static year - updated at build time, avoids hydration mismatch
+const CURRENT_YEAR = 2026
+
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="border-t border-line bg-white py-12 mb-20 md:mb-0">
@@ -38,7 +38,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-xs text-muted">
-            © {currentYear} Raagav Ramakrishnan
+            © {CURRENT_YEAR} Raagav Ramakrishnan
           </p>
         </div>
       </div>

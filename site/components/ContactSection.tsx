@@ -98,7 +98,7 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15 }}
-              className="text-muted text-base md:text-lg max-w-lg mb-10 leading-relaxed"
+              className="text-ink/70 text-base md:text-lg max-w-lg mb-10 leading-relaxed"
             >
               {contactCopy.subheading}
             </motion.p>

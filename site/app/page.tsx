@@ -1,13 +1,13 @@
 import Image from "next/image"
+import Link from "next/link"
 import { lazy, Suspense } from "react"
 
-import CTA from "@/components/CTA"
 import Card from "@/components/Card"
 import ProjectCard from "@/components/ProjectCard"
 import Reveal from "@/components/Reveal"
 import Section from "@/components/Section"
-import { GooeyText } from "@/components/GooeyText"
-import { contactCopy, profile, projects, resumeSections } from "@/lib/content"
+import { InteractiveHoverButton } from "@/components/InteractiveHoverButton"
+import { profile, projects, resumeSections } from "@/lib/content"
 
 // Lazy load heavy components below the fold
 const ContactSection = lazy(() => import("@/components/ContactSection"))
@@ -43,25 +43,28 @@ export default function HomePage() {
               <h1>{profile.name}</h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="lead max-w-xl">{profile.summary}</p>
+              <div className="space-y-2 max-w-xl">
+                <p className="lead">{profile.summaryLine1}</p>
+                <p className="lead">{profile.summaryLine2}</p>
+              </div>
             </Reveal>
             <Reveal delay={0.2}>
               <div className="flex flex-wrap gap-4 pt-2">
-                <CTA href="/projects" variant="primary">
-                  View Projects
-                </CTA>
-                <CTA href="/resume" variant="outline">
+                <Link href="/projects" className="btn btn-primary">
+                  Explore my Work
+                </Link>
+                <Link href="/resume" className="btn btn-outline">
                   Resume
-                </CTA>
+                </Link>
               </div>
             </Reveal>
             <Reveal delay={0.25}>
-              <a
-                className="link-underline text-sm font-medium text-muted hover:text-ink transition-colors"
+              <InteractiveHoverButton
+                idleText="Say hello"
+                hoverText={profile.email}
                 href={`mailto:${profile.email}`}
-              >
-                {contactCopy.emailCta}
-              </a>
+                showArrow={false}
+              />
             </Reveal>
           </div>
           <Reveal delay={0.2} direction="left">
@@ -134,9 +137,7 @@ export default function HomePage() {
         </div>
         <Reveal delay={0.15}>
           <div className="mt-8">
-            <CTA href="/resume" variant="outline">
-              View full resume
-            </CTA>
+            <InteractiveHoverButton href="/resume" text="View full resume" />
           </div>
         </Reveal>
       </Section>
@@ -156,9 +157,7 @@ export default function HomePage() {
         </div>
         <Reveal delay={0.2}>
           <div className="mt-8">
-            <CTA href="/projects" variant="ghost">
-              View all projects
-            </CTA>
+            <InteractiveHoverButton href="/projects" text="View all projects" />
           </div>
         </Reveal>
       </Section>

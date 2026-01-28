@@ -6,9 +6,10 @@ import { lazy, Suspense } from "react"
 import CTA from "@/components/CTA"
 import Reveal from "@/components/Reveal"
 import { profile, resumeSections } from "@/lib/content"
+import { interestCardsData } from "@/components/InterestCards"
 
 // Lazy load heavy interactive component
-const FloatingBubbles = lazy(() => import("@/components/FloatingBubbles"))
+const InterestCards = lazy(() => import("@/components/InterestCards"))
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -345,12 +346,11 @@ export default function ResumePage() {
               Loading interests...
             </div>
           }>
-            <FloatingBubbles items={resumeSections.interests} />
+            <InterestCards cards={interestCardsData} defaultLayout="grid" />
           </Suspense>
         </div>
       </section>
 
-      {/* Download CTA */}
       <section className="section-quiet pb-20">
         <div className="container">
           <Reveal>

@@ -231,4 +231,5 @@ img {
   .skip-link:focus {
     @apply translate-y-0;
   }
+
 }

@@ -12,7 +12,9 @@
       "Bash(ls:*)",
       "Bash(node scripts/convert-image.mjs:*)",
       "Bash(node -e:*)",
-      "Bash(node --version:*)"
+      "Bash(node --version:*)",
+      "WebFetch(domain:21st.dev)",
+      "Bash(npm ls:*)"
     ]
   }
 }
