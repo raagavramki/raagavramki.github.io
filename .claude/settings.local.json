@@ -10,7 +10,9 @@
       "Bash(npm install:*)",
       "Bash(convert:*)",
       "Bash(ls:*)",
-      "Bash(node scripts/convert-image.mjs:*)"
+      "Bash(node scripts/convert-image.mjs:*)",
+      "Bash(node -e:*)",
+      "Bash(node --version:*)"
     ]
   }
 }

@@ -4,6 +4,7 @@ import { Cormorant_Garamond, IBM_Plex_Mono, Inter } from "next/font/google"
 
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
+import HorizonHero from "@/components/HorizonHero"
 
 // Optimized: Only load weights actually used
 const serif = Cormorant_Garamond({
@@ -51,12 +52,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${serif.variable} ${sans.variable} ${mono.variable} antialiased`}>
-        <a className="skip-link" href="#main">
-          Skip to content
-        </a>
-        <Navbar />
-        {children}
-        <Footer />
+        {/* Fixed shader background - visible across all pages */}
+        <HorizonHero />
+        {/* All content above shader */}
+        <div className="relative z-10">
+          <a className="skip-link" href="#main">
+            Skip to content
+          </a>
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   )

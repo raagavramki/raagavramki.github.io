@@ -148,7 +148,7 @@ export const projectFilters = [
 export const resumeSections = {
   education: [
     {
-      degree: "B.Tech (Hons.) in Electronics and Communication Engineering",
+      degree: "B.Tech (Honors) in Electronics and Communication Engineering",
       institution: "IIIT Hyderabad",
       location: "Hyderabad, India",
       time: "2022 - 2026 (Expected)",

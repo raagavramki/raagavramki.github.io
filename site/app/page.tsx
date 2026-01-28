@@ -25,19 +25,20 @@ export default function HomePage() {
   return (
     <main id="main">
       {/* Hero */}
-      <section className="section-hero pt-16 md:pt-24">
-        <div className="container grid gap-12 lg:gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <section className="section-hero pt-16 md:pt-24 relative">
+
+        <div className="container grid gap-12 lg:gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center relative z-10">
           <div className="space-y-8">
-            <Reveal>
+            {/* <Reveal>
               <div className="min-h-[40px] flex items-center justify-center">
                 <GooeyText
                   texts={profile.kicker}
-                  morphTime={0.6} 
+                  morphTime={0.6}
                   cooldownTime={1}
                   textClassName="text-base md:text-lg font-extrabold tracking-wide uppercase text-ink whitespace-nowrap"
                 />
               </div>
-            </Reveal>
+            </Reveal> */}
             <Reveal delay={0.05}>
               <h1>{profile.name}</h1>
             </Reveal>
