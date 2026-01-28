@@ -80,25 +80,21 @@ export default function ProjectsPage() {
           </Reveal>
 
           {/* Projects grid */}
-          <motion.div
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-            layout
-          >
-            <AnimatePresence mode="popLayout">
-              {visibleProjects.map((project) => (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <AnimatePresence mode="wait">
+              {visibleProjects.map((project, i) => (
                 <motion.div
                   key={project.title}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15, delay: i * 0.03 }}
                 >
                   <ProjectCard project={project} />
                 </motion.div>
               ))}
             </AnimatePresence>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>
