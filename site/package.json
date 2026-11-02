@@ -7,7 +7,10 @@
     "dev": "node node_modules/next/dist/bin/next dev",
     "build": "node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
-    "export": "node node_modules/next/dist/bin/next build"
+    "export": "node node_modules/next/dist/bin/next build",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
+    "preview": "python3 -m http.server 4173 --directory out",
+    "check": "node scripts/check-site.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
