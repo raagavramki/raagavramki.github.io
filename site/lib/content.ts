@@ -1,33 +1,49 @@
-export type ProjectCategory = "all" | "ml" | "vision" | "nlp" | "agentic" | "electronics"
+export * from "./data/types"
+export * from "./data/publications"
+export * from "./data/experiences"
+export * from "./data/visibility"
+export { researchCaseStudies } from "./data/research"
+export { engineeringCaseStudies, archiveProjects } from "./data/engineering"
+
+import { engineeringCaseStudies } from "./data/engineering"
+import { researchCaseStudies } from "./data/research"
+import { getVisible } from "./data/visibility"
+import type { ProjectFilter } from "./data/types"
 
 export const profile = {
   name: "Raagav Ramakrishnan",
-  kicker: ["Computer Vision", "ML Systems", "AI for Healthcare"],
-  summary: "I build AI systems for real-world healthcare. Currently an undergraduate researcher at IIIT Hyderabad.",
-  summaryLine1: "I build AI systems for real-world healthcare.",
-  summaryLine2: "Currently an undergraduate researcher at IIIT Hyderabad.",
-  roles: [
-    "ML Research Engineer",
-    "Debater",
-    "Builder",
-  ],
+  kicker: ["ML Systems Engineering", "Agentic AI", "HCI"],
+  headline: "I study how people interact with technology\u2014and build intelligent systems around those insights.",
+  subtitle:
+    "Research across Human\u2013Computer Interaction, human\u2013AI interaction and machine learning. Electronics & Communication Engineering (Honors), IIIT Hyderabad.",
+  roles: ["HCI & Human-AI Researcher", "ML Research Engineer", "Builder"],
+  researchAreas: ["Human-Computer Interaction", "Human-AI interaction", "Social computing", "Digital health", "Adaptive systems", "ML systems"],
   location: "Hyderabad, India & Dubai, UAE",
   email: "raagav.ramakrishnan@students.iiit.ac.in",
+  emailNote: "{{TBD: confirm institutional email remains valid after graduation; add a durable alternative}}",
   github: "https://github.com/raagavramki",
   linkedin: "https://www.linkedin.com/in/raagav-ramakrishnan-3905511b2",
-  resumeUrl: "/assets/resume.pdf",
+  /** Single canonical CV. /assets/resume.pdf is a byte-identical legacy copy. */
+  cvUrl: "/resume.pdf",
   avatar: "/assets/img/profile.webp",
 }
 
+export const researchQuestions = [
+  "How do people assemble tools, social media and informal routines into their own self-tracking practices, and how do they adapt them as life changes?",
+  "What should an adaptive system know about whose routine it is adapting to, measured by what, and on whose terms?",
+  "How does AI change social interaction in settings such as dating and the workplace? (ongoing)",
+  "What does it take to build technically capable ML systems that are shaped by these everyday insights?",
+]
+
 export const aboutCopy = {
   heading: "About",
-  subheading: "Computer Vision + ML systems: currently applied to healthcare",
+  subheading: "From ML engineering to human-centred research",
   paragraphs: [
-    "I am an undergraduate researcher at IIIT Hyderabad working across computer vision and ML systems. I am currently applying that toolkit to healthcare, influenced by HCI, to build systems that go beyond raw accuracy, to build trustworthy, reliable, and human-centric AI solutions.",
-    "Tech matters to me because it changes outcomes when it is built to face reality. That is why I am drawn to healthcare: the stakes are high, the constraints are real, and usefulness depends on how well a system fits clinicians, patients, and infrastructure. Having lived in both Dubai and India, I've seen firsthand how the same problem looks completely different across settings—different access patterns, operational maturity, and resource constraints—which now directly shapes how I design and build: for heterogeneous data, imperfect environments, and tools that integrate into real routines rather than existing as standalone demos.",
-    "Currently, I work with Cloud Ambassadors as an ML Research Engineer, where I help establish and run their research efforts. My work focuses on medical imaging AI with an emphasis on end-to-end, deployment-aware systems rather than model-only benchmarks. I am actively working on MRI-based high-grade glioma analysis, covering model development on Google Cloud infrastructure.",
-    "Outside of work, I've been a debater for years, and I'm usually reading something-either psychology or literature, or anything I'm drawn to at the moment. I'm also a calisthenics and strength athlete and take coffee a lil too seriously.",
-    "Please feel free to review my work or contact me with any questions or collaboation opportunities, I'd love to connect!"
+    "I started in Electronics and Communication Engineering at IIIT Hyderabad, and machine learning engineering became my technical foundation: computer vision, language models and the cloud systems that make them run.",
+    "Over time I became more interested in how technologies are actually used in everyday life than in how they perform on a benchmark. Having lived in both Dubai and India, I have seen the same technology take very different shapes in different settings.",
+    "I found HCI through qualitative research: field visits, interviews and careful analysis of how young adults in urban India combine apps, wearables and social media into their own fitness practices. That work was published at CHI EA 2026.",
+    "Today I want to build intelligent systems that are technically capable and informed by that kind of evidence: adaptive personal informatics that supports approximate logging, routine breaks and private accountability, and human-centred AI that fits how people actually live.",
+    "Outside work I have been a debater for years, I am usually reading psychology or literature, and I take coffee a little too seriously.",
   ],
 }
 
@@ -39,167 +55,7 @@ export const skills = {
   hardware: ["NGSpice", "MAGIC", "iVerilog"],
 }
 
-export const projects = [
-  // Agentic AI
-  {
-    category: "agentic",
-    meta: "Agentic AI",
-    title: "Neuroanatomy SME Agent",
-    desc: "Full embedding and retrieval pipeline with batch ingestion, multi-granularity chunk-graph construction, BioLORD embeddings, and hybrid FAISS/Elasticsearch search with BGE reranking. Custom LangChain-style reasoning and tool-calling with browser UI for chat, QA/quiz, and document export.",
-    tags: ["HuggingFace", "PyTorch", "LangChain"],
-    href: "https://github.com/raagavramki/Subject-Matter-Expert-Agentic-AI",
-    featured: true,
-  },
-  // NLP
-  {
-    category: "nlp",
-    meta: "NLP",
-    title: "Multilingual SLM",
-    desc: "Built a 3B-token multilingual corpus (English, Tamil, Mizo) from scratch. Trained 96k-vocab Unigram tokenizer and pretrained 140M-parameter Gemma3 LM achieving 2.74 train perplexity. Fine-tuned with LoRA for FAQ generation (12.7 PPL) and synonym substitution (1.73 PPL).",
-    tags: ["HuggingFace", "PyTorch", "LoRA"],
-    href: "https://github.com/raagavramki/multilingual-slm",
-    featured: true,
-  },
-  // Vision
-  {
-    category: "vision",
-    meta: "Vision",
-    title: "Vision Transformers from Scratch",
-    desc: "Implemented ViT and Differential ViT on CIFAR-10 from scratch. Achieved 83.69% accuracy with ViT and 84.38% with DiffViT after benchmarking 11 configurations. Produced DINO attention maps and hyperparameter tuning analysis.",
-    tags: ["PyTorch", "Transformers", "CIFAR-10"],
-    href: "https://github.com/raagavramki/vision-transformer",
-    featured: true,
-  },
-  {
-    category: "vision",
-    meta: "Vision",
-    title: "FCN Semantic Segmentation",
-    desc: "Built FCN-32, 16, 8 with VGG-16 backbone and bilinear upsampling. Achieved 83.3% test mIoU on 13-class dataset with fine-tuned backbone. Optimized data pipelines and batch scheduling for improved GPU utilization.",
-    tags: ["PyTorch", "VGG", "Segmentation"],
-    href: "https://github.com/raagavramki/FCN",
-    featured: false,
-  },
-  // ML
-  {
-    category: "ml",
-    meta: "ML",
-    title: "CNN-RNN OCR Pipeline",
-    desc: "Hybrid deep learning pipeline using CNNs for feature extraction and RNNs with integrated attention mechanisms. Achieved 99.1% character-level accuracy (ANCC) on word-level OCR tasks.",
-    tags: ["PyTorch", "OCR", "LSTM"],
-    href: "https://github.com/raagavramki/OCR-CNN-RNN",
-    featured: false,
-  },
-  {
-    category: "ml",
-    meta: "ML",
-    title: "MLP from Scratch",
-    desc: "Implemented MLP from scratch supporting customizable hidden layers, activation functions, and optimization methods. Built to develop intuition for gradient flow and model training dynamics.",
-    tags: ["NumPy", "PyTorch", "Wandb"],
-    href: "https://github.com/raagavramki/MLP--from-scratch",
-    featured: false,
-  },
-  // Electronics & Signals
-  {
-    category: "electronics",
-    meta: "Electronics & Signals",
-    title: "Y86-64 Pipelined Processor",
-    desc: "Pipelined implementation of Y86-64 instruction-level processor with intermediate registers for optimized instruction throughput. Includes hazard detection and solutions, validated through waveform-based testbenches.",
-    tags: ["Verilog", "Pipelining", "Waveform Testbenches"],
-    href: "https://github.com/raagavramki/Y86-64-ISA-Processor",
-    featured: false,
-  },
-  {
-    category: "electronics",
-    meta: "Electronics & Signals",
-    title: "BPSK Modulation System",
-    desc: "Binary Phase Shift Keying system for audio transmission over AWGN and noiseless channels. Implemented rectangular and raised cosine pulse shaping modulation for ISI analysis.",
-    tags: ["MATLAB", "DSP", "Communications"],
-    href: "https://github.com/raagavramki/BPSK-Modulation",
-    featured: false,
-  },
-  {
-    category: "electronics",
-    meta: "Electronics & Signals",
-    title: "4-bit ALU Design",
-    desc: "Complete ALU design flow from Verilog modules through gate-level NGSpice simulations to transistor-level NMOS/PMOS designs. Layout verification using MAGIC with DRC/LVS-clean outputs.",
-    tags: ["Verilog", "NGSpice", "MAGIC"],
-    href: "https://github.com/raagavramki/VLSI-Project",
-    featured: false,
-  },
-] satisfies Array<{
-  category: ProjectCategory
-  meta: string
-  title: string
-  desc: string
-  tags: string[]
-  href: string
-  featured: boolean
-}>
-
-export const projectFilters = [
-  { key: "all", label: "All" },
-  { key: "ml", label: "ML" },
-  { key: "vision", label: "Vision" },
-  { key: "nlp", label: "NLP" },
-  { key: "agentic", label: "Agentic AI" },
-  { key: "electronics", label: "Electronics & Signals" },
-] satisfies Array<{ key: ProjectCategory; label: string }>
-
-// Resume page - structured like Eda Aydin's
 export const resumeSections = {
-  education: [
-    {
-      degree: "B.Tech (Honors) in Electronics and Communication Engineering",
-      institution: "IIIT Hyderabad",
-      location: "Hyderabad, India",
-      time: "2022 - 2026 (Expected)",
-      details: [
-        "Focus: Machine Learning, Computer Vision, Signal Processing",
-        "Relevant coursework: Deep Learning, Digital Signal Processing, Computer Architecture",
-      ],
-    },
-    {
-      degree: "High School Diploma (CBSE)",
-      institution: "The Millennium School",
-      location: "Dubai, UAE",
-      time: "June 2022",
-      details: [
-        "Grade 10: 93%",
-        "Grade 12: 95%",
-      ],
-    },
-  ],
-  workExperience: [
-    {
-      title: "ML Research Engineer",
-      company: "Cloud Ambassadors",
-      companyNote: "Google Ecosystem Startup",
-      location: "Remote",
-      time: "Dec 2024 - Present",
-      bullets: [
-        "Lead AI research directed towards Medical Imaging Pipelines",
-        "Fine-tuned ProtBert & ESM-1b for mutation-effect prediction; explored Graph Transformers on AlphaFold2 embeddings",
-        "Designed Kubeflow + Vertex AI dynamic-pricing engine end-to-end pipeline; automated CI/CD via Cloud Build and Pub/Sub",
-        "Shipped real-time video dubbing pipeline using Google/OpenAI/ElevenLabs APIs to support Hindi/Gujarati subtitles",
-      ],
-    },
-  ],
-  researchExperience: [
-    {
-      title: "Undergraduate Researcher",
-      lab: "DSAC Lab",
-      institution: "IIIT Hyderabad",
-      advisor: "Dr. Nimmi Rangaswamy",
-      time: "Jan 2025 - Present",
-      topic: "Everyday HCI of Adaptive Fitness: The Bricolage of Self-Tracking in Urban India",
-      bullets: [
-        "Conduct ethnographic study through interviews and fields visits, to capture routines and struggles of urban Indians (18-28 years)",
-        "Literature review across HCI, digital health, and sports science to contextualize hybrid self-tracking ecologies in India",
-        "Qualitative Analysis is grounded by bricolage frameworks and emerges through affinity mapping",
-        "We construct Design Implications to support hybrid tracking ecologies, and subjective temporal adaptation within socio-material contexts",
-      ],
-    },
-  ],
   skills: {
     languages: ["Python", "C/C++", "MATLAB", "Verilog", "JavaScript", "R", "LaTeX"],
     mlAndAI: ["PyTorch", "HuggingFace", "NumPy"],
@@ -233,3 +89,20 @@ export const contactCopy = {
   emailCta: "Email me",
 }
 export const footerNote = "{year} Raagav Ramakrishnan"
+
+export const publicResearch = () => getVisible(researchCaseStudies)
+export const publicEngineering = () => getVisible(engineeringCaseStudies)
+export const featuredWork = () =>
+  [...publicResearch(), ...publicEngineering()]
+    .filter((c) => c.featuredOrder !== undefined)
+    .sort((a, b) => (a.featuredOrder ?? 0) - (b.featuredOrder ?? 0))
+    .slice(0, 4)
+
+export const projectFilters: { key: ProjectFilter; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "featured", label: "Featured" },
+  { key: "ml", label: "Machine Learning" },
+  { key: "nlp", label: "NLP & Agents" },
+  { key: "vision", label: "Computer Vision" },
+  { key: "systems", label: "Systems & Hardware" },
+]

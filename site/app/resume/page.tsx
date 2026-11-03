@@ -5,25 +5,33 @@ import { lazy, Suspense } from "react"
 
 import CTA from "@/components/CTA"
 import Reveal from "@/components/Reveal"
-import { profile, resumeSections } from "@/lib/content"
+import PublicationEntry from "@/components/PublicationEntry"
+import { RichText } from "@/components/Tbd"
+import { additional, education, experienceByKind, profile, publications, resumeSections } from "@/lib/content"
 import { interestCardsData } from "@/components/InterestCards"
 
 // Lazy load heavy interactive component
 const InterestCards = lazy(() => import("@/components/InterestCards"))
 
 export const metadata: Metadata = {
-  title: "Resume",
+  title: "CV",
   description:
-    "Raagav Ramakrishnan's resume - Education, work experience, research, and skills in ML systems and AI for healthcare.",
+    "Raagav Ramakrishnan's CV: education, research experience, publications, industry experience and skills in HCI research and ML systems.",
 }
 
 const sections = [
   { id: "education", label: "Education" },
-  { id: "experience", label: "Work Experience" },
-  { id: "research", label: "Research Experience" },
+  { id: "research", label: "Research" },
+  { id: "publications", label: "Publications" },
+  { id: "experience", label: "Industry" },
+  { id: "leadership", label: "Leadership" },
   { id: "skills", label: "Skills" },
   { id: "interests", label: "Interests" },
 ]
+
+const research = experienceByKind("research")
+const industry = experienceByKind("industry")
+const leadership = experienceByKind("leadership")
 
 export default function ResumePage() {
   return (
@@ -32,7 +40,7 @@ export default function ResumePage() {
       <section className="section-hero">
         <div className="container">
           <Reveal>
-            <span className="label">Resume</span>
+            <span className="label">CV</span>
           </Reveal>
 
           <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start mt-8">
@@ -61,6 +69,9 @@ export default function ResumePage() {
                   >
                     {profile.email}
                   </a>
+                  <p>
+                    <RichText text={profile.emailNote} />
+                  </p>
                 </div>
               </Reveal>
 
@@ -136,29 +147,25 @@ export default function ResumePage() {
             <h2 className="text-2xl font-serif mb-10">Education</h2>
           </Reveal>
           <div className="space-y-10">
-            {resumeSections.education.map((edu, i) => (
+            {education.map((edu, i) => (
               <Reveal key={edu.institution} delay={0.05 * i}>
                 <div className="group p-6 -mx-6 rounded-xl transition-colors hover:bg-card/50">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
                     <div>
-                      <h3 className="text-lg font-semibold text-ink">
-                        {edu.degree}
-                      </h3>
+                      <h3 className="text-lg font-semibold text-ink">{edu.degree}</h3>
                       <p className="text-muted">
                         {edu.institution}, {edu.location}
                       </p>
                     </div>
-                    <span className="text-sm text-muted font-mono whitespace-nowrap">
-                      {edu.time}
+                    <span className="text-sm text-muted font-mono">
+                      <RichText text={edu.time} />
                     </span>
                   </div>
-                  {edu.details && (
-                    <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-1 leading-relaxed">
-                      {edu.details.map((detail) => (
-                        <li key={detail}>{detail}</li>
-                      ))}
-                    </ul>
-                  )}
+                  <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-1 leading-relaxed">
+                    {edu.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
                 </div>
               </Reveal>
             ))}
@@ -166,33 +173,77 @@ export default function ResumePage() {
         </div>
       </section>
 
-      {/* Work Experience */}
-      <section id="experience" className="section-featured">
+      {/* Research Experience */}
+      <section id="research" className="section-featured">
         <div className="container">
           <Reveal>
-            <h2 className="text-2xl font-serif mb-10">Work Experience</h2>
+            <h2 className="text-2xl font-serif mb-10">Research Experience</h2>
           </Reveal>
           <div className="space-y-10">
-            {resumeSections.workExperience.map((job, i) => (
-              <Reveal key={job.company} delay={0.05 * i}>
+            {research.map((r, i) => (
+              <Reveal key={r.id} delay={0.05 * i}>
                 <div className="p-6 rounded-2xl border border-line bg-card shadow-soft">
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
                     <div>
-                      <h3 className="text-lg font-semibold text-ink">
-                        {job.title}
-                      </h3>
+                      <h3 className="text-lg font-semibold text-ink">{r.title}</h3>
                       <p className="text-muted">
-                        {job.company}
-                        {job.companyNote && (
-                          <span className="text-sm opacity-70">
-                            {" "}
-                            ({job.companyNote})
-                          </span>
-                        )}
+                        {r.unit}, {r.org}
+                      </p>
+                      {r.advisor && <p className="text-sm text-muted italic mt-1">Advisor: {r.advisor}</p>}
+                    </div>
+                    <span className="text-sm text-muted font-mono">
+                      <RichText text={r.time} />
+                    </span>
+                  </div>
+                  {r.topic && <p className="text-sm font-medium text-ink mb-4">{r.topic}</p>}
+                  <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-2 leading-relaxed">
+                    {r.bullets.map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Publications */}
+      <section id="publications" className="section">
+        <div className="container">
+          <Reveal>
+            <h2 className="text-2xl font-serif mb-10">Publications</h2>
+          </Reveal>
+          <div className="space-y-10">
+            {publications.map((p) => (
+              <PublicationEntry key={p.id} pub={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Experience */}
+      <section id="experience" className="section-featured">
+        <div className="container">
+          <Reveal>
+            <h2 className="text-2xl font-serif mb-10">Industry Experience</h2>
+          </Reveal>
+          <div className="space-y-10">
+            {industry.map((job, i) => (
+              <Reveal key={job.id} delay={0.05 * i}>
+                <div className="p-6 rounded-2xl border border-line bg-card shadow-soft">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-ink">{job.title}</h3>
+                      <p className="text-muted">
+                        {job.org}
+                        {job.orgNote && <span className="text-sm opacity-70"> ({job.orgNote})</span>}
                       </p>
                     </div>
-                    <div className="text-sm text-muted text-right whitespace-nowrap font-mono">
-                      <p>{job.time}</p>
+                    <div className="text-sm text-muted font-mono sm:text-right">
+                      <p>
+                        <RichText text={job.time} />
+                      </p>
                       <p className="opacity-70">{job.location}</p>
                     </div>
                   </div>
@@ -208,43 +259,37 @@ export default function ResumePage() {
         </div>
       </section>
 
-      {/* Research Experience */}
-      <section id="research" className="section">
+      {/* Leadership and additional */}
+      <section id="leadership" className="section">
         <div className="container">
           <Reveal>
-            <h2 className="text-2xl font-serif mb-10">Research Experience</h2>
+            <h2 className="text-2xl font-serif mb-10">Leadership &amp; Additional</h2>
           </Reveal>
-          <div className="space-y-10">
-            {resumeSections.researchExperience.map((research, i) => (
-              <Reveal key={research.lab} delay={0.05 * i}>
-                <div className="p-6 rounded-2xl border border-line bg-card shadow-soft">
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-ink">
-                        {research.title}
-                      </h3>
-                      <p className="text-muted">
-                        {research.lab}, {research.institution}
-                      </p>
-                      <p className="text-sm text-muted italic mt-1">
-                        Advisor: {research.advisor}
-                      </p>
-                    </div>
-                    <span className="text-sm text-muted font-mono whitespace-nowrap">
-                      {research.time}
-                    </span>
+          <div className="space-y-8">
+            {leadership.map((l) => (
+              <div key={l.id} className="p-6 rounded-2xl border border-line bg-card shadow-soft">
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-2 mb-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-ink">{l.title}</h3>
+                    <p className="text-muted">{l.org}</p>
                   </div>
-                  <p className="text-sm font-medium text-ink mb-4">
-                    {research.topic}
-                  </p>
-                  <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-2 leading-relaxed">
-                    {research.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
+                  <span className="text-sm text-muted font-mono">{l.time}</span>
                 </div>
-              </Reveal>
+                <ul className="list-disc list-outside ml-5 text-sm text-muted space-y-2 leading-relaxed">
+                  {l.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
             ))}
+            <ul className="space-y-2 text-sm text-muted">
+              {additional.map((a) => (
+                <li key={a.title} className="flex justify-between gap-4">
+                  <span>{a.title}</span>
+                  <span className="font-mono">{a.time}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -354,8 +399,8 @@ export default function ResumePage() {
       <section className="section-quiet pb-20">
         <div className="container">
           <Reveal>
-            <CTA href={profile.resumeUrl} variant="primary" external>
-              Download Full Resume (PDF)
+            <CTA href={profile.cvUrl} variant="primary" external>
+              Download CV (PDF)
             </CTA>
           </Reveal>
         </div>

@@ -28,24 +28,40 @@ const mono = IBM_Plex_Mono({
   display: "swap",
 })
 
+const SITE_URL = "https://raagavramki.github.io"
+const DESCRIPTION =
+  "Research in Human-Computer Interaction and human-AI interaction, and machine learning systems engineering. CHI EA 2026. IIIT Hyderabad."
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Raagav Ramakrishnan",
+    default: "Raagav Ramakrishnan | HCI research & ML systems",
     template: "%s | Raagav Ramakrishnan",
   },
-  description: "ML Systems Engineer. AI for Healthcare. Researcher (HCI x ML). B.Tech ECE @ IIIT Hyderabad.",
-  keywords: ["ML Engineer", "AI", "Healthcare", "HCI", "Machine Learning", "IIIT Hyderabad", "Raagav Ramakrishnan"],
+  description: DESCRIPTION,
+  keywords: [
+    "Human-Computer Interaction",
+    "HCI",
+    "Human-AI interaction",
+    "Social computing",
+    "Digital health",
+    "Machine Learning",
+    "ML systems",
+    "IIIT Hyderabad",
+    "Raagav Ramakrishnan",
+  ],
   authors: [{ name: "Raagav Ramakrishnan" }],
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Raagav Ramakrishnan",
-    description: "ML Systems Engineer. AI for Healthcare. Researcher (HCI x ML).",
+    description: DESCRIPTION,
     type: "website",
     locale: "en_US",
+    url: SITE_URL,
+    siteName: "Raagav Ramakrishnan",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  twitter: { card: "summary", title: "Raagav Ramakrishnan", description: DESCRIPTION },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
