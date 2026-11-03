@@ -9,7 +9,7 @@ export const engineeringCaseStudies: CaseStudy[] = [
     title: "Neuroanatomy SME Agent",
     problem: "Answer neuroanatomy questions and generate quizzes grounded in textbooks, not in a model's memory.",
     methodLine: "Multi-granularity chunking, BioLORD embeddings, FAISS + BM25 hybrid retrieval, BGE rerank, tool-calling agent",
-    statusLabel: "Open source - Nov 2025",
+    statusLabel: "Project - Nov 2025",
     summary:
       "A retrieval-augmented system for neuroanatomy Q&A and quiz generation. It ingests medical textbooks, cleans and chunks them at three granularities, embeds them with a biomedical model, retrieves with hybrid vector + keyword search and optional reranking, and serves a chat and tools UI with document export.",
     seoDescription: "Retrieval-augmented neuroanatomy Q&A and quiz agent: hybrid FAISS/Elasticsearch search, BioLORD embeddings, BGE reranking.",
@@ -83,7 +83,7 @@ export const engineeringCaseStudies: CaseStudy[] = [
     title: "Multilingual Small Language Model (English, Tamil, Mizo)",
     problem: "Build and pretrain a small language model that covers a low-resource language (Mizo) alongside English and Tamil.",
     methodLine: "3B-token corpus, 96k Unigram tokenizer, 140M-parameter Gemma3-style LM, LoRA fine-tuning",
-    statusLabel: "Open source - Sept 2025",
+    statusLabel: "Project - Sept 2025",
     summary:
       "An end-to-end small-model project: corpus construction and cleaning for three languages, a language-balanced Unigram tokenizer, pretraining of a ~140M-parameter Gemma3-style decoder on one H100, and two LoRA fine-tuning experiments. Perplexities are reported with their splits; qualitative samples show real failures.",
     seoDescription: "Pretraining a 140M-parameter multilingual small language model on English, Tamil and Mizo, with a custom Unigram tokenizer and LoRA fine-tuning.",
@@ -244,6 +244,7 @@ export const engineeringCaseStudies: CaseStudy[] = [
 ]
 
 export const archiveProjects: ArchiveProject[] = [
+  { category: "vision", meta: "Computer Vision", title: "Glioma MRI Segmentation Pipeline", slug: "glioma-mri-pipeline", desc: "SwinUNETR segmentation of post-treatment glioma on BraTS 2024, with DICOM conversion and a PACS/OHIF viewer so results can be inspected clinically.", tags: ["PyTorch", "MONAI", "BraTS 2024"] },
   { category: "nlp", meta: "NLP & Agents", title: "Neuroanatomy SME Agent", slug: "neuroanatomy-sme-agent", desc: "Retrieval-augmented neuroanatomy Q&A and quiz agent with hybrid search and reranking.", tags: ["HuggingFace", "PyTorch", "LangChain"], href: "https://github.com/raagavramki/Subject-Matter-Expert-Agentic-AI" },
   { category: "nlp", meta: "NLP & Agents", title: "Multilingual SLM", slug: "multilingual-slm", desc: "3B-token English/Tamil/Mizo corpus, 96k Unigram tokenizer, 140M-parameter Gemma3-style LM, LoRA fine-tuning.", tags: ["HuggingFace", "PyTorch", "LoRA"], href: "https://github.com/raagavramki/multilingual-slm" },
   { category: "vision", meta: "Computer Vision", title: "Vision Transformers from Scratch", desc: "ViT and Differential ViT on CIFAR-10: 83.69% (ViT) and 84.38% (DiffViT) after benchmarking 11 configurations; DINO attention maps.", tags: ["PyTorch", "Transformers", "CIFAR-10"], href: "https://github.com/raagavramki/vision-transformer" },

@@ -8,7 +8,7 @@ export { engineeringCaseStudies, archiveProjects } from "./data/engineering"
 import { engineeringCaseStudies } from "./data/engineering"
 import { researchCaseStudies } from "./data/research"
 import { getVisible } from "./data/visibility"
-import type { ProjectFilter } from "./data/types"
+import type { ProjectCategory, ProjectFilter } from "./data/types"
 
 export const profile = {
   name: "Raagav Ramakrishnan",
@@ -55,22 +55,28 @@ export const skills = {
 }
 
 export const resumeSections = {
-  skills: {
-    languages: ["Python", "C/C++", "MATLAB", "Verilog", "JavaScript", "R", "LaTeX"],
-    mlAndAI: ["PyTorch", "HuggingFace", "NumPy"],
-    cloudAndMLOps: ["GCP", "Vertex AI", "Kubeflow", "Cloud Build", "Docker", "CI/CD"],
-    tools: ["FastAPI", "MongoDB", "Git"],
-    hardware: ["NGSpice", "MAGIC", "Verilog"],
-  },
-  interests: [
-    "Medical Imaging AI",
-    "Robust ML Systems",
-    "Multimodal AI",
-    "Human-Computer Interaction",
-    "Debate",
-    "Calisthenics",
-    "Coffee",
-    "Albert Camus",
+  skills: [
+    { label: "Languages", items: ["Python", "C", "C++", "R", "JavaScript", "HTML", "CSS", "LaTeX"] },
+    { label: "ML & AI", items: ["PyTorch", "HuggingFace", "Transformers", "XGBoost", "Model evaluation & optimization"] },
+    { label: "Cloud & MLOps", items: ["Google Cloud (BigQuery, Vertex AI, Pub/Sub, Cloud Build)", "Kubeflow", "Docker", "CI/CD", "Containerized deployment"] },
+    { label: "Software engineering", items: ["Git", "Linux/Unix", "FastAPI", "REST APIs", "Testing & debugging"] },
+    { label: "Data & tools", items: ["Pandas", "NumPy", "scikit-learn", "MongoDB", "Jupyter"] },
+    { label: "Research & communication", items: ["Qualitative interviews", "Affinity mapping", "Thematic analysis", "Technical writing", "Public speaking"] },
+  ],
+}
+
+export const interests = {
+  research: [
+    { title: "Human\u2013AI interaction", text: "How people trust, adapt to and work around intelligent systems, and what an adaptive tool should know about the person using it." },
+    { title: "Everyday technology", text: "Self-tracking, digital health and the unglamorous ways people bend technology to fit their lives. The subject of my CHI EA work." },
+    { title: "Medical imaging", text: "A segmentation score only matters if clinicians can inspect and trust the result, so I care about the pipeline around the model as much as the model." },
+    { title: "Language beyond English", text: "Small models and tokenizers that give low-resource languages like Mizo a fair share of capacity." },
+  ],
+  life: [
+    { title: "Debate", text: "Where I learned to reason clearly and critique my own arguments. Past president of the IIIT-H Debate Club." },
+    { title: "Reading", text: "Psychology and literature, with Camus a constant: meaning, discipline and doing the work anyway." },
+    { title: "Calisthenics", text: "Consistency beats intensity. Showing up every day is most of the trick." },
+    { title: "Coffee", text: "A daily ritual I am irrationally serious about: grinding, brewing, tasting." },
   ],
 }
 
@@ -99,9 +105,16 @@ export const featuredWork = () =>
 
 export const projectFilters: { key: ProjectFilter; label: string }[] = [
   { key: "all", label: "All" },
-  { key: "featured", label: "Featured" },
-  { key: "ml", label: "Machine Learning" },
-  { key: "nlp", label: "NLP & Agents" },
   { key: "vision", label: "Computer Vision" },
+  { key: "nlp", label: "NLP & Agents" },
+  { key: "ml", label: "Machine Learning" },
   { key: "systems", label: "Systems & Hardware" },
+]
+
+/** Display order and framing for the projects page. */
+export const projectGroups: { key: ProjectCategory; title: string; blurb: string }[] = [
+  { key: "vision", title: "Computer Vision & Medical Imaging", blurb: "Segmentation and recognition, from brain-tumour MRI to OCR." },
+  { key: "nlp", title: "Language Models & Agents", blurb: "Retrieval-augmented agents and multilingual language models." },
+  { key: "ml", title: "Machine Learning Foundations", blurb: "Models built from scratch to understand how they learn." },
+  { key: "systems", title: "Hardware & Signals", blurb: "Processors, chip design and communication systems." },
 ]

@@ -9,7 +9,7 @@
 export type Visibility = "public" | "draft"
 
 export type ProjectCategory = "ml" | "nlp" | "vision" | "systems"
-export type ProjectFilter = "all" | "featured" | ProjectCategory
+export type ProjectFilter = "all" | ProjectCategory
 
 export type PublicationStatus = "published" | "under-review"
 
@@ -82,8 +82,8 @@ export type ArchiveProject = {
   title: string
   desc: string
   tags: string[]
-  /** External destination (GitHub). */
-  href: string
+  /** External destination (GitHub). Omitted when there is no public repository. */
+  href?: string
   /** Set when a case study exists; the card then links internally first. */
   slug?: string
 }

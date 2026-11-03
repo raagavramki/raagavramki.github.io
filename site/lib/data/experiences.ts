@@ -40,12 +40,16 @@ export const experiences: Experience[] = [
     location: "Remote",
     time: "Dec 2024 - Present",
     bullets: [
+      "Built a glioma segmentation pipeline for 3D brain MRI on Google Cloud, connected to a clinical image viewer (PACS) so predictions can be reviewed the way radiologists work.",
+      "Developed a dynamic pricing engine and automated its training, deployment and versioning on Google Cloud.",
+      "Fine-tuned protein language models (ProtBERT, ESM-1b) with graph neural networks to predict the effect of mutations.",
+    ],
+    archivedBullets: [
+
       "Implemented continuous training and automated inference workflows using Vertex AI, Pub/Sub triggers, and Cloud Build CI/CD, with emphasis on reproducibility and rollout readiness.",
       "Developed a dynamic pricing engine using XGBoost, FastAPI, Docker, BigQuery, Kubeflow, and GCP services for training, inference, and model versioning.",
       "Built a glioma detection and segmentation pipeline for 3D-MRI workflows on GCP, with native PACS to connect model inference with clinical deployment considerations.",
       "Fine-tuned ProtBERT and ESM-1b models for mutation effect prediction; integrated Graph Neural Networks (Graphormer/MPNN) using protein contact maps to model structural dependencies.",
-    ],
-    archivedBullets: [
       "Building a glioma detection and segmentation pipeline for clinical workflows on GCP.",
       "Developed and deployed a production-grade Dynamic Pricing Engine using FastAPI and containerized services; built end-to-end pipelines on GCP using Kubeflow, BigQuery, and XGBoost.",
       "Shipped real-time video dubbing pipeline using Google/OpenAI/ElevenLabs APIs to support Hindi/Gujarati subtitles",

@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import { lazy, Suspense } from "react"
 
@@ -35,8 +34,8 @@ export default function HomePage() {
       {/* Hero */}
       <section className="section-hero pt-16 md:pt-24 relative">
 
-        <div className="container grid gap-12 lg:gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center relative z-10">
-          <div className="space-y-8">
+        <div className="container relative z-10">
+          <div className="max-w-3xl space-y-8">
             {/* <Reveal>
               <div className="min-h-[40px] flex items-center justify-center">
                 <GooeyText
@@ -54,7 +53,7 @@ export default function HomePage() {
               <h1 className="text-4xl md:text-5xl">{profile.headline}</h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="lead max-w-xl">
+              <p className="lead max-w-2xl">
                 {profile.subtitle}
               </p>
             </Reveal>
@@ -80,20 +79,6 @@ export default function HomePage() {
               />
             </Reveal>
           </div>
-          <Reveal delay={0.2} direction="left">
-            <div className="overflow-hidden rounded-3xl border border-line bg-white shadow-soft">
-              <Image
-                src={profile.avatar}
-                alt={`${profile.name} portrait`}
-                width={600}
-                height={600}
-                className="w-full h-auto"
-                priority
-                fetchPriority="high"
-                decoding="async"
-              />
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -157,7 +142,7 @@ export default function HomePage() {
                 {industry.org} · <RichText text={industry.time} />
               </p>
               <ul className="list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-muted">
-                {industry.bullets.slice(0, 2).map((item) => (
+                {industry.bullets.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>

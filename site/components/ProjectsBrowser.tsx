@@ -3,35 +3,41 @@
 import { useMemo, useState } from "react"
 
 import ProjectCard from "@/components/ProjectCard"
-import { filterColors } from "@/lib/categoryColors"
-import type { ArchiveProject, ProjectFilter } from "@/lib/data/types"
+import { categoryColors, filterColors } from "@/lib/categoryColors"
+import type { ArchiveProject, ProjectCategory, ProjectFilter } from "@/lib/data/types"
 
 type Props = {
   projects: ArchiveProject[]
   filters: { key: ProjectFilter; label: string }[]
+  groups: { key: ProjectCategory; title: string; blurb: string }[]
   /** Slugs of case studies published in this build. */
   publishedSlugs: string[]
 }
 
-export default function ProjectsBrowser({ projects, filters, publishedSlugs }: Props) {
+export default function ProjectsBrowser({ projects, filters, groups, publishedSlugs }: Props) {
   const [filter, setFilter] = useState<ProjectFilter>("all")
   const published = useMemo(() => new Set(publishedSlugs), [publishedSlugs])
-  const isStudy = (p: ArchiveProject) => !!p.slug && published.has(p.slug)
 
-  const visible = useMemo(
+  const sections = useMemo(
     () =>
-      projects.filter((p) =>
-        filter === "all" ? true : filter === "featured" ? isStudy(p) : p.category === filter
-      ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [filter, projects, published]
+      groups
+        .filter((g) => filter === "all" || g.key === filter)
+        .map((g) => {
+          const items = projects.filter((p) => p.category === g.key)
+          const isStudy = (p: ArchiveProject) => !!p.slug && published.has(p.slug)
+          // Case studies lead each group; the rest keep their listed order.
+          const sorted = [...items].sort((a, b) => Number(isStudy(b)) - Number(isStudy(a)))
+          return { ...g, items: sorted, studies: items.filter(isStudy).length }
+        })
+        .filter((g) => g.items.length > 0),
+    [filter, groups, projects, published]
   )
-  const studies = visible.filter(isStudy)
-  const archive = visible.filter((p) => !isStudy(p))
+
+  const total = sections.reduce((n, g) => n + g.items.length, 0)
 
   return (
     <>
-      <div className="mb-12 flex flex-wrap gap-3" role="group" aria-label="Filter projects">
+      <div className="mb-3 flex flex-wrap gap-3" role="group" aria-label="Filter projects by area">
         {filters.map((o) => {
           const active = filter === o.key
           const color = filterColors[o.key]
@@ -49,35 +55,30 @@ export default function ProjectsBrowser({ projects, filters, publishedSlugs }: P
           )
         })}
       </div>
+      <p className="mb-12 text-sm text-muted" aria-live="polite">
+        {total} project{total === 1 ? "" : "s"}. Cards marked <span className="rounded-full bg-ink px-2 py-0.5 text-[10px] font-medium text-white">Case study</span> open a full write-up.
+      </p>
 
-      {studies.length > 0 && (
-        <section aria-labelledby="case-studies-h" className="mb-16">
-          <h2 id="case-studies-h" className="mb-6 text-2xl font-serif">
-            Case studies
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {studies.map((p) => (
-              <ProjectCard key={p.title} project={p} hasCaseStudy />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {archive.length > 0 && (
-        <section aria-labelledby="archive-h">
-          <h2 id="archive-h" className="mb-2 text-2xl font-serif">
-            Archive
-          </h2>
-          <p className="mb-6 max-w-2xl text-sm text-muted">Earlier and smaller projects. Each links to its GitHub repository.</p>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {archive.map((p) => (
-              <ProjectCard key={p.title} project={p} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {visible.length === 0 && <p className="text-muted">No projects in this category.</p>}
+      <div className="space-y-16">
+        {sections.map((g) => (
+          <section key={g.key} aria-labelledby={`group-${g.key}`}>
+            <div className="mb-6 flex items-start gap-3">
+              <span className="mt-2 h-6 w-0.5 rounded-full" style={{ backgroundColor: categoryColors[g.key] }} />
+              <div>
+                <h2 id={`group-${g.key}`} className="text-2xl font-serif">
+                  {g.title}
+                </h2>
+                <p className="mt-1 text-sm text-muted">{g.blurb}</p>
+              </div>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {g.items.map((p) => (
+                <ProjectCard key={p.title} project={p} hasCaseStudy={!!p.slug && published.has(p.slug)} />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
     </>
   )
 }

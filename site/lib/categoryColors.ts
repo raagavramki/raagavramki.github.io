@@ -9,8 +9,7 @@ export const categoryColors: Record<ProjectCategory, string> = {
   systems: "rgb(220, 38, 38)",
 }
 
-export const filterColors: Record<ProjectCategory | "all" | "featured", string> = {
+export const filterColors: Record<ProjectCategory | "all", string> = {
   all: "rgb(26, 29, 33)",
-  featured: "rgb(26, 29, 33)",
   ...categoryColors,
 }

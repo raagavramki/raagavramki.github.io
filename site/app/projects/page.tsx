@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import ProjectsBrowser from "@/components/ProjectsBrowser"
 import Reveal from "@/components/Reveal"
-import { archiveProjects, projectFilters, publicEngineering } from "@/lib/content"
+import { archiveProjects, projectFilters, projectGroups, publicEngineering } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -25,11 +25,16 @@ export default function ProjectsPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mb-12 max-w-2xl text-muted">
-              Systems I have built, from language models and retrieval agents to vision and hardware. Case studies explain
-              the problem, my role, the design and the evidence.
+              Medical imaging research, language models and agents, ML built from scratch, and hardware. Projects with a
+              case study explain the problem, my role, the design and the evidence; the rest link to their code.
             </p>
           </Reveal>
-          <ProjectsBrowser projects={archiveProjects} filters={projectFilters} publishedSlugs={publishedSlugs} />
+          <ProjectsBrowser
+            projects={archiveProjects}
+            filters={projectFilters}
+            groups={projectGroups}
+            publishedSlugs={publishedSlugs}
+          />
         </div>
       </section>
     </main>

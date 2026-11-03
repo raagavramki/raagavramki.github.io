@@ -28,9 +28,14 @@ export default function ProjectCard({
     >
       <div className="absolute bottom-5 left-0 top-5 w-0.5 rounded-full opacity-70" style={{ backgroundColor: color }} />
       <div className="flex-1 pl-4">
-        <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.15em]" style={{ color }}>
-          {project.meta}
-        </span>
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.15em]" style={{ color }}>
+            {project.meta}
+          </span>
+          {internal ? (
+            <span className="rounded-full bg-ink px-2 py-0.5 text-[10px] font-medium text-white">Case study</span>
+          ) : null}
+        </div>
         <h3 className="mb-2 text-base font-semibold leading-tight text-ink">
           {internal ? (
             <Link href={internal} className="after:absolute after:inset-0 after:content-[''] focus:outline-none">
@@ -51,15 +56,17 @@ export default function ProjectCard({
       </div>
       <div className="relative z-10 mt-auto flex flex-wrap items-center gap-x-4 pl-4 text-xs font-medium">
         {internal ? <span className="text-ink">Read case study →</span> : null}
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noreferrer"
-          className="focus-ring text-muted transition-colors hover:text-ink"
-          aria-label={`${project.title} on GitHub (opens in a new tab)`}
-        >
-          GitHub ↗
-        </a>
+        {project.href ? (
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            className="focus-ring text-muted transition-colors hover:text-ink"
+            aria-label={`${project.title} on GitHub (opens in a new tab)`}
+          >
+            GitHub ↗
+          </a>
+        ) : null}
       </div>
     </motion.article>
   )
