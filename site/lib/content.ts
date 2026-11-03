@@ -20,7 +20,6 @@ export const profile = {
   researchAreas: ["Human-Computer Interaction", "Human-AI interaction", "Social computing", "Digital health", "Adaptive systems", "ML systems"],
   location: "Hyderabad, India & Dubai, UAE",
   email: "raagav.ramakrishnan@students.iiit.ac.in",
-  emailNote: "{{TBD: confirm institutional email remains valid after graduation; add a durable alternative}}",
   github: "https://github.com/raagavramki",
   linkedin: "https://www.linkedin.com/in/raagav-ramakrishnan-3905511b2",
   /** Single canonical CV. /assets/resume.pdf is a byte-identical legacy copy. */

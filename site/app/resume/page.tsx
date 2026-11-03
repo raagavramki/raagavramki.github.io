@@ -69,9 +69,6 @@ export default function ResumePage() {
                   >
                     {profile.email}
                   </a>
-                  <p>
-                    <RichText text={profile.emailNote} />
-                  </p>
                 </div>
               </Reveal>
 
