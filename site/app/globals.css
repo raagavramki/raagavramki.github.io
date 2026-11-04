@@ -232,4 +232,25 @@ img {
     @apply translate-y-0;
   }
 
+  /* Unverified-content marker; release check fails while any remain */
+  .tbd {
+    display: inline-block;
+    margin: 0 0.15em;
+    padding: 0.05em 0.55em;
+    border: 1px dashed rgba(180, 83, 9, 0.7);
+    border-radius: 9999px;
+    background: rgba(251, 191, 36, 0.14);
+    color: rgb(146, 64, 14);
+    font-family: var(--font-mono);
+    font-size: 0.72em;
+    line-height: 1.6;
+    vertical-align: baseline;
+  }
+
+  /* Visible keyboard focus on interactive cards/links */
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
 }

@@ -1,34 +1,41 @@
-import Image from "next/image"
 import Link from "next/link"
 import { lazy, Suspense } from "react"
 
 import Card from "@/components/Card"
-import ProjectCard from "@/components/ProjectCard"
+import ProofStrip from "@/components/ProofStrip"
+import PublicationEntry from "@/components/PublicationEntry"
 import Reveal from "@/components/Reveal"
 import Section from "@/components/Section"
+import { RichText } from "@/components/Tbd"
+import WorkCard from "@/components/WorkCard"
 import { InteractiveHoverButton } from "@/components/InteractiveHoverButton"
-import { profile, projects, resumeSections } from "@/lib/content"
+import { experienceByKind, featuredWork, profile, publications } from "@/lib/content"
 
 // Lazy load heavy components below the fold
 const ContactSection = lazy(() => import("@/components/ContactSection"))
 
-const FEATURED_IDS = [
-  "Neuroanatomy SME Agent",
-  "Vision Transformers from Scratch",
-  "MLP from Scratch",
-]
-
-const featuredProjects = FEATURED_IDS.map((t) => projects.find((p) => p.title === t)).filter((p): p is (typeof projects)[number] => p !== undefined)
-
+const research = experienceByKind("research")[0]
+const industry = experienceByKind("industry")[0]
 
 export default function HomePage() {
+  const featured = featuredWork()
+  const personLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    url: "https://raagavramki.github.io",
+    affiliation: { "@type": "CollegeOrUniversity", name: "IIIT Hyderabad" },
+    sameAs: [profile.github, profile.linkedin],
+    knowsAbout: profile.researchAreas,
+  }
   return (
     <main id="main">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
       {/* Hero */}
       <section className="section-hero pt-16 md:pt-24 relative">
 
-        <div className="container grid gap-12 lg:gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center relative z-10">
-          <div className="space-y-8">
+        <div className="container relative z-10">
+          <div className="max-w-3xl space-y-8">
             {/* <Reveal>
               <div className="min-h-[40px] flex items-center justify-center">
                 <GooeyText
@@ -40,22 +47,27 @@ export default function HomePage() {
               </div>
             </Reveal> */}
             <Reveal delay={0.05}>
-              <h1>{profile.name}</h1>
+              <p className="label">{profile.name}</p>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h1 className="text-4xl md:text-5xl">{profile.headline}</h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="space-y-2 max-w-xl">
-                <p className="lead">{profile.summaryLine1}</p>
-                <p className="lead">{profile.summaryLine2}</p>
-              </div>
+              <p className="lead max-w-2xl">
+                {profile.subtitle}
+              </p>
             </Reveal>
             <Reveal delay={0.2}>
-              <div className="flex flex-wrap gap-4 pt-2">
-                <Link href="/projects" className="btn btn-primary">
-                  Explore my Work
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <Link href="/research/" className="btn btn-primary">
+                  Explore research
                 </Link>
-                <Link href="/resume" className="btn btn-outline">
-                  Resume
+                <Link href="/projects/" className="btn btn-outline">
+                  View projects
                 </Link>
+                <a href={profile.cvUrl} download className="link-underline text-sm text-muted hover:text-ink focus-ring">
+                  Download CV
+                </a>
               </div>
             </Reveal>
             <Reveal delay={0.25}>
@@ -67,97 +79,79 @@ export default function HomePage() {
               />
             </Reveal>
           </div>
-          <Reveal delay={0.2} direction="left">
-            <div className="overflow-hidden rounded-3xl border border-line bg-white shadow-soft">
-              <Image
-                src={profile.avatar}
-                alt={`${profile.name} portrait`}
-                width={600}
-                height={600}
-                className="w-full h-auto"
-                priority
-                fetchPriority="high"
-                decoding="async"
-              />
-            </div>
-          </Reveal>
         </div>
       </section>
 
-      {/* Experience Preview */}
+      <ProofStrip />
+
+      {/* Selected work */}
+      <Section
+        id="work"
+        title="Selected work"
+        description="Research and engineering, each with a full case study."
+        variant="featured"
+        ordinal={1}
+      >
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {featured.map((study) => (
+            <WorkCard key={study.slug} study={study} />
+          ))}
+        </div>
+        <Reveal delay={0.2}>
+          <div className="mt-8 flex flex-wrap gap-6">
+            <InteractiveHoverButton href="/research/" text="All research" />
+            <InteractiveHoverButton href="/projects/" text="All projects" />
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* Publications */}
+      <Section id="publications" title="Publications" description="Peer-reviewed and published work." ordinal={2}>
+        <div className="space-y-10">
+          {publications.map((p) => (
+            <PublicationEntry key={p.id} pub={p} />
+          ))}
+        </div>
+      </Section>
+
+      {/* Experience */}
       <Section
         id="experience"
         title="Experience"
-        description="Current work in ML research and industry."
-        ordinal={1}
+        description="Where the research and the engineering happen."
+        variant="featured"
+        ordinal={3}
       >
         <div className="grid gap-6 lg:grid-cols-2">
-          {/* Industry */}
           <Reveal>
             <Card className="card-lift h-full space-y-3">
-              <div>
-                <span className="label">Industry</span>
-                <h3 className="mt-2 text-lg">
-                  {resumeSections.workExperience[0].title}
-                </h3>
-                <p className="text-sm text-muted">
-                  {resumeSections.workExperience[0].company} · {resumeSections.workExperience[0].time}
-                </p>
-              </div>
-              <ul className="list-disc space-y-1.5 pl-4 text-sm text-muted leading-relaxed">
-                {resumeSections.workExperience[0].bullets
-                  .slice(0, 2)
-                  .map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-              </ul>
+              <span className="label">Research</span>
+              <h3 className="text-lg">{research.title}</h3>
+              <p className="text-sm text-muted">
+                {research.unit}, {research.org} · <RichText text={research.time} />
+              </p>
+              <p className="text-sm italic text-muted">Advisor: {research.advisor}</p>
+              <p className="text-sm font-medium text-ink">{research.topic}</p>
             </Card>
           </Reveal>
-
-          {/* Research */}
           <Reveal delay={0.1}>
             <Card className="card-lift h-full space-y-3">
-              <div>
-                <span className="label">Research</span>
-                <h3 className="mt-2 text-lg">
-                  {resumeSections.researchExperience[0].title}
-                </h3>
-                <p className="text-sm text-muted">
-                  {resumeSections.researchExperience[0].lab}, {resumeSections.researchExperience[0].institution} · {resumeSections.researchExperience[0].time}
-                </p>
-              </div>
+              <span className="label">Industry</span>
+              <h3 className="text-lg">{industry.title}</h3>
               <p className="text-sm text-muted">
-                <span className="italic">Advisor: {resumeSections.researchExperience[0].advisor}</span>
+                {industry.org} · <RichText text={industry.time} />
               </p>
-              <p className="text-sm font-medium text-ink">
-                {resumeSections.researchExperience[0].topic}
-              </p>
+              <ul className="list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-muted">
+                {industry.bullets.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </Card>
           </Reveal>
         </div>
         <Reveal delay={0.15}>
           <div className="mt-8">
-            <InteractiveHoverButton href="/resume" text="View full resume" />
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* Projects */}
-      <Section
-        id="projects"
-        title="Projects"
-        description="Selected work in AI, Computer Vision, and Machine Learning."
-        variant="featured"
-        ordinal={2}
-      >
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.title} project={project} compact />
-          ))}
-        </div>
-        <Reveal delay={0.2}>
-          <div className="mt-8">
-            <InteractiveHoverButton href="/projects" text="View all projects" />
+            <InteractiveHoverButton href="/resume/" text="View full CV" />
           </div>
         </Reveal>
       </Section>

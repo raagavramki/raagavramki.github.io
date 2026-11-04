@@ -4,7 +4,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Home, User, FileText, FolderOpen, Mail, Eye, Download } from "lucide-react"
+import { Home, User, FileText, FolderOpen, BookOpen, Eye, Download } from "lucide-react"
 
 import CTA from "@/components/CTA"
 import DropdownMenu from "@/components/DropdownMenu"
@@ -12,11 +12,17 @@ import { profile } from "@/lib/content"
 
 const navLinks = [
   { href: "/", label: "Home", icon: Home },
-  { href: "/about", label: "About", icon: User },
-  { href: "/resume", label: "Resume", icon: FileText },
+  { href: "/research", label: "Research", icon: BookOpen },
   { href: "/projects", label: "Projects", icon: FolderOpen },
-  { href: "/contact", label: "Contact", icon: Mail },
+  { href: "/about", label: "About", icon: User },
+  { href: "/resume", label: "CV", icon: FileText },
 ]
+
+// Pathnames may or may not carry a trailing slash depending on context.
+const isActivePath = (pathname: string, href: string) => {
+  const path = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname
+  return href === "/" ? path === "/" : path === href || path.startsWith(href + "/")
+}
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -50,13 +56,13 @@ export default function Navbar() {
 
   // Resume dropdown handlers
   const handleViewPDF = () => {
-    window.open("/resume.pdf", "_blank")
+    window.open(profile.cvUrl, "_blank", "noopener")
   }
 
   const handleDownloadPDF = () => {
     const link = document.createElement("a")
-    link.href = "/resume.pdf"
-    link.download = "Raagav_Ramakrishnan_Resume.pdf"
+    link.href = profile.cvUrl
+    link.download = "Raagav_Ramakrishnan_CV.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -86,15 +92,15 @@ export default function Navbar() {
           {navLinks.map((link) => {
             const Icon = link.icon
             // Handle both exact match and trailing slash variations
-            const isActive = link.href === "/"
-              ? pathname === "/"
-              : pathname === link.href || pathname.startsWith(link.href + "/")
+            const isActive = isActivePath(pathname, link.href)
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative cursor-pointer text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 ${
+                aria-current={isActive ? "page" : undefined}
+                aria-label={link.label}
+                className={`focus-ring relative cursor-pointer text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 ${
                   isActive
                     ? "text-ink bg-ink/5"
                     : "text-muted hover:text-ink hover:bg-ink/5"
@@ -119,7 +125,7 @@ export default function Navbar() {
           {/* Resume Dropdown - desktop only */}
           <div className="hidden md:block ml-1 pl-1 border-l border-line">
             <DropdownMenu options={resumeOptions}>
-              Resume
+              CV
             </DropdownMenu>
           </div>
         </nav>
@@ -176,7 +182,7 @@ export default function Navbar() {
             >
               <div className="container pt-24 pb-12 h-full flex flex-col">
                 <nav className="flex flex-col gap-2">
-                  {navLinks.map((link, index) => (
+                  {[...navLinks, { href: "/contact", label: "Contact" }].map((link, index) => (
                     <motion.div
                       key={link.href}
                       initial={{ opacity: 0, x: -20 }}
@@ -186,7 +192,7 @@ export default function Navbar() {
                     >
                       <Link
                         className={`block py-4 text-3xl font-serif transition-colors ${
-                          pathname === link.href
+                          isActivePath(pathname, link.href)
                             ? "text-ink"
                             : "text-muted hover:text-ink"
                         }`}
@@ -208,13 +214,13 @@ export default function Navbar() {
                     onClick={handleViewPDF}
                     className="w-full px-6 py-3 text-sm font-medium text-ink border-2 border-ink rounded-full hover:bg-ink hover:text-white transition-all duration-300"
                   >
-                    View Resume PDF
+                    View CV (PDF)
                   </button>
                   <button
                     onClick={handleDownloadPDF}
                     className="w-full px-6 py-3 text-sm font-medium text-white bg-ink rounded-full hover:bg-ink/90 transition-all duration-300"
                   >
-                    Download Resume PDF
+                    Download CV (PDF)
                   </button>
                 </motion.div>
               </div>

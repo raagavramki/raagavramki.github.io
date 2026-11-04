@@ -1,7 +1,7 @@
 'use client'
 
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 
 interface ShaderPlaneProps {
@@ -107,7 +107,43 @@ const fragmentShader = `
   }
 `
 
+type NavigatorHints = Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } }
+
+function canRunShader(): boolean {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+  const nav = navigator as NavigatorHints
+  if (nav.connection?.saveData) return false
+  if (nav.hardwareConcurrency && nav.hardwareConcurrency <= 2) return false
+  if (nav.deviceMemory && nav.deviceMemory <= 2) return false
+  try {
+    const c = document.createElement('canvas')
+    return !!(c.getContext('webgl2') || c.getContext('webgl'))
+  } catch {
+    return false
+  }
+}
+
+// Static stand-in using the same palette (--bg / --accent / --muted); also the SSR output.
+const staticBackground =
+  'radial-gradient(ellipse 80% 60% at 20% 10%, rgba(44,62,80,0.10), transparent 60%), radial-gradient(ellipse 70% 50% at 85% 90%, rgba(92,99,112,0.10), transparent 60%), #f8f6f1'
+
 export default function HorizonHero() {
+  const [useShader, setUseShader] = useState(false)
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const update = () => setUseShader(canRunShader())
+    const onVisibility = () => setVisible(!document.hidden)
+    update()
+    mq.addEventListener('change', update)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      mq.removeEventListener('change', update)
+      document.removeEventListener('visibilitychange', onVisibility)
+    }
+  }, [])
+
   const uniforms = useMemo(
     () => ({
       u_time: { value: 0 },
@@ -117,14 +153,16 @@ export default function HorizonHero() {
   )
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
-      <Canvas>
-        <ShaderPlane
-          vertexShader={vertexShader}
-          fragmentShader={fragmentShader}
-          uniforms={uniforms}
-        />
-      </Canvas>
+    <div
+      className="fixed inset-0 z-0 pointer-events-none"
+      style={{ background: staticBackground }}
+      aria-hidden="true"
+    >
+      {useShader && (
+        <Canvas dpr={[1, 1.5]} frameloop={visible ? 'always' : 'never'}>
+          <ShaderPlane vertexShader={vertexShader} fragmentShader={fragmentShader} uniforms={uniforms} />
+        </Canvas>
+      )}
     </div>
   )
 }
