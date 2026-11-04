@@ -5,7 +5,7 @@ export default function TableOfContents({ items }: { items: { id: string; title:
       <ul className="flex flex-wrap gap-x-6 gap-y-2">
         {items.map((i) => (
           <li key={i.id}>
-            <a href={`#${i.id}`} className="link-underline text-sm text-muted hover:text-ink focus-ring">
+            <a href={`#${i.id}`} className="tap link-underline focus-ring text-sm text-muted hover:text-ink">
               {i.title}
             </a>
           </li>

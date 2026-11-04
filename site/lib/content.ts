@@ -13,7 +13,7 @@ import type { ProjectCategory, ProjectFilter } from "./data/types"
 export const profile = {
   name: "Raagav Ramakrishnan",
   kicker: ["ML Systems Engineering", "Agentic AI", "HCI"],
-  headline: "I study how people interact with technology\u2014and build intelligent systems around those insights.",
+  headline: "I study how people interact with technology, and build intelligent systems around those insights.",
   subtitle:
     "Research across Human\u2013Computer Interaction, human\u2013AI interaction and machine learning. Electronics & Communication Engineering (Honors), IIIT Hyderabad.",
   roles: ["HCI & Human-AI Researcher", "ML Research Engineer", "Builder"],
@@ -29,7 +29,7 @@ export const profile = {
 
 export const researchQuestions = [
   "How do people assemble tools, social media and informal routines into their own self-tracking practices, and how do they adapt them as life changes?",
-  "What should an adaptive system know about whose routine it is adapting to, measured by what, and on whose terms?",
+  "How should tracking and adaptive tools respond when a person's routine, goals and circumstances keep changing?",
   "How does AI change social interaction in settings such as dating and the workplace? (ongoing)",
   "What does it take to build technically capable ML systems that are shaped by these everyday insights?",
 ]
@@ -68,7 +68,7 @@ export const resumeSections = {
 export const interests = {
   research: [
     { title: "Human\u2013AI interaction", text: "How people trust, adapt to and work around intelligent systems, and what an adaptive tool should know about the person using it." },
-    { title: "Everyday technology", text: "Self-tracking, digital health and the unglamorous ways people bend technology to fit their lives. The subject of my CHI EA work." },
+    { title: "Everyday technology", text: "Self-tracking, digital health and how people adapt technology to fit their lives. The subject of my CHI EA work." },
     { title: "Medical imaging", text: "A segmentation score only matters if clinicians can inspect and trust the result, so I care about the pipeline around the model as much as the model." },
     { title: "Language beyond English", text: "Small models and tokenizers that give low-resource languages like Mizo a fair share of capacity." },
   ],
@@ -81,17 +81,8 @@ export const interests = {
 }
 
 export const contactCopy = {
-  heading: "Let's connect",
-  subheading: "I am always open to research collaborations, job opportunities, and talks worldwide",
-  emailLabel: "Email",
-  emailHint: "Click to copy",
-  githubLabel: "GitHub",
-  githubHandle: "@raagavramki",
-  linkedinLabel: "LinkedIn",
-  linkedinHandle: "Profile",
-  emailToast: "Email copied to clipboard",
-  emailToastError: "Unable to copy email on this browser",
-  emailCta: "Email me",
+  heading: "Get in touch",
+  subheading: "I am open to research collaborations, engineering roles and talks.",
 }
 export const footerNote = "{year} Raagav Ramakrishnan"
 

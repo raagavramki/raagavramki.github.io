@@ -42,7 +42,7 @@ export default function DropdownMenu({ options, children }: DropdownMenuProps) {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className="relative cursor-pointer text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 text-muted hover:text-ink hover:bg-ink/5 flex items-center gap-1.5"
+        className="focus-ring relative flex min-h-[44px] cursor-pointer items-center gap-1.5 rounded-full px-5 text-sm font-medium text-muted transition-colors duration-200 hover:bg-ink/5 hover:text-ink"
       >
         {children ?? "Menu"}
         <motion.span

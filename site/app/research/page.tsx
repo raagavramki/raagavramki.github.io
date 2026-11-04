@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import PublicationEntry from "@/components/PublicationEntry"
 import Reveal from "@/components/Reveal"
 import WorkCard from "@/components/WorkCard"
-import { profile, publications, publicResearch, researchQuestions } from "@/lib/content"
+import { publications, publicResearch, researchQuestions } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Research",
@@ -19,25 +19,15 @@ export default function ResearchPage() {
     <main id="main">
       <section className="section-hero">
         <div className="container max-w-4xl">
-          <Reveal>
-            <span className="label">Research</span>
-          </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="mb-6 mt-6 text-3xl font-serif md:text-4xl">How people live with technology</h1>
+            <h1 className="mb-6 text-3xl font-serif md:text-4xl">Research</h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="lead mb-8 max-w-2xl">
+            <p className="lead mb-10 max-w-2xl">
               My research looks at everyday use of technology, human&ndash;AI interaction, social computing, digital health
               and adaptive systems, combining qualitative fieldwork with technical implementation.
             </p>
           </Reveal>
-          <ul className="mb-8 flex flex-wrap gap-2" aria-label="Research areas">
-            {profile.researchAreas.map((a) => (
-              <li key={a} className="pill">
-                {a}
-              </li>
-            ))}
-          </ul>
           <h2 className="mb-4 text-xl font-serif">Questions I am working on</h2>
           <ul className="list-disc space-y-3 pl-5 text-muted">
             {researchQuestions.map((q) => (

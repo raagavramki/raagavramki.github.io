@@ -86,7 +86,7 @@ export default function Navbar() {
       {/* Floating pill navbar */}
       <div className="fixed bottom-6 md:top-6 md:bottom-auto left-1/2 -translate-x-1/2 z-50">
         <nav
-          className="flex items-center gap-1 bg-white/80 border border-line backdrop-blur-xl py-1.5 px-1.5 rounded-full shadow-lg"
+          className="flex items-center gap-1 rounded-full border border-line bg-white/90 p-1 shadow-sm backdrop-blur"
           aria-label="Primary"
         >
           {navLinks.map((link) => {
@@ -100,9 +100,9 @@ export default function Navbar() {
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
                 aria-label={link.label}
-                className={`focus-ring relative cursor-pointer text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 ${
+                className={`focus-ring relative inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full px-4 text-sm font-medium transition-colors duration-200 md:px-5 ${
                   isActive
-                    ? "text-ink bg-ink/5"
+                    ? "bg-ink/10 text-ink"
                     : "text-muted hover:text-ink hover:bg-ink/5"
                 }`}
               >
@@ -110,14 +110,6 @@ export default function Navbar() {
                 <span className="md:hidden">
                   <Icon size={18} strokeWidth={2.5} />
                 </span>
-                {/* Lamp glow effect */}
-                {isActive && (
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-ink rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-ink/30 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-ink/30 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-ink/30 rounded-full blur-sm top-0 left-2" />
-                  </div>
-                )}
               </Link>
             )
           })}
@@ -125,7 +117,7 @@ export default function Navbar() {
           {/* Resume Dropdown - desktop only */}
           <div className="hidden md:block ml-1 pl-1 border-l border-line">
             <DropdownMenu options={resumeOptions}>
-              CV
+              PDF
             </DropdownMenu>
           </div>
         </nav>
@@ -135,7 +127,7 @@ export default function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-40 md:hidden">
         <div className="container flex items-center justify-between py-4">
           <Link
-            className="text-lg font-semibold tracking-tight relative z-50"
+            className="focus-ring relative z-50 inline-flex min-h-[44px] items-center text-lg font-semibold tracking-tight"
             href="/"
           >
             Raagav<span className="text-muted">.</span>
@@ -143,7 +135,7 @@ export default function Navbar() {
 
           {/* Animated hamburger */}
           <button
-            className="relative z-50 w-8 h-8 flex flex-col justify-center items-center"
+            className="focus-ring relative z-50 flex h-11 w-11 flex-col items-center justify-center"
             aria-expanded={open}
             aria-controls="nav-menu"
             onClick={() => setOpen((prev) => !prev)}

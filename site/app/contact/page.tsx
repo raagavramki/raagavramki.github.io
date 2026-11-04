@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main id="main">
-      <ContactSection />
+      <ContactSection headingLevel={1} />
     </main>
   )
 }

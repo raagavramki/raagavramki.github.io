@@ -39,7 +39,7 @@ const research = experienceByKind("research")
 const industry = experienceByKind("industry")
 const leadership = experienceByKind("leadership")
 
-const linkClass = "link-underline text-sm text-ink focus-ring"
+const linkClass = "tap link-underline focus-ring text-sm text-ink"
 
 export default function ResumePage() {
   const studySlugs = new Set(publicEngineering().map((c) => c.slug))
@@ -62,16 +62,10 @@ export default function ResumePage() {
             </p>
           </Reveal>
           <Reveal delay={0.15}>
-            <ul className="mt-6 flex flex-wrap gap-2" aria-label="Roles">
-              {profile.roles.map((role) => (
-                <li key={role} className="pill">
-                  {role}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-4 text-muted">{profile.roles.join(" · ")}</p>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2">
               <CTA href={profile.cvUrl} variant="primary" external>
                 Download CV (PDF)
               </CTA>
@@ -93,7 +87,7 @@ export default function ResumePage() {
               <ul className="flex flex-wrap gap-x-8 gap-y-3">
                 {sections.map((section) => (
                   <li key={section.id}>
-                    <Link href={`#${section.id}`} className="link-underline text-sm text-muted hover:text-ink focus-ring">
+                    <Link href={`#${section.id}`} className="tap link-underline focus-ring text-sm text-muted hover:text-ink">
                       {section.label}
                     </Link>
                   </li>
@@ -149,7 +143,7 @@ export default function ResumePage() {
           <div className="space-y-8">
             {research.map((r, i) => (
               <Reveal key={r.id} delay={0.05 * i}>
-                <div className="rounded-2xl border border-line bg-card p-6 shadow-soft">
+                <div className="rounded-lg border border-line bg-card p-6">
                   <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                     <div>
                       <h3 className="text-lg font-semibold text-ink">{r.title}</h3>
@@ -168,7 +162,7 @@ export default function ResumePage() {
                       <li key={bullet}>{bullet}</li>
                     ))}
                   </ul>
-                  <div className="mt-5 flex flex-wrap gap-5">
+                  <div className="mt-3 flex flex-wrap gap-x-5">
                     <Link href="/research/adaptive-fitness-tracking/" className={linkClass}>
                       Read the case study →
                     </Link>
@@ -207,7 +201,7 @@ export default function ResumePage() {
           <div className="space-y-8">
             {industry.map((job, i) => (
               <Reveal key={job.id} delay={0.05 * i}>
-                <div className="rounded-2xl border border-line bg-card p-6 shadow-soft">
+                <div className="rounded-lg border border-line bg-card p-6">
                   <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                     <div>
                       <h3 className="text-lg font-semibold text-ink">{job.title}</h3>
@@ -265,11 +259,11 @@ export default function ResumePage() {
                           <li key={p.title} className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
                             <div className="min-w-0">
                               {study ? (
-                                <Link href={study} className="font-semibold text-ink link-underline focus-ring">
+                                <Link href={study} className="tap font-semibold text-ink link-underline focus-ring">
                                   {p.title}
                                 </Link>
                               ) : p.href ? (
-                                <a href={p.href} target="_blank" rel="noreferrer" className="font-semibold text-ink link-underline focus-ring">
+                                <a href={p.href} target="_blank" rel="noreferrer" className="tap font-semibold text-ink link-underline focus-ring">
                                   {p.title} ↗
                                 </a>
                               ) : (
@@ -305,7 +299,7 @@ export default function ResumePage() {
           </Reveal>
           <div className="space-y-8">
             {leadership.map((l) => (
-              <div key={l.id} className="rounded-2xl border border-line bg-card p-6 shadow-soft">
+              <div key={l.id} className="rounded-lg border border-line bg-card p-6">
                 <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>
                     <h3 className="text-lg font-semibold text-ink">{l.title}</h3>
@@ -338,22 +332,14 @@ export default function ResumePage() {
           <Reveal>
             <h2 className="mb-10 text-2xl font-serif">Skills</h2>
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {resumeSections.skills.map((group, i) => (
-              <Reveal key={group.label} delay={0.04 * i}>
-                <div className="h-full rounded-2xl border border-line bg-card p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-soft">
-                  <h3 className="label mb-4">{group.label}</h3>
-                  <ul className="flex flex-wrap gap-2">
-                    {group.items.map((skill) => (
-                      <li key={skill} className="rounded-full bg-ink/5 px-3 py-1.5 text-sm text-muted">
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
+          <dl className="divide-y divide-line border-y border-line">
+            {resumeSections.skills.map((group) => (
+              <div key={group.label} className="grid gap-1 py-4 sm:grid-cols-[12rem_1fr] sm:gap-6">
+                <dt className="label pt-0.5">{group.label}</dt>
+                <dd className="text-sm leading-relaxed text-ink">{group.items.join(", ")}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 

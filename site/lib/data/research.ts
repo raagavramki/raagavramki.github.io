@@ -8,7 +8,7 @@ export const researchCaseStudies: CaseStudy[] = [
     title: "Everyday HCI of Adaptive Fitness: The Bricolage of Self-Tracking in Urban India",
     problem: "How do young fitness practitioners in urban India adopt, negotiate and repurpose self-tracking technologies built around global assumptions?",
     methodLine: "24 semi-structured interviews + gym observation; inductive coding, affinity mapping; bricolage as analytical lens",
-    statusLabel: "Published - CHI EA 2026",
+    statusLabel: "Published, CHI EA 2026",
     summary:
       "Digital fitness technologies assume stable users, universal meanings of fitness and access to advanced tools. In urban India, infrastructure limits and local context complicate those assumptions. Using bricolage as an analytical lens, this study draws on literature and qualitative fieldwork with 24 young fitness practitioners to show three themes: the creation of hybrid self-tracking ecologies, technology domestication through selective appropriation, and adaptation of tracking to local socio-material contexts. Fitness emerges as a situated, relational practice shaped by resource constraints and interpretive self-tracking.",
     seoDescription:
@@ -16,7 +16,7 @@ export const researchCaseStudies: CaseStudy[] = [
     meta: [
       { label: "Venue", value: "CHI EA '26, Barcelona, 13-17 April 2026 (5 pages)" },
       { label: "Affiliation", value: "IIIT Hyderabad" },
-      { label: "Period", value: "Jan 2025 - Apr 2026" },
+      { label: "Period", value: "Jan 2025 – Apr 2026" },
       { label: "Collaborators", value: "Shivam Singh, Chetan Mahipal, Prof. Nimmi Rangaswamy" },
       {
         label: "My role",
@@ -82,7 +82,7 @@ export const researchCaseStudies: CaseStudy[] = [
           "Socially situated goals: flexible goals and custom categories, and accountability as a negotiated social practice, with bounded audiences and user-mediated sharing instead of rank and exposure.",
         ],
         paragraphs: [
-          "For adaptive and intelligent systems, the lesson is that adaptation has to start from the person's own signals and context, not from a fixed ideal journey.",
+          "Taken together, the paper argues that long-term engagement depends less on metrics alone than on people's ability to recognise and act on subjective signals such as tiredness, recovery and energy.",
         ],
       },
       {

@@ -9,7 +9,7 @@ export const engineeringCaseStudies: CaseStudy[] = [
     title: "Neuroanatomy SME Agent",
     problem: "Answer neuroanatomy questions and generate quizzes grounded in textbooks, not in a model's memory.",
     methodLine: "Multi-granularity chunking, BioLORD embeddings, FAISS + BM25 hybrid retrieval, BGE rerank, tool-calling agent",
-    statusLabel: "Project - Nov 2025",
+    statusLabel: "Project, Nov 2025",
     summary:
       "A retrieval-augmented system for neuroanatomy Q&A and quiz generation. It ingests medical textbooks, cleans and chunks them at three granularities, embeds them with a biomedical model, retrieves with hybrid vector + keyword search and optional reranking, and serves a chat and tools UI with document export.",
     seoDescription: "Retrieval-augmented neuroanatomy Q&A and quiz agent: hybrid FAISS/Elasticsearch search, BioLORD embeddings, BGE reranking.",
@@ -65,10 +65,9 @@ export const engineeringCaseStudies: CaseStudy[] = [
         bullets: [
           "Three chunk granularities trade context breadth against precision, at the cost of three indexes to build and store.",
           "Hybrid search adds an Elasticsearch dependency; the FAISS fallback keeps the system usable without it.",
-          "Answers are only as good as the ingested text, so parsing, cleaning, sanitisation and MinHash deduplication all run before anything is embedded.",
+          "Ingestion parses, cleans, sanitises and MinHash-deduplicates the source documents before anything is embedded.",
         ],
       },
-      { id: "next", title: "What I learned and next steps", paragraphs: ["Retrieval design (chunk sizes, fusion, reranking) matters as much as the model that writes the answer. Next steps: a held-out question set to measure retrieval and grounding, and expert review of generated quizzes."] },
     ],
     artifacts: [
       { label: "GitHub", href: "https://github.com/raagavramki/Subject-Matter-Expert-Agentic-AI", kind: "code" },
@@ -83,7 +82,7 @@ export const engineeringCaseStudies: CaseStudy[] = [
     title: "Multilingual Small Language Model (English, Tamil, Mizo)",
     problem: "Build and pretrain a small language model that covers a low-resource language (Mizo) alongside English and Tamil.",
     methodLine: "3B-token corpus, 96k Unigram tokenizer, 140M-parameter Gemma3-style LM, LoRA fine-tuning",
-    statusLabel: "Project - Sept 2025",
+    statusLabel: "Project, Sept 2025",
     summary:
       "An end-to-end small-model project: corpus construction and cleaning for three languages, a language-balanced Unigram tokenizer, pretraining of a ~140M-parameter Gemma3-style decoder on one H100, and two LoRA fine-tuning experiments. Perplexities are reported with their splits; qualitative samples show real failures.",
     seoDescription: "Pretraining a 140M-parameter multilingual small language model on English, Tamil and Mizo, with a custom Unigram tokenizer and LoRA fine-tuning.",
@@ -155,7 +154,6 @@ export const engineeringCaseStudies: CaseStudy[] = [
           "Reproducibility: a SHA-1 line-bucket split keeps train/validation/test stable across rebuilds.",
         ],
       },
-      { id: "next", title: "What I learned and next steps", paragraphs: ["Data decisions (cleaning, language balance, tokenizer sampling) shaped results more than model tweaks did. Next steps: longer training toward a full epoch or more, and fine-tuning examples in Tamil and Mizo."] },
     ],
     artifacts: [{ label: "GitHub", href: "https://github.com/raagavramki/multilingual-slm", kind: "code" }],
     featuredOrder: 4,
@@ -168,13 +166,13 @@ export const engineeringCaseStudies: CaseStudy[] = [
     title: "Glioma MRI Segmentation and Viewer Pipeline",
     problem: "Segment post-treatment glioma sub-regions in multi-sequence MRI and let clinicians inspect predictions in a standard viewer.",
     methodLine: "MONAI SwinUNETR on BraTS 2024, sliding-window inference, NIfTI to DICOM, Orthanc + OHIF, GCP/Vertex AI",
-    statusLabel: "Research project - Cloud Ambassadors",
+    statusLabel: "Research project, Cloud Ambassadors",
     summary:
       "A personal research project under Cloud Ambassadors' guidance, built on the open BraTS 2024 post-treatment glioma data. It covers training a SwinUNETR segmentation model on four MRI sequences, sliding-window inference, conversion of predictions to DICOM, and a viewer stack (Orthanc PACS, OHIF and a React viewer) that shows colour-coded tumour sub-regions, with GCP deployment.",
     seoDescription: "Glioma MRI segmentation with SwinUNETR on BraTS 2024 and a DICOM/PACS/OHIF visualization pipeline.",
     meta: [
       { label: "Context", value: "Personal research project under Cloud Ambassadors' guidance" },
-      { label: "Period", value: "Dec 2024 - Present" },
+      { label: "Period", value: "Dec 2024 – Present" },
       { label: "Data", value: "BraTS 2024 (open challenge data)" },
       { label: "My role", value: "Training stack, inference, DICOM conversion and viewer integration" },
     ],
@@ -204,7 +202,7 @@ export const engineeringCaseStudies: CaseStudy[] = [
         id: "implementation",
         title: "Implementation",
         bullets: [
-          "Network: the MONAI implementation of Swin UNETR (Hatamizadeh et al.), feature size 48, four input channels and five output classes (background plus ET, SNFH, NETC and RC). The contribution is the pipeline around it, not a new architecture.",
+          "Network: the MONAI implementation of Swin UNETR (Hatamizadeh et al.), feature size 48, four input channels and five output classes (background plus ET, SNFH, NETC and RC). The architecture is used as published; the work is the pipeline around it.",
           "Training: 128^3 patches, AdamW at 1e-4 with cosine decay, Dice + cross-entropy loss, batch 1-2 with 4-step gradient accumulation, up to 300 epochs with early stopping (patience 25), checkpointing and hardware-aware configuration.",
           "Metrics: BraTS-style Dice and HD95; HD95 is computed on a subset of validation batches to save compute.",
           "Viewing: predictions are converted from NIfTI to DICOM, stored in Orthanc and displayed in OHIF, plus a React/TypeScript viewer with Cornerstone3D overlays.",
@@ -236,7 +234,7 @@ export const engineeringCaseStudies: CaseStudy[] = [
           "Data augmentation made the biggest difference between the two runs (mean Dice 0.660 to 0.778).",
         ],
       },
-      { id: "next", title: "What I learned and next steps", paragraphs: ["A segmentation score is only half the job: clinicians need to inspect results in tools they already use, so integration work (DICOM, PACS, viewers) deserves as much care as the model. Next steps: compare nnU-Net and SegResNet, try a larger feature size, and run loss-weight ablations."] },
+      { id: "next", title: "Next steps", paragraphs: ["Compare nnU-Net and SegResNet, try a larger feature size, and run loss-weight ablations."] },
     ],
     artifacts: [],
     featuredOrder: 3,

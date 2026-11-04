@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
     unit: "Data Sciences and Analytics Center (DSAC)",
     org: "IIIT Hyderabad",
     advisor: "Prof. Nimmi Rangaswamy",
-    time: "Jan 2025 - Present",
+    time: "Jan 2025 – Present",
     topic: "Everyday HCI of Adaptive Fitness: The Bricolage of Self-Tracking in Urban India",
     bullets: [
       "Investigating how young adults in urban India assemble hybrid fitness-tracking ecologies across wearables, apps, gym routines, social media, trainer feedback, and embodied self-knowledge.",
@@ -38,7 +38,7 @@ export const experiences: Experience[] = [
     org: "Cloud Ambassadors",
     orgNote: "Startup within the Google Ecosystem",
     location: "Remote",
-    time: "Dec 2024 - Present",
+    time: "Dec 2024 – Present",
     bullets: [
       "Built a glioma segmentation pipeline for 3D brain MRI on Google Cloud, connected to a clinical image viewer (PACS) so predictions can be reviewed the way radiologists work.",
       "Developed a dynamic pricing engine and automated its training, deployment and versioning on Google Cloud.",
@@ -60,7 +60,7 @@ export const experiences: Experience[] = [
     kind: "leadership",
     title: "President, Debate Club",
     org: "IIIT Hyderabad",
-    time: "Oct 2023 - Oct 2025",
+    time: "Oct 2023 – Oct 2025",
     bullets: [
       "Grew the club to 50+ active members, with weekly debates and theory sessions.",
       "Built specialized teams for logistics, marketing, and design to handle the increased participation; tournament training for national competitions.",
@@ -74,7 +74,7 @@ export const education = [
     degree: "B.Tech (Honors) in Electronics and Communication Engineering",
     institution: "IIIT Hyderabad",
     location: "Hyderabad, India",
-    time: "2022 - 2026",
+    time: "2022 – 2026",
     details: [
       "Focus: Machine Learning, Computer Vision, Signal Processing",
       "Relevant coursework: Deep Learning, Digital Signal Processing, Computer Architecture",

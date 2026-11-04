@@ -12,7 +12,7 @@ function Diagram({ diagram }: { diagram: NonNullable<CaseStudySection["diagram"]
     <figure className="my-6">
       <ol className="grid gap-3 sm:grid-cols-2">
         {diagram.steps.map((s, i) => (
-          <li key={s.label} className="rounded-xl border border-line bg-card p-4">
+          <li key={s.label} className="rounded-lg border border-line bg-card p-4">
             <span className="font-mono text-xs text-muted">{String(i + 1).padStart(2, "0")}</span>
             <p className="font-semibold text-ink">{s.label}</p>
             {s.note ? <p className="mt-1 text-sm text-muted">{s.note}</p> : null}
@@ -33,7 +33,7 @@ export default function CaseStudyLayout({ study }: { study: CaseStudy }) {
     <main id="main">
       <article className="section-hero">
         <div className="container max-w-3xl">
-          <Link href={back.href} className="link-underline text-sm text-muted hover:text-ink focus-ring">
+          <Link href={back.href} className="tap link-underline focus-ring text-sm text-muted hover:text-ink">
             ← {back.label}
           </Link>
           <div className="mt-8 flex flex-wrap items-center gap-3">

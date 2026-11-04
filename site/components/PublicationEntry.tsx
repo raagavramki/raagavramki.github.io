@@ -33,19 +33,19 @@ export default function PublicationEntry({ pub }: { pub: Publication }) {
           <RichText text={`{{TBD: ${pub.verifyNote}}}`} />
         </p>
       ) : null}
-      <div className="flex flex-wrap gap-4 pt-1 text-sm">
+      <div className="flex flex-wrap gap-x-5 text-sm">
         {pub.doi ? (
-          <a className="link-underline text-ink focus-ring" href={pub.doi} target="_blank" rel="noreferrer">
+          <a className="tap link-underline text-ink focus-ring" href={pub.doi} target="_blank" rel="noreferrer">
             DOI
           </a>
         ) : null}
         {pub.openAccessUrl ? (
-          <a className="link-underline text-ink focus-ring" href={pub.openAccessUrl} target="_blank" rel="noreferrer">
+          <a className="tap link-underline text-ink focus-ring" href={pub.openAccessUrl} target="_blank" rel="noreferrer">
             PDF
           </a>
         ) : null}
         {pub.caseStudySlug ? (
-          <Link className="link-underline text-ink focus-ring" href={`/research/${pub.caseStudySlug}/`}>
+          <Link className="tap link-underline text-ink focus-ring" href={`/research/${pub.caseStudySlug}/`}>
             Read case study
           </Link>
         ) : null}

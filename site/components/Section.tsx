@@ -8,7 +8,6 @@ type SectionProps = {
   description?: string
   children: ReactNode
   variant?: SectionVariant
-  ordinal?: number
 }
 
 const variantClasses: Record<SectionVariant, string> = {
@@ -17,27 +16,13 @@ const variantClasses: Record<SectionVariant, string> = {
   quiet: "section-quiet",
 }
 
-export default function Section({
-  id,
-  title,
-  description,
-  children,
-  variant = "default",
-  ordinal,
-}: SectionProps) {
+export default function Section({ id, title, description, children, variant = "default" }: SectionProps) {
   return (
     <section id={id} className={variantClasses[variant]}>
       <div className="container">
-        <div className="section-head relative">
-          {ordinal && (
-            <span className="hidden md:block absolute -left-12 top-1 text-xs text-muted/40 font-mono">
-              {ordinal.toString().padStart(2, "0")}
-            </span>
-          )}
+        <div className="section-head">
           <h2>{title}</h2>
-          {description ? (
-            <p className="muted max-w-2xl">{description}</p>
-          ) : null}
+          {description ? <p className="muted max-w-2xl">{description}</p> : null}
         </div>
         {children}
       </div>

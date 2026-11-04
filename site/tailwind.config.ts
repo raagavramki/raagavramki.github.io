@@ -10,7 +10,7 @@ export default {
         mono: ["var(--font-mono)", "monospace"],
       },
       colors: {
-        ink: "var(--ink)",
+        ink: "rgb(var(--ink-rgb) / <alpha-value>)",
         muted: "var(--muted)",
         line: "var(--line)",
         card: "var(--card)",
